@@ -1,0 +1,34 @@
+# Local development only (TDD 10): MongoDB as a single-node replica set, so
+# transactions work exactly as on Atlas. API and web run on the host with
+# `pnpm dev`. Not used in any hosted environment.
+#
+#   pnpm db:up      # start and wait until the replica set is ready
+#   pnpm db:down    # stop (data kept in the mongo-data volume)
+#
+# Connection string (matches .env.example):
+#   mongodb://localhost:27017/?replicaSet=rs0&directConnection=true
+services:
+  mongo:
+    image: mongo:8.0
+    container_name: doqto-mongo
+    command: ['--replSet', 'rs0', '--bind_ip_all', '--port', '27017']
+    ports:
+      - '127.0.0.1:27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      # Initiates the replica set on first start, then reports healthy once it has a primary.
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "try { rs.status().ok } catch (e) { rs.initiate({ _id: 'rs0', members: [{ _id: 0, host: 'localhost:27017' }] }).ok }"
+      interval: 5s
+      timeout: 10s
+      start_period: 10s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

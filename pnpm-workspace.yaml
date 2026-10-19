@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm 10 blocks dependency install scripts unless listed here.
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@swc/core'
+  - esbuild
+  - mongodb-memory-server
+  - sharp
+  - unrs-resolver
+
+# Telemetry-only install scripts we never run.
+ignoredBuiltDependencies:
+  - '@scarf/scarf'

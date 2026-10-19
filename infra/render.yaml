@@ -1,0 +1,87 @@
+# Render Blueprint for the Doqto API (INT-05). Demo/staging service only;
+# the production service is added in INT-21 (demo-to-live switch).
+#
+# Apply: Render dashboard > New > Blueprint > pick the GitHub repo. Render reads
+# this file from the repo root by default; set the Blueprint path to
+# infra/render.yaml. Values marked `sync: false` are entered in the dashboard
+# when the Blueprint is first applied, and never live in git.
+#
+# Nothing is deployed until Raunak creates the Render account (backlog section 6).
+services:
+  - type: web
+    name: doqto-api-demo
+    runtime: node
+    # Singapore is the closest Render region to India (TDD 11 notes this for the privacy policy).
+    region: singapore
+    # Free sleeps when idle; fine for demos. Production must be Starter or above (TDD 10).
+    plan: free
+    branch: main
+    autoDeploy: true
+    # Only redeploy when API code, the contract or dependencies change.
+    buildFilter:
+      paths:
+        - apps/api/**
+        - packages/shared/**
+        - package.json
+        - pnpm-lock.yaml
+        - pnpm-workspace.yaml
+        - tsconfig.base.json
+    buildCommand: >-
+      npx --yes pnpm@10.28.0 install --frozen-lockfile &&
+      npx --yes pnpm@10.28.0 --filter "@doqto/api..." run build
+    startCommand: APP_VERSION="${RENDER_GIT_COMMIT:-dev}" node apps/api/dist/main.js
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: NODE_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      # Demo deployment: fixed OTP 123456, no real messages or payments (TDD 13).
+      - key: PROVIDER_MODE
+        value: demo
+      # Must start with doqto_demo, or the API refuses to start (INT-03).
+      - key: MONGODB_DB_NAME
+        value: doqto_demo
+      # Atlas connection string for the demo cluster (its own database user).
+      - key: MONGODB_URI
+        sync: false
+      # Demo never lives under doqto.in, so its cookies can never reach the
+      # production API or be overwritten by it (TDD 13 rule 1). Until a separate
+      # demo domain exists (e.g. doqto.care), use the default platform hostnames.
+      - key: API_PUBLIC_URL
+        value: https://doqto-api-demo.onrender.com
+      - key: WEB_PUBLIC_URL
+        value: https://doqto-web-demo.vercel.app
+      # The web app proxies /api/v1 to this service (see ENVIRONMENTS.md), so
+      # browsers call it same-origin; CORS only matters for direct calls.
+      - key: CORS_ORIGINS
+        value: https://doqto-web-demo.vercel.app
+      # COOKIE_DOMAIN is deliberately unset: host-only cookies.
+      # Render's proxy (1); becomes 2 once Cloudflare proxies the API (INT-11).
+      - key: TRUST_PROXY
+        value: '1'
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_ACCESS_TTL
+        value: 15m
+      - key: REFRESH_TOKEN_TTL_DAYS
+        value: '30'
+      - key: HASH_PEPPER
+        generateValue: true
+      - key: THROTTLE_LIMIT
+        value: '100'
+      - key: THROTTLE_TTL_SECONDS
+        value: '60'
+      - key: BOOKING_FEE_PAISE
+        value: '1500'
+      # Demo uploads live on the instance disk and vanish on redeploy; fine for demos.
+      - key: DEMO_STORAGE_DIR
+        value: /tmp/doqto-demo-storage
+      - key: SIGNED_URL_TTL_SECONDS
+        value: '300'
+      - key: SENTRY_DSN
+        sync: false
