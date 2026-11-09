@@ -11,7 +11,7 @@
  * placeholders that may belong to real people, so seeded users are not opted in to WhatsApp.
  * The admin phone is never in the source: anyone who knew it could read uploaded scans.
  */
-import { PhoneSchema } from '@doqto/shared';
+import { PhoneSchema, type SpecialtyKey } from '@doqto/shared';
 import type { Model, Types } from 'mongoose';
 import { Clinic } from '../clinics/clinic.schema';
 import { Doctor } from '../doctors/doctor.schema';
@@ -20,6 +20,58 @@ import { baseSlug, uniqueSlug } from '../doctors/slug';
 import { databaseNameFromUri, DEMO_DB_PREFIX, toGeoJsonPoint } from '../integrations';
 import { ScheduleEntity } from '../schedules/schedule.schema';
 import { User } from '../users/user.schema';
+
+interface SeedDoctor {
+  phone: string;
+  name: string;
+  gender: 'female' | 'male';
+  specialties: readonly SpecialtyKey[];
+  degree: string;
+  years: number;
+  consultFee: number;
+  clinic: string;
+  languages: readonly string[];
+}
+
+const EXTRA_FIRST = [
+  'Aarav',
+  'Neha',
+  'Imran',
+  'Pooja',
+  'Sandeep',
+  'Ritu',
+  'Mohit',
+  'Kavita',
+  'Arjun',
+  'Seema',
+];
+const EXTRA_LAST = ['Verma', 'Singh', 'Agarwal', 'Saxena', 'Ansari'];
+const EXTRA_SPECIALTIES: [SpecialtyKey, string][] = [
+  ['general_physician', 'MBBS, MD (Medicine)'],
+  ['paediatrics', 'MBBS, DCH'],
+  ['dermatology', 'MBBS, MD (Dermatology)'],
+  ['orthopaedics', 'MBBS, MS (Ortho)'],
+  ['gynaecology', 'MBBS, MS (Obs & Gyn)'],
+  ['ent', 'MBBS, MS (ENT)'],
+  ['dentistry', 'BDS, MDS'],
+];
+const EXTRA_CLINICS = ['bareilly-civil-lines', 'bareilly-rajendra-nagar', 'moradabad-civil-lines'];
+
+/** 20 more demo doctors (so search has something to page through), spread over the 3 clinics. */
+export const EXTRA_DOCTORS: SeedDoctor[] = Array.from({ length: 20 }, (_, i) => {
+  const [specialty, degree] = EXTRA_SPECIALTIES[i % EXTRA_SPECIALTIES.length]!;
+  return {
+    phone: `+9190000000${16 + i}`,
+    name: `${EXTRA_FIRST[i % EXTRA_FIRST.length]} ${EXTRA_LAST[Math.floor(i / 2) % EXTRA_LAST.length]}`,
+    gender: i % 2 === 0 ? 'female' : 'male',
+    specialties: [specialty],
+    degree,
+    years: 5 + ((i * 3) % 20),
+    consultFee: 20000 + (i % 6) * 5000,
+    clinic: EXTRA_CLINICS[i % EXTRA_CLINICS.length]!,
+    languages: ['Hindi', 'English'],
+  };
+});
 
 export const SEED = {
   adminName: 'Doqto Admin',
@@ -163,7 +215,7 @@ export function assertSeedTarget(t: SeedTarget): void {
 
 export async function seedDemo(
   models: SeedModels,
-  options: { adminPhone?: string; mode: string | undefined },
+  options: { adminPhone?: string; mode: string | undefined; withExtras?: boolean },
 ): Promise<{ doctors: number; clinics: number; admin: boolean }> {
   const { users, doctors, clinics, schedules } = models;
   // Again on the real connection, so every caller is covered (not just the CLI).
@@ -191,8 +243,13 @@ export async function seedDemo(
       .exec())!;
 
   const admin = adminPhone ? await upsertUser(adminPhone, SEED.adminName, ['admin']) : null;
+  // The core five are what the e2e tests expect; the CLI adds the extra doctors for paging demos.
+  const seedDoctors: readonly SeedDoctor[] = [
+    ...SEED.doctors,
+    ...(options.withExtras ? EXTRA_DOCTORS : []),
+  ];
   const doctorUsers = new Map<string, Awaited<ReturnType<typeof upsertUser>>>();
-  for (const d of SEED.doctors)
+  for (const d of seedDoctors)
     doctorUsers.set(d.phone, await upsertUser(d.phone, `Dr ${d.name}`, ['doctor']));
 
   const clinicByKey = new Map<string, Clinic & { _id: Types.ObjectId }>();
@@ -230,7 +287,7 @@ export async function seedDemo(
       .exec();
   }
 
-  for (const d of SEED.doctors) {
+  for (const d of seedDoctors) {
     const clinic = clinicByKey.get(d.clinic)!;
     const user = doctorUsers.get(d.phone)!;
     const existing = await doctors
@@ -298,5 +355,5 @@ export async function seedDemo(
       )
       .exec();
   }
-  return { doctors: SEED.doctors.length, clinics: SEED.clinics.length, admin: admin !== null };
+  return { doctors: seedDoctors.length, clinics: SEED.clinics.length, admin: admin !== null };
 }

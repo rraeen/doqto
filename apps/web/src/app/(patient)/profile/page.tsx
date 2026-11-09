@@ -8,9 +8,9 @@ export const metadata: Metadata = { title: 'Profile', robots: { index: false } }
 
 export default function ProfilePage() {
   return (
-    <Page>
+    <Page size="wide">
       <Suspense>
-        <ProfileView nameMax={NAME_MAX} />
+        <ProfileView nameMax={NAME_MAX} mode="overview" />
       </Suspense>
     </Page>
   );

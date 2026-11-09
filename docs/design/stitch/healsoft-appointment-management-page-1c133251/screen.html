@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Appointment Management</title>
+<!-- Google Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0bf40b",
+                        "background-light": "#f5f8f5",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'neumorphic-out': '8px 8px 16px #d1d4d1, -8px -8px 16px #ffffff',
+                        'neumorphic-in': 'inset 4px 4px 8px #d1d4d1, inset -4px -4px 8px #ffffff',
+                        'neumorphic-sm': '4px 4px 8px #d1d4d1, -4px -4px 8px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neumorphic-card {
+            background: #f5f8f5;
+            box-shadow: 8px 8px 16px #d1d4d1, -8px -8px 16px #ffffff;
+        }
+        .neumorphic-inset {
+            background: #f5f8f5;
+            box-shadow: inset 4px 4px 8px #d1d4d1, inset -4px -4px 8px #ffffff;
+        }
+        .neumorphic-button-primary {
+            background: #0bf40b;
+            box-shadow: 4px 4px 10px rgba(11, 244, 11, 0.3), -4px -4px 10px #ffffff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen text-[#0d1c0d]">
+<!-- Main Container -->
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7f4e7] dark:border-[#1a331a] px-10 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#0d1c0d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-extrabold leading-tight tracking-tight">HealSoft</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#0d1c0d] dark:text-white/80 text-sm font-semibold hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Appointments</a>
+<a class="text-[#0d1c0d] dark:text-white/80 text-sm font-semibold hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-[#0d1c0d] dark:text-white/80 text-sm font-semibold hover:text-primary transition-colors" href="#">Records</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 neumorphic-card border-2 border-white" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9Ipl1RUhoAhF5T-qAjmn1ox8uAmeck__dzB9Sd9Qa-7qaeVI9JSfjDxvA0nPg3Wxm0SRm1wnS5Emez0iz0oED7oYh25A5wm3H79uDLHd338uCRuflNlMCrw09t0-yLvAjNHkGBGcwGDchc4KTCgKrJJwPxth6XzaJYVgoarANfhFPDwHDGbEjE19d_RLAb0kdhpPhK7OVdvl9Jnbm-at2e0LaT529QBHApqGZSEc8kNgmQjbXC0PTgbYydLq07NryQH435g37n3Yb");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1000px] flex-1 px-6">
+<!-- Page Heading & Search -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<h1 class="text-[#0d1c0d] dark:text-white text-4xl font-black tracking-tight">My Appointments</h1>
+<div class="w-full md:w-96">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full neumorphic-inset">
+<div class="text-primary flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:outline-0 focus:ring-0 text-[#0d1c0d] dark:text-white placeholder:text-[#489d48]/60 px-4 text-sm font-medium" placeholder="Search by doctor or specialty" value=""/>
+</div>
+</label>
+</div>
+</div>
+<!-- Segmented Control Tabs -->
+<div class="flex mb-10">
+<div class="flex h-12 w-full max-w-md items-center justify-center rounded-full neumorphic-inset p-1.5">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-4 bg-primary text-white shadow-lg transition-all">
+<span class="text-sm font-bold">Upcoming</span>
+<input checked="" class="hidden" name="tabs" type="radio" value="Upcoming"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-4 text-[#489d48] dark:text-white/60 text-sm font-bold hover:bg-white/10 transition-all">
+<span class="text-sm">Past History</span>
+<input class="hidden" name="tabs" type="radio" value="Past History"/>
+</label>
+</div>
+</div>
+<!-- Upcoming Section -->
+<div class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-[#0d1c0d] dark:text-white text-xl font-bold tracking-tight">Upcoming Appointments</h2>
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">3 Total</span>
+</div>
+<!-- Appointment Card 1 -->
+<div class="neumorphic-card rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 group hover:scale-[1.01] transition-transform duration-300">
+<div class="size-20 rounded-xl bg-white p-1 neumorphic-sm overflow-hidden shrink-0">
+<img alt="Doctor profile" class="w-full h-full object-cover rounded-lg" data-alt="Portrait of a male doctor in professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkOdAHKJzSraFxbCXLFiTe-_0I4h8u-a7ixDelrLvp1iC_eamtqi6b3i6ri9Lb0PZxARGIKgj507IYYte2FuO-8qS3DpBH8f4JxWscMGDc3O8NR4_V7b2qNQRnTR5omEwCdvMMyjeh8A3G87k_vOtTe4ANZ14CYZmAgsslHNpvEQSVi1YnelikVpVUguirNsqypBLNhd2j2YYe2OtpnhrIS_KTDE_Ny_jquZU8cwZyXq1ysR9wg334qK-6AVwItKREIeU1gnsXU_12"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="text-[#0d1c0d] dark:text-white text-lg font-extrabold">Dr. Julian Mitchell</h3>
+<p class="text-[#489d48] font-semibold text-sm">Senior Cardiologist</p>
+<div class="flex items-center justify-center md:justify-start gap-4 mt-3 text-sm text-gray-500 dark:text-gray-400">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Oct 28, 2023</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>10:30 AM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none h-11 px-8 rounded-full bg-primary text-[#0d1c0d] font-bold text-sm shadow-[4px_4px_12px_rgba(11,244,11,0.4)] hover:brightness-105 active:scale-95 transition-all">
+                                Edit
+                            </button>
+<button class="size-11 flex items-center justify-center rounded-full neumorphic-inset text-[#489d48] hover:text-primary transition-colors" title="Reschedule">
+<span class="material-symbols-outlined">event_repeat</span>
+</button>
+</div>
+</div>
+<!-- Appointment Card 2 -->
+<div class="neumorphic-card rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 group hover:scale-[1.01] transition-transform duration-300">
+<div class="size-20 rounded-xl bg-white p-1 neumorphic-sm overflow-hidden shrink-0">
+<img alt="Doctor profile" class="w-full h-full object-cover rounded-lg" data-alt="Portrait of a female pediatrician smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsnGuNQxtk34g5Jmlaz-xHqqyKcZaj96_6bexiRXm8shvonE2AJXMbgj8Ezi5W2VXLwuol01Sy65ECTVxvwqH0wWhhqUoyPGXwn2mJJHOWfvCXdkGzX1WsP3qkSzE98QxVkYyQ1j28ywUrfFNYCRAz6WtcklGiQ0zh3ySkB5KV-W1n9uj_7YQfV7GoPf29CBq4im2gDO9u4LD3tA14FgYS381zuaulhAzPLpz05h2VhkFxqh5fqrJHtuStBDJPVq473WXbrpQu5XbY"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="text-[#0d1c0d] dark:text-white text-lg font-extrabold">Dr. Sarah Chen</h3>
+<p class="text-[#489d48] font-semibold text-sm">Pediatric Specialist</p>
+<div class="flex items-center justify-center md:justify-start gap-4 mt-3 text-sm text-gray-500 dark:text-gray-400">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Nov 02, 2023</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>02:15 PM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none h-11 px-8 rounded-full bg-primary text-[#0d1c0d] font-bold text-sm shadow-[4px_4px_12px_rgba(11,244,11,0.4)] hover:brightness-105 active:scale-95 transition-all">
+                                Edit
+                            </button>
+<button class="size-11 flex items-center justify-center rounded-full neumorphic-inset text-[#489d48] hover:text-primary transition-colors" title="Reschedule">
+<span class="material-symbols-outlined">event_repeat</span>
+</button>
+</div>
+</div>
+<!-- Past History Header -->
+<div class="pt-8 pb-4">
+<h2 class="text-[#0d1c0d]/60 dark:text-white/60 text-xl font-bold tracking-tight px-2">Recent History</h2>
+</div>
+<!-- Past Appointment Card -->
+<div class="bg-[#f0f3f0]/50 dark:bg-white/5 border border-white/40 dark:border-white/10 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 opacity-75">
+<div class="size-16 rounded-xl bg-white/50 p-1 overflow-hidden shrink-0 grayscale">
+<img alt="Doctor profile" class="w-full h-full object-cover rounded-lg" data-alt="Black and white portrait of a doctor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKAE_sZG7HTIzGRh03J0UQJCzKSIqaKZST-olvyceqoBkRfUMC9Apw-rvIcv_qGQvjZerwM1kFYW1AD0X6od6u5vs2Gm2UimpTJDPMNaJW6MKQPIi22XLX7FXZ-RQR7u4IG_pwweFDqZi-hUq_qQFYMnj9_Et8zR__Z_rDj_vj3Qzgx1Z5gqZS3uNgMbCs36QUBpWhamXwZbS_hi0RPvj7SObPdRTef-t8ELfRRDjStKgtNvcJMjiaVKJDr6suZff7Eia6jbCJDloq"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="text-[#0d1c0d] dark:text-white text-base font-bold">Dr. Elena Rodriguez</h3>
+<p class="text-gray-500 text-xs font-medium">Dermatology • Oct 12, 2023</p>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none h-10 px-6 rounded-full neumorphic-inset text-[#0d1c0d] dark:text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-[18px]">description</span>
+                                View Prescription
+                            </button>
+<button class="size-10 flex items-center justify-center rounded-full neumorphic-inset text-primary hover:bg-primary/10 transition-colors" title="Download Summary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Background Decoration Elements -->
+<div class="fixed top-20 left-[-100px] w-[300px] h-[300px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-20 right-[-100px] w-[400px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+</body></html>

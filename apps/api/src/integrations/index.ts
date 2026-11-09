@@ -14,6 +14,8 @@ export { DEMO_FIXED_OTP } from './otp/demo-otp.provider';
 export * from './otp/visit-code';
 export * from './whatsapp/whatsapp.provider';
 export * from './sms/sms.provider';
+export * from './email/email.provider';
+export { DemoEmailProvider } from './email/demo-email.provider';
 export * from './payment/payment.provider';
 export type { PaymentEventHandler, PaymentWebhooks } from './payment/payment-webhooks.service';
 export type { DemoPay } from './payment/demo-pay';

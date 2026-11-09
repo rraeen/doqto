@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: 'Doctor verification', robots: { inde
 export default async function AdminDoctorsRoute() {
   const specialties = specialtyLabels(await getLocale());
   return (
-    <Page withNav={false}>
+    <Page withNav={false} size="wide">
       <Suspense>
         <AdminQueuePage specialties={specialties} />
       </Suspense>

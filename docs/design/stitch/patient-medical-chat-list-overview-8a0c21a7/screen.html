@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Medical Chat List Overview</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                        "neu-bg": "#f0f4f0",
+                        "neu-light": "#ffffff",
+                        "neu-dark": "#d1d9d1",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .neu-pressed {
+            box-shadow: inset 4px 4px 8px #d1d9d1, inset -4px -4px 8px #ffffff;
+        }
+        .neu-flat {
+            box-shadow: 8px 8px 16px #d1d9d1, -8px -8px 16px #ffffff;
+        }
+        .neu-flat-hover:hover {
+            box-shadow: inset 2px 2px 5px #d1d9d1, inset -2px -2px 5px #ffffff;
+        }
+        .neu-glow {
+            box-shadow: 0 0 15px rgba(19, 236, 19, 0.3), 8px 8px 16px #d1d9d1, -8px -8px 16px #ffffff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d]">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-primary/10 px-10 py-4 bg-background-light/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#0d1b0d]">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#0d1b0d] text-xl font-black leading-tight tracking-tight">MedTrust</h2>
+</div>
+<label class="flex flex-col min-w-64 !h-10">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full neu-pressed px-4">
+<span class="material-symbols-outlined text-primary self-center mr-2">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d1b0d] focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-gray-400 text-sm font-normal" placeholder="Search conversations..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#0d1b0d] text-sm font-bold hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-extrabold" href="#">Consultations</a>
+<a class="text-[#0d1b0d] text-sm font-bold hover:text-primary transition-colors" href="#">Records</a>
+</nav>
+<div class="flex gap-4">
+<button class="flex items-center justify-center rounded-full size-10 neu-flat hover:neu-pressed transition-all">
+<span class="material-symbols-outlined text-[#0d1b0d] text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 neu-flat p-0.5" data-alt="User profile portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1041N2JI-52CSv4Q65yIvzUBMhT7byXWGC3N9pJOlyO__05g8ibuh55dWed5yL6UL-90KuaPApel5a5Pb3bYi_b1sMH0nmB9dEXJfSH81pZhKV3zaTLE1A6-OvCmdWSRSrbwi6saBYjt4fWGKLQH7Gt3AXty5t6gLfr7XJicezF95WeaN2YVZdgBNJFXVGL_QSeSveLwO4-_GFc8C80gkV03ndv6tuwzEUhfQ58N3uS3sZb17Xb0co9PUV2p2khNDZhTqTHiagXjg");'></div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center py-10 px-6 sm:px-10 lg:px-40 gap-8">
+<div class="layout-content-container flex flex-col max-w-[960px] w-full gap-10">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-end gap-6 w-full">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d1b0d] text-5xl font-black leading-tight tracking-[-0.033em]">Talk to a Doctor</h1>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+<p class="text-[#4c9a4c] text-lg font-medium">Secure medical consultations and follow-ups</p>
+</div>
+</div>
+<!-- Primary Action Button: Large Neumorphic Soft-Rounded -->
+<button class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-full h-16 px-8 neu-flat bg-background-light text-primary gap-3 text-lg font-bold transition-all active:scale-95 neu-flat-hover">
+<span class="material-symbols-outlined text-2xl">add_circle</span>
+<span>Start New Consultation</span>
+</button>
+</div>
+<!-- Filter Tabs (Additional UI for completeness) -->
+<div class="flex gap-4 px-2">
+<button class="px-6 py-2 rounded-full neu-pressed text-primary font-bold text-sm">All Chats</button>
+<button class="px-6 py-2 rounded-full neu-flat text-[#0d1b0d] font-bold text-sm hover:neu-pressed">Pending</button>
+<button class="px-6 py-2 rounded-full neu-flat text-[#0d1b0d] font-bold text-sm hover:neu-pressed">Completed</button>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Active Conversations Section -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#0d1b0d] text-[22px] font-bold px-4">Active Conversations</h3>
+<!-- Chat Card: Marcus Thorne (Active/Glow) -->
+<div class="flex gap-5 bg-background-light p-6 rounded-[2rem] neu-glow transition-all cursor-pointer items-center group">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 border-2 border-primary/20" data-alt="Portrait of Dr. Marcus Thorne" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6z1K_o2oSQ2CLH2HUDZl72YCQesRDv7vh43mtCqVmD7wAEh3aSDT372OaNYdya-BThk9Dv3SQJu3aJs2KR5qHfSNAksvwH9WlVr7DO7QF90S_wORXbCkW0R3CN59c_aNjm19Up4XrXSRUdoIMUm9ityWnw2yTsZXUnNgfaQ-4x_ClA0Q5f78gYUQ9v_IWKHSApQwFkBPE8iaeG2yDZoowdhgS_snsqE4j0HTH5DpR3l98n6JXisIk0pA_DNK2-QmJU-9hJpkZPL7_");'></div>
+<div class="absolute bottom-1 right-1 size-5 rounded-full bg-primary border-4 border-background-light shadow-[0_0_8px_rgba(19,236,19,0.8)]"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center mb-1">
+<h4 class="text-[#0d1b0d] text-xl font-bold group-hover:text-primary transition-colors">Dr. Marcus Thorne</h4>
+<span class="text-xs font-bold text-gray-400">2:45 PM</span>
+</div>
+<p class="text-[#4c9a4c] text-sm font-semibold mb-2">Specialist: Cardiology | <span class="text-primary">Online</span></p>
+<p class="text-[#0d1b0d]/70 text-base font-medium line-clamp-1">"The latest lab results look promising, Marcus. Let's discuss the next steps in our next call."</p>
+</div>
+<div class="flex flex-col items-end gap-3 px-2">
+<div class="size-7 flex items-center justify-center bg-primary rounded-full text-white text-xs font-bold shadow-lg shadow-primary/40">3</div>
+<span class="material-symbols-outlined text-gray-300">chevron_right</span>
+</div>
+</div>
+<!-- Chat Card: Sarah Jenkins (Active) -->
+<div class="flex gap-5 bg-background-light p-6 rounded-[2rem] neu-flat hover:neu-pressed transition-all cursor-pointer items-center group">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 border-2 border-white" data-alt="Portrait of Dr. Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZK_nBO_icia1d3UULp4CvHfNqpMCJr6YFoi73GsK6grBmPu5DmeN3tE-7KH6-J0PP0uMgGlR5tTJn-f1FvrUIP_k_lPlYQ3oUcHkIy8s_47tJ3JLxckCWQUklGMuq4vGnvoARd2uCLxB42rwhCE7-obS-fiOohXFc4NRPc99pjIBcOIYCADKM5xeeFyITKJq0lxL_Gi2-Nv2yFZz3VyU03cC_MZZGo7zyOkHZQbG_p3RrRByyNvetcAnxP68zqq4WvW3XhWemFGO6");'></div>
+<div class="absolute bottom-1 right-1 size-5 rounded-full bg-primary border-4 border-background-light shadow-[0_0_8px_rgba(19,236,19,0.8)]"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center mb-1">
+<h4 class="text-[#0d1b0d] text-xl font-bold group-hover:text-primary transition-colors">Dr. Sarah Jenkins</h4>
+<span class="text-xs font-bold text-gray-400">11:20 AM</span>
+</div>
+<p class="text-[#4c9a4c] text-sm font-semibold mb-2">Specialist: Dermatology | <span class="text-primary">Online</span></p>
+<p class="text-[#0d1b0d]/70 text-base font-medium line-clamp-1">"I've updated your prescription. You can find it in the health records tab."</p>
+</div>
+<div class="flex flex-col items-end gap-3 px-2">
+<div class="size-7 flex items-center justify-center bg-primary rounded-full text-white text-xs font-bold shadow-lg shadow-primary/40">1</div>
+<span class="material-symbols-outlined text-gray-300">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Recent/Muted History Section -->
+<div class="flex flex-col gap-4 mt-4">
+<h3 class="text-[#0d1b0d]/50 text-[18px] font-bold px-4">Past Consultations</h3>
+<!-- Chat Card: Alan Smith (Muted/Completed) -->
+<div class="flex gap-5 bg-background-light/50 p-6 rounded-[2rem] border border-white/40 opacity-70 transition-all cursor-default items-center">
+<div class="relative grayscale">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20" data-alt="Portrait of Dr. Alan Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWURdvixQaWppEhxVd6Wp_2q7NrsaXryVPe-MY4ogU9oP6OdZRECZDZZnvDLtnRMyDatrBGjRDRGt1korZjXNmkfs0qsqSCa6lm5SXtWV0IsaJXXRKAQyZRe_2RSazdQsHBytIKw1JHxipIHR7JtKSwWBYrhs5SLiScsdr_c3Nx-iSI41xcZl17jqKrAEpB9c-AdWutR9SpZK1cr_JUGymhF47isKSUY3v_XGoOVjD6WcgUCRtnjt-WvxX2A8ZzvzNIVwzzfxSGxMw");'></div>
+<div class="absolute bottom-1 right-1 size-5 rounded-full bg-gray-300 border-4 border-background-light"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex justify-between items-center mb-1">
+<h4 class="text-[#0d1b0d] text-xl font-bold">Dr. Alan Smith</h4>
+<span class="text-xs font-bold text-gray-400">Oct 24, 2023</span>
+</div>
+<p class="text-[#4c9a4c]/60 text-sm font-semibold mb-2">Specialist: General Medicine | <span class="text-gray-400">Offline</span></p>
+<p class="text-[#0d1b0d]/40 text-base font-medium line-clamp-1 italic">Consultation ended. Review summary in records.</p>
+</div>
+<div class="flex flex-col items-end gap-3 px-2">
+<button class="px-4 py-2 rounded-full neu-flat text-xs font-bold text-[#0d1b0d]/60 hover:neu-pressed transition-all">Re-open</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust/Security Footer Note -->
+<div class="flex justify-center items-center gap-4 py-10 opacity-40">
+<span class="material-symbols-outlined text-xl">encrypted</span>
+<p class="text-sm font-semibold uppercase tracking-widest">End-to-End Encrypted &amp; HIPAA Compliant</p>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

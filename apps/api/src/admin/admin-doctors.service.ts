@@ -113,7 +113,7 @@ export class AdminDoctorsService {
       .exec();
     const page = rows.slice(0, limit);
     const phones = new Map(
-      (await this.users.find({ _id: { $in: page.map((d) => d.userId) } }, { phone: 1 }).exec()).map(
+      (await this.users.find({ _id: { $in: page.flatMap((d) => (d.userId ? [d.userId] : [])) } }, { phone: 1 }).exec()).map(
         (u) => [u._id.toHexString(), u.phone] as const,
       ),
     );
@@ -121,7 +121,7 @@ export class AdminDoctorsService {
       items: page.map((d) => ({
         id: d._id.toHexString(),
         name: d.name,
-        phone: phones.get(d.userId.toHexString()) ?? null,
+        phone: (d.userId && phones.get(d.userId.toHexString())) || null,
         city: d.city ?? null,
         specialties: d.specialties,
         registration: {
@@ -139,7 +139,7 @@ export class AdminDoctorsService {
 
   async detail(adminUserId: string, id: string): Promise<AdminDoctorDetail> {
     const d = await this.find(id);
-    const user = await this.users.findById(d.userId, { phone: 1 }).exec();
+    const user = d.userId ? await this.users.findById(d.userId, { phone: 1 }).exec() : null;
     const ttl = Math.min(DOCUMENT_URL_TTL_MAX_SECONDS, this.integrations.signedUrlTtlSeconds);
     const documentUrl = d.registration.docKey
       ? await this.storage.signedUrl(d.registration.docKey, ttl)

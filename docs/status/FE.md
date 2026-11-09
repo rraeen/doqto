@@ -12,6 +12,12 @@ Owned and edited only by the FE agent. Newest entries at the top of each section
 
 ## In review
 
+### Patient completion on the real API (2026-10-21)
+- **Run it:** start the API (`pnpm --filter @doqto/api start`), then the web app with `NEXT_PUBLIC_API_MOCKS=false NEXT_PUBLIC_BOOKING_API=true NEXT_PUBLIC_API_URL=/api/v1 API_PROXY_TARGET=http://localhost:4000`. `NEXT_PUBLIC_BOOKING_API` is now in `.env.example`; without it bookings stay in the on-device demo store.
+- **New or rewired screens:** Razorpay Checkout in the pay step (`lib/razorpay.ts`, used when the order's provider is `razorpay`; the demo gateway keeps the "Pay (demo)" button); notifications inbox (`/notifications`, bell badge, read state); health records on the API (upload, search, filters, 20 per page, signed download, delete; `components/records/*`); Settings gets "Sign out of all devices"; search results are virtualized with a count and page arrows; the search form drives the link and the city is optional.
+- **Checked in a real browser against the real API (no mocks):** sign in, search, profile by doctor id, hold a slot, pay, doctor confirms, visit code, inbox message, reschedule (same code), cancel with refund, review (publishes and shows on the profile), records (add, search, delete), profile edit, export, sign out everywhere, search count and page arrows. Not covered by a browser run: Razorpay Checkout itself (needs real test keys), Web Push delivery (needs a device that grants permission), and the file download click in headless Edge (the signed link was fetched and returned the PDF).
+- **Tests:** web unit 148 (3 new for the Razorpay helper), 2 old failures (OTP limit set to 10 locally); tsc and eslint clean.
+
 ### Sprint 2 (FE-05 to FE-09)
 
 One way to check all five, against the mocks at 360 px:

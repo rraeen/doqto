@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Settings and Profile Edit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f4f0",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neumorphic-out': '8px 8px 16px #d1d9d1, -8px -8px 16px #ffffff',
+                        'neumorphic-in': 'inset 4px 4px 8px #d1d9d1, inset -4px -4px 8px #ffffff',
+                        'dark-neumorphic-out': '8px 8px 16px #081108, -8px -8px 16px #183318',
+                        'dark-neumorphic-in': 'inset 4px 4px 8px #081108, inset -4px -4px 8px #183318',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .neumorphic-card {
+            @apply shadow-neumorphic-out dark:shadow-dark-neumorphic-out bg-background-light dark:bg-background-dark transition-all duration-300;
+        }
+        .neumorphic-inset {
+            @apply shadow-neumorphic-in dark:shadow-dark-neumorphic-in bg-background-light dark:bg-background-dark border-none focus:ring-2 focus:ring-primary/50 transition-all duration-300;
+        }
+        .neumorphic-input-extruded {
+            @apply shadow-neumorphic-out dark:shadow-dark-neumorphic-out bg-background-light dark:bg-background-dark border-none focus:ring-2 focus:ring-primary/50 focus:shadow-neumorphic-in dark:focus:shadow-dark-neumorphic-in transition-all duration-300;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d] dark:text-white min-h-screen">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#cfe7cf] dark:border-[#1e3a1e] px-4 md:px-20 lg:px-40 py-3">
+<div class="flex items-center justify-between max-w-[1200px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-xl text-white">
+<span class="material-symbols-outlined block">health_and_safety</span>
+</div>
+<h2 class="text-[#0d1b0d] dark:text-white text-xl font-extrabold tracking-tight">PatientPortal</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold opacity-70 hover:opacity-100 transition-opacity" href="#">Dashboard</a>
+<a class="text-sm font-semibold opacity-70 hover:opacity-100 transition-opacity" href="#">Appointments</a>
+<a class="text-sm font-semibold text-primary" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="neumorphic-card p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img alt="Portrait of the patient user profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM421dIUgx9Hp9fwmR21AXPu5UzdM5cVz8kfihT0NAc8CbuTzU-E4asLIF5VyaIQ1LX6fjt7b2MiqUs338jXijN0BJmRh7FEUKTznZJY0NyyuJQCE-CfyX0LTCGFVvun1nOGNuqBVc9pEt6cVlv7gqxcR26TfDmhOLD50hPGevUsnmDZH5RfNsdsEirdH8C6J_A4FLDt0sP9wwiY0kWN8GXrlF1R-YQGLrgD--8axluDNHRCTmy0jRVbHoubq_fL5Rtg_hIs5fOpoW"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 md:px-20 lg:px-40 py-10 pb-32">
+<div class="flex items-center gap-2 mb-6 text-sm">
+<a class="text-primary font-medium" href="#">Home</a>
+<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
+<span class="opacity-60">Profile &amp; Settings</span>
+</div>
+<div class="mb-10">
+<h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-3">Profile &amp; Settings</h1>
+<p class="text-[#4c9a4c] dark:text-primary/70 text-lg max-w-2xl">Manage your personal information, health data, and security preferences securely.</p>
+</div>
+<div class="grid grid-cols-1 gap-12">
+<section class="neumorphic-card rounded-xl p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">person</span>
+<h2 class="text-2xl font-bold">Personal Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Full Name</label>
+<input class="neumorphic-input-extruded h-14 px-5 rounded-xl text-lg font-medium" placeholder="Enter your full name" type="text" value="Sarah Jenkins"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Phone Number</label>
+<input class="neumorphic-input-extruded h-14 px-5 rounded-xl text-lg font-medium" placeholder="Enter phone number" type="tel" value="+1 (555) 902-3456"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-bold opacity-70 px-1">Email Address</label>
+<input class="neumorphic-input-extruded h-14 px-5 rounded-xl text-lg font-medium" placeholder="Enter email address" type="email" value="sarah.jenkins@healthmail.com"/>
+</div>
+</div>
+</section>
+<section class="neumorphic-card rounded-xl p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+<h2 class="text-2xl font-bold">Health Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Blood Group</label>
+<div class="relative">
+<select class="neumorphic-input-extruded w-full h-14 px-5 rounded-xl appearance-none text-lg font-medium">
+<option>O Positive (O+)</option>
+<option>A Positive (A+)</option>
+<option>B Positive (B+)</option>
+<option>AB Negative (AB-)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Known Allergies</label>
+<div class="neumorphic-input-extruded min-h-[56px] p-3 rounded-xl flex flex-wrap gap-2">
+<span class="bg-primary/20 text-[#0d1b0d] dark:text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                            Penicillin <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+<span class="bg-primary/20 text-[#0d1b0d] dark:text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                            Peanuts <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</span>
+<button class="text-primary font-bold text-sm px-2">+ Add New</button>
+</div>
+</div>
+</div>
+<p class="mt-4 text-xs opacity-50 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span>
+                Your health data is encrypted and secure.
+            </p>
+</section>
+<section class="neumorphic-card rounded-xl p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">emergency</span>
+<h2 class="text-2xl font-bold">Emergency &amp; Safety</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Emergency Contact Name</label>
+<input class="neumorphic-input-extruded h-14 px-5 rounded-xl text-lg font-medium" type="text" value="Robert Jenkins"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold opacity-70 px-1">Relationship</label>
+<input class="neumorphic-input-extruded h-14 px-5 rounded-xl text-lg font-medium" type="text" value="Spouse"/>
+</div>
+</div>
+</section>
+<section class="neumorphic-card rounded-xl p-8">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+<h2 class="text-2xl font-bold">Preferences</h2>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 neumorphic-input-extruded rounded-xl">
+<div>
+<p class="font-bold">Push Notifications</p>
+<p class="text-sm opacity-60">Receive alerts on your mobile device</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 neumorphic-input-extruded rounded-xl">
+<div>
+<p class="font-bold">Appointment Reminders</p>
+<p class="text-sm opacity-60">Get notified 24 hours before your visit</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<section class="neumorphic-card rounded-xl p-8 mb-10">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+<h2 class="text-2xl font-bold">Security</h2>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="neumorphic-card px-8 h-14 rounded-xl flex items-center gap-2 font-bold hover:text-primary transition-colors">
+<span class="material-symbols-outlined">key</span>
+                    Change Password
+                </button>
+<button class="neumorphic-card px-8 h-14 rounded-xl flex items-center gap-2 font-bold text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+                    Logout Account
+                </button>
+</div>
+</section>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 p-6 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-[#cfe7cf] dark:border-[#1e3a1e] flex justify-center z-[60]">
+<div class="max-w-[1200px] w-full flex justify-end px-4 md:px-20 lg:px-40">
+<button class="bg-primary hover:bg-primary/90 text-[#0d1b0d] font-black text-lg px-12 py-4 rounded-full shadow-lg shadow-primary/30 transition-all active:scale-95 flex items-center gap-2">
+            Save Changes
+            <span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</footer>
+
+</body></html>

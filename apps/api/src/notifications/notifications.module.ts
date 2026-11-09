@@ -6,12 +6,13 @@ import {
   MyNotificationsController,
 } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
+import { WebPushService } from './web-push.service';
 
 /** BE-21 outbox and sender. Other modules import it and call `NotificationsService.notify()`. */
 @Module({
   imports: [JobsModule],
   controllers: [MyNotificationsController, AdminNotificationsController],
-  providers: [NotificationsService, NotificationSender],
-  exports: [NotificationsService],
+  providers: [NotificationsService, NotificationSender, WebPushService],
+  exports: [NotificationsService, WebPushService],
 })
 export class NotificationsModule {}

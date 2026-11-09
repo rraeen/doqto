@@ -1,0 +1,169 @@
+/*
+ * Doqto design tokens and shared base styles, used by apps/web and apps/console.
+ * Import after Tailwind in each app's globals.css:
+ *
+ *   @import 'tailwindcss';
+ *   @import '@doqto/ui/theme.css';
+ *   @source '../../../../packages/ui/src';   (path relative to that CSS file)
+ *
+ * Colours meet WCAG AA on their paired surface. Patient-only touches (the green glow behind every
+ * screen, phone safe-area helpers) stay in apps/web.
+ */
+@theme {
+  /* Brand green. 500 is the bright fill (use with dark ink text); 600 and up are for text on light surfaces. */
+  --color-brand-50: #f1f9ea;
+  --color-brand-100: #ddf1cc;
+  --color-brand-200: #c1e6a3;
+  --color-brand-500: #87d554;
+  --color-brand-600: #087a08;
+  --color-brand-700: #066306;
+  --color-brand-900: #063306;
+
+  --color-ink: #13201e;
+  --color-ink-muted: #4d5e5b;
+  --color-ink-subtle: #77878480;
+  /* Neumorphic: cards and controls share one surface colour and are drawn with light and shadow. */
+  --color-surface: #f0f4f0;
+  --color-canvas: #f0f4f0;
+  --color-line: #dfe6df;
+
+  --color-success: #166534;
+  --color-success-bg: #e8f6ed;
+  --color-warning: #a15c07;
+  --color-warning-bg: #fdf3e1;
+  --color-danger: #b42318;
+  --color-danger-bg: #fdecea;
+  --color-info: #1d4ed8;
+  --color-info-bg: #e8effd;
+
+  --font-sans:
+    var(--font-manrope), var(--font-noto-deva), system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+
+  /* Type scale: size / line height. Body is 16px so Android never zooms inputs. */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.625rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.25rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 4rem;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+
+  --shadow-xs: 3px 3px 6px #bcc7bc, -3px -3px 6px #ffffff;
+  --shadow-sm: 4px 4px 8px #bcc7bc, -4px -4px 8px #ffffff;
+  --shadow-md: 6px 6px 10px #bcc7bc, -6px -6px 10px #ffffff;
+  --shadow-lg: 10px 10px 20px #bcc7bc, -10px -10px 20px #ffffff;
+
+  /* Minimum touch targets: 44px default, 56px for front-desk actions. */
+  --spacing-tap: 2.75rem;
+  --spacing-tap-lg: 3.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
+  /* A real app does not rubber-band or pull to refresh by accident. */
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    overscroll-behavior-y: none;
+    text-rendering: optimizeLegibility;
+    line-height: 1.55;
+    min-height: 100dvh;
+    isolation: isolate;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  /* No 300ms tap delay or double-tap zoom on controls. */
+  a,
+  button,
+  [role='button'],
+  [role='tab'],
+  [role='radio'],
+  label,
+  summary {
+    touch-action: manipulation;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+/* Neumorphic look for the sign-in screens, from the Stitch "Unified Healthcare Login" design. */
+@utility neu-surface {
+  background: #f0f4f0;
+}
+@utility neu-card {
+  background: #f0f4f0;
+  border-radius: var(--radius-xl);
+  box-shadow:
+    12px 12px 24px #bcc7bc,
+    -12px -12px 24px #ffffff;
+}
+@utility neu-inset {
+  background: #f0f4f0;
+  box-shadow:
+    inset 5px 5px 9px #bcc7bc,
+    inset -5px -5px 9px #ffffff;
+}
+@utility neu-raised {
+  background: #f0f4f0;
+  box-shadow:
+    6px 6px 10px #bcc7bc,
+    -6px -6px 10px #ffffff;
+}
+@utility neu-bar {
+  background: #f0f4f0;
+  box-shadow: 0 -4px 10px #bcc7bc;
+}
+@utility neu-bar-top {
+  background: #f0f4f0;
+  box-shadow: 0 4px 10px #bcc7bc;
+}
+@utility neu-glow {
+  background: #077007;
+  color: white;
+  box-shadow:
+    0 0 14px rgba(135, 213, 84, 0.5),
+    6px 6px 10px #bcc7bc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

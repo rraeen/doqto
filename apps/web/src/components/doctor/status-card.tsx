@@ -62,7 +62,7 @@ export function DoctorStatusCard({ profile }: { profile: DoctorPrivateProfile })
               <li key={m}>
                 <Link
                   href={MISSING_LINK[m]}
-                  className="flex min-h-11 items-center gap-3 rounded-md px-2 text-sm text-brand-700 hover:bg-canvas"
+                  className="flex min-h-11 items-center gap-3 rounded-md px-2 text-sm text-brand-700 hover:brightness-105"
                 >
                   <Circle className="size-4 text-ink-muted" aria-hidden />
                   {t(`doctor.missing_${m}` as MessageKey)}

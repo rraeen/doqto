@@ -128,8 +128,11 @@ describe('sprint 2 flow against the contract mocks', { timeout: 20_000 }, () => 
     );
   });
 
-  it('asks for a city or a location, and pages near-me results by distance', async () => {
-    expect(await code(searchDoctors({}))).toBe('VALIDATION_FAILED');
+  it('lists everyone with no filter, and pages near-me results by distance', async () => {
+    const everyone = await searchDoctors({});
+    expect(everyone.items).toHaveLength(20);
+    expect(everyone.total).toBeGreaterThan(20);
+    expect(everyone.nextCursor).not.toBeNull();
     const first = await searchDoctors({ near: '28.367,79.432' });
     expect(first.items.length).toBeGreaterThan(0);
     const distances = first.items.map((d) => d.distanceMeters ?? Infinity);

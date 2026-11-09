@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx jest *)",
+      "Bash(node -e ' *)",
+      "Read(//e/projects/doqto_project/packages/ui/src/components/**)",
+      "Bash(node \"C:/Users/user/AppData/Local/Temp/claude/d3769eed1212a13d/eecbf451-a076-4f67-9ac4-6edff2899a42/scratchpad/console-ui-edits.cjs\")",
+      "Bash(npx vitest *)",
+      "Bash(npx eslint *)",
+      "Bash(node --test tooling/architecture/)",
+      "Bash(netstat -ano)",
+      "Bash(cd /c/Users/user/AppData/Local/Temp/pup; ls; sed -n 1,25p flow-console.mjs 2>/dev/null)",
+      "Read(//c/Users/user/AppData/Local/Temp/pup/**)",
+      "Bash(timeout 150 node console-auth-flow.mjs)",
+      "Bash(cd /c/Users/user/AppData/Local/Temp/pup/node_modules; ls puppeteer-core | head; ls | head -30; ls /c/Users/user/AppData/Local/Temp/pup/../claude 2>/dev/null | head -3)",
+      "Read(//c/Users/user/AppData/Local/Temp/pup/node_modules/**)",
+      "Read(//c/Users/user/AppData/Local/Temp/claude/**)",
+      "Bash(rm -rf node_modules/puppeteer-core)",
+      "Bash(npm i *)",
+      "Bash(timeout 160 node console-auth-flow.mjs)",
+      "Bash(sed -i \"s|headless: true }|headless: true, userDataDir: 'C:/Users/user/AppData/Local/Temp/pup/profile', args: ['--no-first-run','--disable-gpu'] }|\" console-auth-flow.mjs)",
+      "Bash(timeout 170 node console-auth-flow.mjs)",
+      "Read(//c/Program Files \\\\\\(x86\\\\\\)/Microsoft/Edge/Application/**)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Bash(tasklist)",
+      "Bash(sed -i \"s|'C:/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe',|'C:/Program Files/Google/Chrome/Application/chrome.exe',\\\\n  'C:/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe',|\" console-auth-flow.mjs)",
+      "Bash(sed -i \"s|pup/profile'|pup/profile-chrome'|\" console-auth-flow.mjs)",
+      "Read(//c/Users/user/AppData/Local/Temp/pup/shots/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pup"
+    ]
+  }
+}

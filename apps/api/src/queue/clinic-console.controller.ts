@@ -1,5 +1,6 @@
 import {
   UpdateStatusRequestSchema,
+  type ConfirmAppointmentResponse,
   type DaySheetItem,
   type DaySheetResponse,
   type DoctorStatus,
@@ -28,6 +29,7 @@ import {
 } from '@nestjs/swagger';
 import type { AuthUser } from '../auth/auth.types';
 import { CurrentUser } from '../auth/decorators';
+import { ConfirmationService } from '../appointments/confirmation.service';
 import { ClinicAccessService } from '../clinics/clinic-access.service';
 import { zodCheck } from '../common/http/zod-check';
 import { SchedulesService } from '../schedules/schedules.service';
@@ -61,6 +63,7 @@ export class ClinicConsoleController {
     private readonly schedules: SchedulesService,
     private readonly access: ClinicAccessService,
     private readonly alerts: StatusAlertsService,
+    private readonly confirmation: ConfirmationService,
   ) {}
 
   /** Alerts never undo the action that triggered them; a failure is only logged. */
@@ -90,6 +93,17 @@ export class ClinicConsoleController {
     @Body() body: CreateClinicAppointmentDto,
   ): Promise<DaySheetItem> {
     return this.desk.create(user.id, body);
+  }
+
+  /** The doctor accepts a paid booking; this creates the visit code and tells the patient. */
+  @Post('appointments/:id/confirm')
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({ description: 'ConfirmAppointmentResponse' })
+  confirm(
+    @CurrentUser() user: AuthUser,
+    @Param('id') id: string,
+  ): Promise<ConfirmAppointmentResponse> {
+    return this.confirmation.confirm(user.id, id);
   }
 
   @Post('queue/check-in')

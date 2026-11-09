@@ -45,7 +45,7 @@ export function useSignedIn(next: string) {
           title={t('doctor.notDoctor')}
           action={
             <Link
-              href={`/login?next=${encodeURIComponent(next)}`}
+              href={`${next.startsWith('/clinic') ? '/clinic/login' : '/login'}?next=${encodeURIComponent(next)}`}
               className={buttonVariants({ size: 'lg' })}
             >
               {t('home.signIn')}

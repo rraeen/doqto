@@ -5,7 +5,7 @@ export function DemoBanner({ text }: { text: string }) {
   return (
     <div
       role="status"
-      className="sticky top-0 z-50 bg-warning-bg px-4 py-2 text-center text-xs font-medium text-warning"
+      className="bg-warning-bg px-4 pb-2 pt-[max(0.5rem,env(safe-area-inset-top))] text-center text-xs font-medium text-warning"
     >
       {text}
     </div>

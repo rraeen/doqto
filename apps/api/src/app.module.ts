@@ -10,15 +10,19 @@ import { AuditModule } from './audit/audit.module';
 import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { IntegrationsModule } from './integrations';
+import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { AuthModule } from './auth/auth.module';
+import { ConsoleAuthModule } from './console-auth/console-auth.module';
 import { ClinicsModule } from './clinics/clinics.module';
 import { DoctorsModule } from './doctors/doctors.module';
 import { JobsModule } from './jobs/jobs.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { PaymentsModule } from './payments/payments.module';
+import { ChatModule } from './chat/chat.module';
 import { QueueModule } from './queue/queue.module';
+import { RecordsModule } from './records/records.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { StatusModule } from './status/status.module';
@@ -49,16 +53,20 @@ import { UsersModule } from './users/users.module';
     AuditModule,
     HealthModule,
     AuthModule,
+    ConsoleAuthModule,
     UsersModule,
     DoctorsModule,
     ClinicsModule,
     SchedulesModule,
     AppointmentsModule,
     QueueModule,
+    ChatModule,
     StatusModule,
     NotificationsModule,
     PaymentsModule,
     ReviewsModule,
+    RecordsModule,
+    AccountModule,
     AdminModule,
     JobsModule,
   ],

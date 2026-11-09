@@ -57,7 +57,7 @@ export class DoctorSearchService {
     private readonly status: DoctorStatusService,
   ) {}
 
-  async search(p: SearchParams): Promise<Page<DoctorListItem>> {
+  async search(p: SearchParams): Promise<Page<DoctorListItem> & { total: number }> {
     const offset = decodeCursor(p.cursor);
     const limit = Math.min(p.limit, PAGE_LIMIT_MAX);
 
@@ -134,11 +134,16 @@ export class DoctorSearchService {
         toListItem(r.doctor, r.primary, r.meters === null ? null : Math.round(r.meters)),
       ),
       nextCursor: next,
+      total: ranked.length,
     };
   }
 
   async profileBySlug(slug: string): Promise<DoctorProfile> {
-    const d: DoctorDocument | null = await this.doctors.findOne({ slug, isListed: true }).exec();
+    // Links carry the doctor's unique id (names repeat); a slug still works for old links.
+    const byId = /^[a-f0-9]{24}$/.test(slug);
+    const d: DoctorDocument | null = await this.doctors
+      .findOne({ ...(byId ? { _id: slug } : { slug }), isListed: true })
+      .exec();
     if (!d) throw AppException.notFound('Doctor not found');
     const clinics: ClinicDocument[] = await this.clinics.find({ _id: { $in: d.clinicIds } }).exec();
     const order = d.clinicIds.map((id) => id.toHexString());

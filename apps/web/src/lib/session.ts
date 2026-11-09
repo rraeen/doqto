@@ -4,6 +4,7 @@ import type { Me } from '@doqto/shared';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi } from './api/lazy';
 import { isApiError } from './api/errors';
+import { clearOfflineVisits } from './offline-card';
 
 export const meQueryKey = ['me'] as const;
 
@@ -31,12 +32,26 @@ export function useUpdateMe() {
   });
 }
 
+/** Signs out of every device, then clears this one like a normal sign-out. */
+export function useLogoutAll() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: authApi.logoutAll,
+    onSuccess: () => {
+      clearOfflineVisits();
+      qc.setQueryData(meQueryKey, null);
+      qc.removeQueries({ predicate: (q) => q.queryKey[0] !== meQueryKey[0] });
+    },
+  });
+}
+
 export function useLogout() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: authApi.logout,
     onSettled: () => {
       // Signed out locally even if the network call failed; the access cookie expires in 15 minutes.
+      clearOfflineVisits();
       qc.setQueryData(meQueryKey, null);
       qc.removeQueries({ predicate: (q) => q.queryKey[0] !== meQueryKey[0] });
     },

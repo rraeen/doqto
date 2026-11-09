@@ -2,8 +2,10 @@ import {
   ACTIVE_APPOINTMENT_STATUSES,
   APPOINTMENT_SOURCES,
   APPOINTMENT_STATUSES,
+  VISIT_REASONS,
   type AppointmentSource,
   type AppointmentStatus,
+  type VisitReason,
 } from '@doqto/shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
@@ -56,6 +58,18 @@ export class Appointment {
   @Prop() visitVerifiedAt?: Date;
   @Prop() reviewUnlockAt?: Date;
   @Prop({ type: Types.ObjectId, ref: 'Payment' }) paymentId?: Types.ObjectId;
+  /** Doqto booking fee in paise, copied from the doctor when booked (later fee changes do not apply). */
+  @Prop({ default: 0 }) bookingFee: number;
+  /** Why the patient is visiting, from a fixed list (no clinical detail). */
+  @Prop({ type: String, enum: VISIT_REASONS }) visitReason?: VisitReason;
+  /**
+   * The visit code, sealed (AES-GCM) so the patient who booked can see it again in the app. The
+   * clinic only ever checks `visitCode.hash`; nothing but the owner's own read route opens this.
+   */
+  @Prop() visitCodeSealed?: string;
+  /** How many times the patient moved the booking. */
+  @Prop({ default: 0 }) rescheduleCount: number;
+  @Prop() cancelledAt?: Date;
   @Prop({ maxlength: 200 }) cancelReason?: string;
   @Prop({ type: [StatusHistoryEntrySchema], default: [] }) statusHistory: StatusHistoryEntry[];
   @Prop({ default: false }) isDemo: boolean;
@@ -89,3 +103,5 @@ AppointmentSchema.index(
   { partialFilterExpression: { status: 'completed' } },
 );
 AppointmentSchema.index({ clinicId: 1, date: 1 });
+// The patient's own lists (upcoming / past), newest slot first.
+AppointmentSchema.index({ patientUserId: 1, status: 1, slotStart: -1 });

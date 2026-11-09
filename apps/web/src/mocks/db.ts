@@ -1,5 +1,14 @@
 import {
+  ACTIVE_APPOINTMENT_STATUSES,
+  doctorReference,
   PROFILE_REQUIREMENTS,
+  type Appointment,
+  type RatingSummary,
+  type ReviewRatings,
+  type ReviewState,
+  type VisitReason,
+  type WouldRecommend,
+  RATING_DIMENSIONS,
   type Address,
   type AdminDoctorQueueItem,
   type ClinicPrivate,
@@ -16,6 +25,7 @@ import {
   type Me,
 } from '@doqto/shared';
 import { DEMO_OTP_CODE } from '@/lib/demo';
+import { seedReviews } from './review-seed';
 import { SEED_CLINICS, SEED_DOCTORS } from './seed';
 
 type ProfileRequirement = (typeof PROFILE_REQUIREMENTS)[number];
@@ -37,6 +47,11 @@ interface MockState {
   otpRequests: Record<string, number[]>;
   doctors: Record<string, MockDoctor>;
   clinics: Record<string, MockClinic>;
+  appointments: Record<string, MockAppointment>;
+  reviews: Record<string, MockReview>;
+  pushSubscriptions: Record<string, MockPushSubscription[]>;
+  /** Users who already got their example finished visits (see `ensurePastVisits`). */
+  pastVisitsFor: Record<string, true>;
 }
 
 /** Stored doctor; `missing`, `isListed`, `city` and `clinicIds` are derived on read like the API. */
@@ -51,6 +66,47 @@ export type MockDoctor = Omit<
   /** Object URL of the uploaded scan (mock stand-in for the signed URL). */
   documentUrl: string | null;
 };
+
+/** A stored booking: the contract's `Appointment` plus what the API keeps server-side. */
+export type MockAppointment = Appointment & {
+  userId: string;
+  patientPhone: string;
+  /** Doqto fee in paise, copied from the doctor when booked. */
+  bookingFee: number;
+  /** Set when payment confirms; only ever returned once, with the confirmation. */
+  visitCode: string | null;
+};
+
+/** A stored review: what the API keeps, with the author and the fraud-check outcome. */
+export interface MockReview {
+  id: string;
+  appointmentId: string;
+  doctorId: string;
+  userId: string;
+  /** First name and last initial. */
+  reviewerName: string;
+  ratings: ReviewRatings;
+  wouldRecommend: WouldRecommend;
+  reason: VisitReason;
+  text: string | null;
+  waitedMinutes: number | null;
+  state: ReviewState;
+  submittedAt: string;
+  editedAt: string | null;
+  publishedAt: string | null;
+  visitMonth: string;
+  reply: { text: string; at: string } | null;
+  reports: number;
+}
+
+/** A device a patient registered for Web Push. */
+export interface MockPushSubscription {
+  id: string;
+  endpoint: string;
+}
+
+/** Switches for the mocks. Tests turn the example finished visits off to keep counts exact. */
+export const mockConfig = { seedPastVisits: true };
 
 export interface MockClinic {
   id: string;
@@ -75,6 +131,10 @@ function emptyState(): MockState {
     otpRequests: {},
     doctors: Object.fromEntries(SEED_DOCTORS.map((d) => [d.id, d])),
     clinics: Object.fromEntries(SEED_CLINICS.map((c) => [c.id, c])),
+    appointments: {},
+    reviews: seedReviews(),
+    pushSubscriptions: {},
+    pastVisitsFor: {},
   };
 }
 
@@ -82,7 +142,16 @@ function load(): MockState {
   if (typeof localStorage === 'undefined') return emptyState();
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? { ...emptyState(), ...(JSON.parse(raw) as Partial<MockState>) } : emptyState();
+    if (!raw) return emptyState();
+    const fresh = emptyState();
+    const saved = { ...fresh, ...(JSON.parse(raw) as Partial<MockState>) };
+    // Doctors and clinics added to the seed later still reach a browser that saved an older state;
+    // anything saved (edits, new doctors) wins over the seed.
+    return {
+      ...saved,
+      doctors: { ...fresh.doctors, ...saved.doctors },
+      clinics: { ...fresh.clinics, ...saved.clinics },
+    };
   } catch {
     return emptyState();
   }
@@ -219,6 +288,180 @@ export function addRole(userId: string, role: Me['roles'][number]) {
     state.users[userId] = { ...user, roles: [...user.roles, role] };
     persist();
   }
+}
+
+/* ---------- Appointments ---------- */
+
+export function appointmentById(id: string): MockAppointment | null {
+  return state.appointments[id] ?? null;
+}
+
+export function putAppointment(appt: MockAppointment) {
+  state.appointments[appt.id] = appt;
+  persist();
+}
+
+/** Marks holds that ran out as `expired`, like the API's minute job (BE-28). */
+export function expireHolds(now = Date.now()) {
+  let changed = false;
+  for (const a of Object.values(state.appointments)) {
+    if (a.status === 'pending_payment' && a.holdExpiresAt && Date.parse(a.holdExpiresAt) <= now) {
+      a.status = 'expired';
+      a.holdExpiresAt = null;
+      changed = true;
+    }
+  }
+  if (changed) persist();
+}
+
+export function appointmentsOfUser(userId: string): MockAppointment[] {
+  return Object.values(state.appointments).filter((a) => a.userId === userId);
+}
+
+/** Start times of bookings that still hold a slot with this doctor. */
+export function heldSlotStarts(doctorId: string, clinicId: string): Set<string> {
+  const held = new Set<string>();
+  for (const a of Object.values(state.appointments)) {
+    if (a.doctorId !== doctorId || a.clinicId !== clinicId || !a.slotStart) continue;
+    if (ACTIVE_APPOINTMENT_STATUSES.some((st) => st === a.status)) held.add(a.slotStart);
+  }
+  return held;
+}
+
+/* ---------- Push, data export and deleting an account ---------- */
+
+export function pushSubscriptionsOf(userId: string): MockPushSubscription[] {
+  return state.pushSubscriptions[userId] ?? [];
+}
+
+export function setPushSubscriptions(userId: string, list: MockPushSubscription[]) {
+  state.pushSubscriptions[userId] = list;
+  persist();
+}
+
+export function allReviewsOf(userId: string): MockReview[] {
+  return Object.values(state.reviews).filter((x) => x.userId === userId);
+}
+
+export function allReviews(): MockReview[] {
+  return Object.values(state.reviews);
+}
+
+/**
+ * Deletes a patient like the API will (BE-42): the user and sign-in go, the name and phone on
+ * their appointments are blanked, and their reviews stay as "Verified patient".
+ */
+export function deleteUser(userId: string) {
+  delete state.users[userId];
+  delete state.pushSubscriptions[userId];
+  for (const a of Object.values(state.appointments)) {
+    if (a.userId !== userId) continue;
+    a.patientName = 'Deleted user';
+    a.patientPhone = '';
+    a.visitCode = null;
+  }
+  for (const r of Object.values(state.reviews)) {
+    if (r.userId === userId) r.reviewerName = 'Verified patient';
+  }
+  if (state.sessionUserId === userId) state.sessionUserId = null;
+  persist();
+}
+
+/* ---------- Reviews ---------- */
+
+export function reviewById(id: string): MockReview | null {
+  return state.reviews[id] ?? null;
+}
+
+export function putReview(review: MockReview) {
+  state.reviews[review.id] = review;
+  persist();
+}
+
+export function reviewForAppointment(appointmentId: string): MockReview | null {
+  return Object.values(state.reviews).find((x) => x.appointmentId === appointmentId) ?? null;
+}
+
+/** Reviews the public can see for a doctor: published only, newest first. */
+export function publicReviewsOf(doctorId: string): MockReview[] {
+  return Object.values(state.reviews)
+    .filter((x) => x.doctorId === doctorId && x.state === 'published')
+    .sort((a, b) => Date.parse(b.publishedAt ?? '') - Date.parse(a.publishedAt ?? ''));
+}
+
+/** Only a patient's most recent published review of a doctor counts towards the score. */
+export function countedReviewsOf(doctorId: string): MockReview[] {
+  const latest = new Map<string, MockReview>();
+  for (const x of publicReviewsOf(doctorId)) if (!latest.has(x.userId)) latest.set(x.userId, x);
+  return [...latest.values()];
+}
+
+/** The mock's stand-in for the API's rating job; `null` under 5 counted reviews. */
+export function reviewSummaryFor(doctorId: string): RatingSummary | null {
+  const counted = countedReviewsOf(doctorId);
+  if (counted.length < 5) return null;
+  const mean = (pick: (x: MockReview) => number) =>
+    Math.round((counted.reduce((n, x) => n + pick(x), 0) / counted.length) * 10) / 10;
+  const dims = Object.fromEntries(
+    RATING_DIMENSIONS.map((d) => [
+      d,
+      Math.min(
+        5,
+        Math.max(
+          1,
+          mean((x) => x.ratings[d]),
+        ),
+      ),
+    ]),
+  ) as Record<(typeof RATING_DIMENSIONS)[number], number>;
+  const yes = counted.filter((x) => x.wouldRecommend === 'yes').length;
+  return {
+    count: counted.length,
+    recommendPct: Math.round((yes / counted.length) * 100),
+    ...dims,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+/**
+ * Gives a new patient three finished visits to try reviewing: one that ended 3 days ago (open),
+ * one 2 hours ago (opens tomorrow) and one 45 days ago (closed). The real app has real visits.
+ */
+export function ensurePastVisits(userId: string, now = Date.now()) {
+  if (!mockConfig.seedPastVisits || state.pastVisitsFor[userId]) return;
+  const doctor = state.doctors['5eed00000000000000000201'];
+  const clinic = doctor ? clinicsOfDoctor(doctor.id)[0] : undefined;
+  if (!doctor || !clinic) return;
+  const ended = [3 * 86_400_000, 2 * 3_600_000, 45 * 86_400_000];
+  for (const ago of ended) {
+    const end = now - ago;
+    const start = end - 15 * 60_000;
+    const date = new Date(start + 5.5 * 3_600_000).toISOString().slice(0, 10);
+    const appt: MockAppointment = {
+      id: objectId(),
+      doctorId: doctor.id,
+      clinicId: clinic.id,
+      patientName: state.users[userId]?.name ?? 'Patient',
+      date,
+      slotStart: new Date(start).toISOString(),
+      slotEnd: new Date(end).toISOString(),
+      source: 'online',
+      status: 'completed',
+      holdExpiresAt: null,
+      queueToken: 3,
+      checkInAt: new Date(start).toISOString(),
+      visitVerified: true,
+      reviewUnlockAt: new Date(end + 24 * 3_600_000).toISOString(),
+      createdAt: new Date(start - 86_400_000).toISOString(),
+      userId,
+      patientPhone: state.users[userId]?.phone ?? '+919000000000',
+      bookingFee: doctor.bookingFee ?? 1500,
+      visitCode: null,
+    };
+    state.appointments[appt.id] = appt;
+  }
+  state.pastVisitsFor[userId] = true;
+  persist();
 }
 
 /* ---------- Doctors ---------- */
@@ -403,7 +646,12 @@ export function searchListed(query: MockSearch): DoctorListItem[] {
       !d.specialties.includes(query.specialty as MockDoctor['specialties'][number])
     )
       continue;
-    if (query.q && !d.name.toLowerCase().includes(query.q.toLowerCase())) continue;
+    if (query.q) {
+      const needle = query.q.toLowerCase();
+      const byName = d.name.toLowerCase().includes(needle);
+      const byId = d.id === query.q || doctorReference(d.id).toLowerCase() === needle;
+      if (!byName && !byId) continue;
+    }
     let primary = clinics[0];
     let distance: number | null = null;
     if (query.near) {
@@ -431,7 +679,7 @@ export function searchListed(query: MockSearch): DoctorListItem[] {
       experienceYears: d.experienceYears,
       city: primary?.address.city ?? '',
       consultFee: d.consultFee,
-      ratingSummary: null,
+      ratingSummary: reviewSummaryFor(d.id),
       distanceMeters: distance,
       primaryClinic: primary
         ? { id: primary.id, name: primary.name, area: primary.address.area ?? null }
@@ -444,7 +692,7 @@ export function searchListed(query: MockSearch): DoctorListItem[] {
 }
 
 export function mockPublicProfile(slug: string): DoctorProfile | null {
-  const d = listedDoctors().find((x) => x.slug === slug);
+  const d = listedDoctors().find((x) => x.slug === slug || x.id === slug);
   if (!d) return null;
   const clinics = clinicsOfDoctor(d.id);
   return {
@@ -463,7 +711,7 @@ export function mockPublicProfile(slug: string): DoctorProfile | null {
     consultFee: d.consultFee,
     bookingFee: d.bookingFee,
     clinics: clinics.map(toPublicClinic),
-    ratingSummary: null,
+    ratingSummary: reviewSummaryFor(d.id),
     todayStatus: null,
   };
 }

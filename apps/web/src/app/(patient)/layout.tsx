@@ -1,13 +1,29 @@
 import type { ReactNode } from 'react';
+import { AccountChip } from '@/components/shell/account-chip';
+import { AppFooter } from '@/components/shell/app-footer';
 import { AppHeader } from '@/components/shell/app-header';
-import { LanguageSwitch } from '@/components/shell/language-switch';
-import { PatientNav } from '@/components/shell/navs';
+import { MobilePatientHeader } from '@/components/shell/mobile-patient-header';
+import { GuestLanguageSwitch } from '@/components/shell/guest-language-switch';
+import { NotificationsBell } from '@/components/shell/notifications-bell';
+import { PatientNav, PatientTopNav } from '@/components/shell/navs';
 
 export default function PatientLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <AppHeader right={<LanguageSwitch />} />
+      <MobilePatientHeader />
+      <AppHeader
+        className="hidden md:block"
+        center={<PatientTopNav />}
+        right={
+          <>
+            <NotificationsBell />
+            <GuestLanguageSwitch />
+            <AccountChip />
+          </>
+        }
+      />
       {children}
+      <AppFooter />
       <PatientNav />
     </>
   );

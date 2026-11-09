@@ -13,6 +13,7 @@ import { JobRunner } from '../jobs/job-runner.service';
 import { User } from '../users/user.schema';
 import { Notification, NotificationDocument } from './notification.schema';
 import { NotificationsService } from './notifications.service';
+import { WebPushService } from './web-push.service';
 
 /** First try plus 3 retries (BE-21). */
 export const NOTIFICATION_MAX_ATTEMPTS = 4;
@@ -37,6 +38,7 @@ export class NotificationSender implements OnModuleInit {
     @Inject(SMS_PROVIDER) private readonly sms: SmsProvider,
     private readonly outbox: NotificationsService,
     private readonly runner: JobRunner,
+    private readonly webPush: WebPushService,
   ) {}
 
   onModuleInit(): void {
@@ -78,6 +80,28 @@ export class NotificationSender implements OnModuleInit {
   private async sendOne(row: NotificationDocument): Promise<void> {
     const now = new Date();
     try {
+      if (row.channel === 'webpush') {
+        const sent = await this.webPush.sendToUser(row.userId, {
+          title: 'Doqto',
+          body: this.outbox.render(row).replace(/\s+/g, ' ').slice(0, 160),
+          url: row.appointmentId
+            ? `/appointments/${row.appointmentId.toHexString()}`
+            : '/appointments',
+          tag: row.template,
+        });
+        await this.notifications
+          .updateOne(
+            { _id: row._id, status: 'sending' },
+            sent > 0
+              ? { $set: { status: 'sent', sentAt: new Date() }, $unset: { lockedUntil: 1 } }
+              : {
+                  $set: { status: 'skipped', lastError: 'No device accepted the push' },
+                  $unset: { lockedUntil: 1 },
+                },
+          )
+          .exec();
+        return;
+      }
       const params = [...row.params];
       if (row.sealed) {
         for (const [i, v] of Object.entries(this.outbox.sealer.open(row.sealed)))

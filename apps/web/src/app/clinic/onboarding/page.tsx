@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: 'Join as a doctor', robots: { index: 
 
 export default async function DoctorOnboardingRoute() {
   return (
-    <Page>
+    <Page size="medium">
       <OnboardingPage config={getFormConfig(await getLocale())} />
     </Page>
   );

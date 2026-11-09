@@ -4,9 +4,16 @@ Owned and edited only by the BE agent. Newest entries at the top of each section
 
 ## In progress
 
-- Sprint 5 next: BE-24 slot availability and booking.
+- Patient completion is done (see "In review" below). Next on the backend: the doctor console UI calls for confirm and decline, a Razorpay run against real test keys, and the admin review queue.
 
 ## In review
+
+### Patient completion: booking, payments, reviews, account, records (2026-10-21)
+- **What now exists in `apps/api`:** `GET /doctors/:id/slots`; `POST /appointments` (10-minute hold, unique slot index, `SLOT_TAKEN`, order created), `GET /appointments/mine`, `GET /appointments/:id`, `POST /appointments/:id/cancel` (refund by `refundForPatientCancel`), `POST /appointments/:id/reschedule` (same fee and visit code); `POST /payments/demo-pay`, `POST /payments/verify`, webhook handler (idempotent, late payment revives or refunds), refunds through the provider and a retry job; `POST /clinic/appointments/:id/confirm` (visit code issued, hashed plus a sealed copy the patient can read); jobs for hold expiry (every minute), reminders (evening before, 2 hours before), review nudges (open, day 5) and owed refunds; reviews (`/reviews/*`, `GET /doctors/:id/reviews`, fraud score, Bayesian summary written to `ratingSummary`); `GET/DELETE /me/export`-style account routes (`/me/export`, `DELETE /me`, `/me/push-subscriptions`), `GET /transparency`, a Web Push sender (VAPID), the notification inbox with read state, `POST /auth/logout-all`, and the patient's own records (`/me/records`, upload, filters, signed download, delete) with `StorageProvider.deletePrivate`.
+- **Razorpay:** the Razorpay provider is used in demo mode when `RAZORPAY_KEY_ID` starts with `rzp_test_` and a secret is set; otherwise the demo gateway. Not run against real Razorpay test keys yet (none available here).
+- **Tests:** unit 246 passing (1 old failure: WhatsApp template pack); e2e added `booking` (16), `reviews` (9), `account` (9); the whole e2e suite passes except the 2 old OTP-limit tests (`OTP_REQUEST_LIMIT` was changed locally). Migrations 0005 (drops the old slot index so it can be rebuilt with `pending_confirmation`), 0006, 0007.
+- **Seed:** `pnpm seed:demo` now adds 20 more doctors on top of the 5 (`withExtras`).
+- **Not done:** the doctor-side UI to confirm bookings; refund of a partially used booking; appeals; admin moderation of reported reviews.
 
 ### BE-21 to BE-23 Sprint 4: notifications outbox, status alerts, status caching
 - Changed files:

@@ -1,14 +1,27 @@
 'use client';
 
+import { mediaSrc } from '@/lib/media';
 import type { DoctorListItem, SpecialtyKey } from '@doqto/shared';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Clock, Crosshair, MapPin, Search, SearchX, UserRound } from 'lucide-react';
+import { useWindowVirtualizer } from '@tanstack/react-virtual';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Crosshair,
+  MapPin,
+  Search,
+  SearchX,
+  UserRound,
+  Star,
+} from 'lucide-react';
 import Image from 'next/image';
+import { doctorReference } from '@doqto/shared';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { PageTitle } from '@/components/shell/page';
 import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -22,7 +35,6 @@ import { authErrorMessage } from '@/lib/api/messages';
 import type { DoctorSearchParams } from '@/lib/api/doctors';
 import { formatRupees } from '@/lib/money';
 
-const CITY_KEY = 'doqto_city';
 const PILOT_CITIES = ['Bareilly', 'Lucknow', 'Kanpur', 'Moradabad', 'Shahjahanpur', 'Agra'];
 
 interface Coords {
@@ -42,22 +54,6 @@ function inIndia({ lat, lng }: Coords) {
   return lat >= 6 && lat <= 38 && lng >= 68 && lng <= 98;
 }
 
-function readCity(): string {
-  try {
-    return localStorage.getItem(CITY_KEY) ?? '';
-  } catch {
-    return '';
-  }
-}
-
-function rememberCity(city: string) {
-  try {
-    localStorage.setItem(CITY_KEY, city);
-  } catch {
-    // Private mode: the city just is not remembered.
-  }
-}
-
 export function SearchPage({
   specialties,
   photoHost,
@@ -75,8 +71,9 @@ export function SearchPage({
   const urlQ = params.get('q') ?? '';
   const nearOn = params.get('near') === '1';
 
-  // Inputs start from the URL, or the last city searched on this phone.
-  const [city, setCity] = useState(() => urlCity || readCity());
+  // The boxes start from the link (a shared or reloaded search) and drive it from then on. No city
+  // is remembered or assumed: leave it empty to search every city.
+  const [city, setCity] = useState(urlCity);
   const [specialty, setSpecialty] = useState(urlSpecialty);
   const [q, setQ] = useState(urlQ);
   const [coords, setCoords] = useState<Coords | null>(null);
@@ -91,7 +88,6 @@ export function SearchPage({
     if (s) sp.set('specialty', s);
     if (n.length >= 2) sp.set('q', n);
     if (next.near ?? nearOn) sp.set('near', '1');
-    if (c) rememberCity(c);
     router.replace(`/search${sp.size ? `?${sp}` : ''}`, { scroll: false });
   };
 
@@ -136,38 +132,53 @@ export function SearchPage({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only when the URL asks for near me
   }, [nearOn]);
 
-  const query: DoctorSearchParams | null =
-    nearOn && coords
+  // The boxes drive the link: a moment after the city, specialty or name changes, the search is
+  // applied, so what is typed always wins over what the link said.
+  const name = q.trim().length >= 2 ? q.trim() : '';
+  useEffect(() => {
+    if (
+      city.trim().toLowerCase() === urlCity.toLowerCase() &&
+      specialty === urlSpecialty &&
+      name === urlQ
+    ) {
+      return;
+    }
+    const id = setTimeout(() => go({}), 500);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `go` only reads the values listed
+  }, [city, name, specialty, urlCity, urlSpecialty, urlQ]);
+
+  // Every box is optional: with none filled in, the page lists every doctor, a page at a time.
+  // (With Near me on, wait for the location.)
+  const query: DoctorSearchParams | null = nearOn
+    ? coords
       ? {
           near: `${coords.lat.toFixed(5)},${coords.lng.toFixed(5)}`,
           ...(urlSpecialty ? { specialty: urlSpecialty as SpecialtyKey } : {}),
           ...(urlQ.length >= 2 ? { q: urlQ } : {}),
         }
-      : !nearOn && urlCity
-        ? {
-            city: urlCity,
-            ...(urlSpecialty ? { specialty: urlSpecialty as SpecialtyKey } : {}),
-            ...(urlQ.length >= 2 ? { q: urlQ } : {}),
-          }
-        : null;
+      : null
+    : {
+        ...(urlCity ? { city: urlCity } : {}),
+        ...(urlSpecialty ? { specialty: urlSpecialty as SpecialtyKey } : {}),
+        ...(urlQ.length >= 2 ? { q: urlQ } : {}),
+      };
 
   return (
-    <div className="space-y-4">
-      <PageTitle>{t('search.title')}</PageTitle>
+    <div className="space-y-4 lg:grid lg:grid-cols-[340px_1fr] lg:items-start lg:gap-x-8 lg:gap-y-2 lg:space-y-0">
+      <div className="lg:col-span-2">
+        <PageTitle>{t('search.title')}</PageTitle>
+      </div>
       <form
         role="search"
-        className="space-y-3"
+        className="space-y-3 lg:neu-card lg:sticky lg:top-24 lg:rounded-xl lg:p-5"
         onSubmit={(e) => {
           e.preventDefault();
-          if (!city.trim()) {
-            toast(t('search.enterCity'));
-            return;
-          }
           setCoords(null);
           go({ near: false });
         }}
       >
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
           <label className="space-y-1">
             <span className="text-sm font-medium">{t('search.cityLabel')}</span>
             <Input
@@ -182,12 +193,9 @@ export function SearchPage({
           <label className="space-y-1">
             <span className="text-sm font-medium">{t('search.specialtyLabel')}</span>
             <select
-              className="h-tap w-full rounded-md border border-line bg-surface px-3 text-base"
+              className="neu-inset h-tap w-full rounded-2xl border-0 px-4 text-base focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               value={specialty}
-              onChange={(e) => {
-                setSpecialty(e.target.value);
-                if (urlCity || nearOn) go({ specialty: e.target.value });
-              }}
+              onChange={(e) => setSpecialty(e.target.value)}
             >
               <option value="">{t('search.anySpecialty')}</option>
               {specialties.map((s) => (
@@ -227,18 +235,16 @@ export function SearchPage({
         </div>
       </form>
 
-      {nearOn && coords && (
-        <p className="flex items-center gap-1.5 text-sm text-brand-700">
-          <MapPin className="size-4" aria-hidden />
-          {t('search.nearMeOn')}
-        </p>
-      )}
+      <div className="space-y-4">
+        {nearOn && coords && (
+          <p className="flex items-center gap-1.5 text-sm text-brand-700">
+            <MapPin className="size-4" aria-hidden />
+            {t('search.nearMeOn')}
+          </p>
+        )}
 
-      {query ? (
-        <Results query={query} labels={labels} photoHost={photoHost} />
-      ) : (
-        !locating && <EmptyState icon={Search} title={t('search.enterCity')} />
-      )}
+        {query && <Results query={query} labels={labels} photoHost={photoHost} />}
+      </div>
     </div>
   );
 }
@@ -260,24 +266,11 @@ function Results({
     initialPageParam: undefined as string | undefined,
     getNextPageParam: (last) => last.nextCursor ?? undefined,
   });
-  const sentinel = useRef<HTMLDivElement>(null);
   const { hasNextPage, isFetchingNextPage, fetchNextPage } = results;
-  useEffect(() => {
-    const el = sentinel.current;
-    if (!el || !hasNextPage) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting) && !isFetchingNextPage) void fetchNextPage();
-      },
-      { rootMargin: '400px 0px' },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (results.isPending) {
     return (
-      <div className="space-y-3" aria-busy>
+      <div className="grid gap-4" aria-busy>
         {[0, 1, 2].map((i) => (
           <Skeleton key={i} className="h-28 w-full" />
         ))}
@@ -308,14 +301,22 @@ function Results({
   }
   return (
     <>
-      <ul className="space-y-3">
-        {items.map((d) => (
-          <li key={d.id}>
-            <DoctorCard doctor={d} labels={labels} photoHost={photoHost} />
-          </li>
-        ))}
-      </ul>
-      <div ref={sentinel} aria-live="polite" className="py-2 text-center text-sm text-ink-muted">
+      <VirtualDoctors
+        total={results.data.pages[0]?.total ?? items.length}
+        items={items}
+        labels={labels}
+        photoHost={photoHost}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={async () => {
+          const next = await fetchNextPage();
+          return {
+            count: next.data?.pages.flatMap((p) => p.items).length ?? 0,
+            hasNextPage: next.hasNextPage,
+          };
+        }}
+      />
+      <div aria-live="polite" className="py-2 text-center text-sm text-ink-muted">
         {isFetchingNextPage ? (
           t('search.loadingMore')
         ) : hasNextPage ? (
@@ -326,6 +327,134 @@ function Results({
         ) : (
           t('search.endOfResults')
         )}
+      </div>
+    </>
+  );
+}
+
+/** The API's default page size. */
+const PAGE_SIZE = 20;
+/** Space the app bar and the count bar take at the top of the screen. */
+const SCROLL_PADDING = 150;
+/**
+ * Only the cards near the screen are in the page, so a long list stays light. Reaching the end
+ * loads the next page, so more results appear as you scroll.
+ */
+function VirtualDoctors({
+  total,
+  items,
+  labels,
+  photoHost,
+  hasNextPage,
+  isFetchingNextPage,
+  fetchNextPage,
+}: {
+  total: number;
+  items: DoctorListItem[];
+  labels: Record<string, string>;
+  photoHost: string | null;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+  fetchNextPage: () => Promise<{ count: number; hasNextPage: boolean }>;
+}) {
+  const t = useT();
+  const rows = items.length; // one card per row
+  const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const listRef = useRef<HTMLDivElement>(null);
+  const [margin, setMargin] = useState(0);
+  useLayoutEffect(() => setMargin(listRef.current?.offsetTop ?? 0), []);
+
+  const virtualizer = useWindowVirtualizer({
+    count: rows,
+    // Close to the real card height (about 220 px wide, 270 px on a phone) so jumping to a page lands
+    // right: rows not yet on screen have no measurement, only this guess.
+    estimateSize: () => (typeof window !== 'undefined' && window.innerWidth < 640 ? 270 : 220),
+    overscan: 4,
+    scrollMargin: margin,
+    scrollPaddingStart: SCROLL_PADDING,
+  });
+  const virtualRows = virtualizer.getVirtualItems();
+  const lastRow = virtualRows[virtualRows.length - 1]?.index ?? -1;
+
+  useEffect(() => {
+    if (lastRow >= rows - 2 && hasNextPage && !isFetchingNextPage) void fetchNextPage();
+  }, [lastRow, rows, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  // The page the top of the screen is on: results arrive 20 at a time, so page n starts at 20(n-1).
+  // Rows under the sticky bars at the top do not count: the first row below them is the current one.
+  const below = (virtualizer.scrollOffset ?? 0) + SCROLL_PADDING;
+  const firstRow = virtualRows.find((r) => r.end > below)?.index ?? virtualRows[0]?.index ?? 0;
+  // At the very end the last page may be too short to reach the top of the screen: count it then.
+  const atEnd = !hasNextPage && (virtualizer.range?.endIndex ?? 0) >= rows - 1;
+  const pageRow = atEnd ? rows - 1 : firstRow;
+  const page = Math.min(pages, Math.floor(pageRow / PAGE_SIZE) + 1);
+
+  // Jump to the first result of a page; if it has not loaded yet, load pages until it has.
+  const goToPage = async (n: number) => {
+    const index = (Math.min(pages, Math.max(1, n)) - 1) * PAGE_SIZE;
+    let loaded = items.length;
+    let more = hasNextPage;
+    while (loaded <= index && more) {
+      const next = await fetchNextPage();
+      loaded = next.count;
+      more = next.hasNextPage;
+    }
+    // Let the list render the new rows before scrolling to one of them.
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    virtualizer.scrollToIndex(Math.min(index, loaded - 1), { align: 'start' });
+  };
+
+  return (
+    <>
+      <div className="sticky top-[4.25rem] z-10 -mx-1 flex items-center justify-between gap-3 bg-surface px-1 pb-2 pt-4">
+        <p className="text-sm font-semibold text-ink">
+          {total === 1 ? t('search.foundOne') : t('search.found', { count: total })}
+        </p>
+        {pages > 1 && (
+          <nav aria-label={t('search.pageOf', { page, pages })} className="flex items-center gap-1">
+            <button
+              type="button"
+              aria-label={t('search.prevPage')}
+              disabled={page <= 1}
+              onClick={() => void goToPage(page - 1)}
+              className="neu-raised grid size-9 place-items-center rounded-full text-brand-700 disabled:opacity-40"
+            >
+              <ChevronLeft className="size-5" aria-hidden />
+            </button>
+            <span
+              className="min-w-20 text-center text-sm font-medium text-ink-muted"
+              aria-live="polite"
+            >
+              {t('search.pageOf', { page, pages })}
+            </span>
+            <button
+              type="button"
+              aria-label={t('search.nextPage')}
+              disabled={page >= pages}
+              onClick={() => void goToPage(page + 1)}
+              className="neu-raised grid size-9 place-items-center rounded-full text-brand-700 disabled:opacity-40"
+            >
+              <ChevronRight className="size-5" aria-hidden />
+            </button>
+          </nav>
+        )}
+      </div>
+      <div ref={listRef} style={{ height: virtualizer.getTotalSize() }} className="relative w-full">
+        {virtualRows.map((row) => (
+          <div
+            key={row.key}
+            data-index={row.index}
+            ref={virtualizer.measureElement}
+            className="absolute left-0 top-0 w-full pb-4"
+            style={{ transform: `translateY(${row.start - virtualizer.options.scrollMargin}px)` }}
+          >
+            <DoctorCard
+              doctor={items[row.index] as DoctorListItem}
+              labels={labels}
+              photoHost={photoHost}
+            />
+          </div>
+        ))}
       </div>
     </>
   );
@@ -348,35 +477,43 @@ function DoctorCard({
       return false;
     }
   })();
-  return (
-    <Link href={`/d/${d.slug}`} className="block">
-      <Card className="flex gap-3 hover:bg-canvas">
-        <div className="relative size-16 shrink-0 overflow-hidden rounded-full bg-brand-50">
+  const card = (
+    <Card className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+      <Link href={`/d/${d.id}`} className="flex min-w-0 flex-1 gap-4 rounded-xl hover:opacity-90">
+        <div className="relative size-16 shrink-0 overflow-hidden rounded-full bg-brand-50 sm:size-20">
           {d.photoUrl ? (
             <Image
-              src={d.photoUrl}
+              src={mediaSrc(d.photoUrl) ?? d.photoUrl}
               alt=""
               fill
-              sizes="64px"
+              sizes="80px"
               className="object-cover"
               unoptimized={!optimise}
             />
           ) : (
-            <UserRound className="absolute inset-0 m-auto size-8 text-brand-600" aria-hidden />
+            <UserRound
+              className="absolute inset-0 m-auto size-8 text-brand-600 sm:size-10"
+              aria-hidden
+            />
           )}
         </div>
         <div className="min-w-0 flex-1 space-y-1">
           <p className="truncate font-semibold">{d.name}</p>
-          <p className="truncate text-sm text-ink-muted">
-            {d.specialties.map((s) => labels[s] ?? s).join(', ')}
-            {d.experienceYears
-              ? ` · ${t('doctorPage.experience', { years: d.experienceYears })}`
-              : ''}
+          <p className="text-2xs font-semibold text-ink-muted">
+            {t('doctorPage.doctorId')}: {doctorReference(d.id)}
           </p>
+          <p className="line-clamp-2 text-sm text-ink-muted">
+            {d.specialties.map((s) => labels[s] ?? s).join(', ')}
+          </p>
+          {d.experienceYears ? (
+            <p className="text-xs text-ink-muted">
+              {t('doctorPage.experience', { years: d.experienceYears })}
+            </p>
+          ) : null}
           {d.primaryClinic && (
-            <p className="flex items-center gap-1 truncate text-sm">
-              <MapPin className="size-3.5 shrink-0 text-ink-muted" aria-hidden />
-              <span className="truncate">
+            <p className="flex items-start gap-1 text-sm">
+              <MapPin className="mt-0.5 size-3.5 shrink-0 text-ink-muted" aria-hidden />
+              <span className="line-clamp-2">
                 {[d.primaryClinic.name, d.primaryClinic.area].filter(Boolean).join(', ')}
               </span>
             </p>
@@ -385,17 +522,40 @@ function DoctorCard({
             {d.distanceMeters !== null && (
               <Badge tone="brand">{formatDistance(d.distanceMeters, t)}</Badge>
             )}
-            {d.consultFee !== null && <Badge>{formatRupees(d.consultFee)}</Badge>}
-            {(!d.ratingSummary || d.ratingSummary.count === 0) && (
-              <Badge tone="info">{t('doctorPage.newOnDoqto')}</Badge>
+            {d.consultFee !== null && (
+              <span className="neu-inset inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-xs font-semibold text-brand-700">
+                {formatRupees(d.consultFee)}
+              </span>
             )}
-            <span className="flex items-center gap-1 text-ink-muted">
-              <Clock className="size-3.5" aria-hidden />
-              {t('search.availabilitySoon')}
-            </span>
+            {d.ratingSummary && d.ratingSummary.count > 0 ? (
+              <Badge tone="success">
+                <Star className="size-3.5" fill="currentColor" aria-hidden />
+                {t('search.rating', {
+                  pct: Math.round(d.ratingSummary.recommendPct),
+                  count: d.ratingSummary.count,
+                })}
+              </Badge>
+            ) : (
+              <Badge tone="brand">{t('doctorPage.newOnDoqto')}</Badge>
+            )}
           </div>
         </div>
-      </Card>
-    </Link>
+      </Link>
+      <div className="grid grid-cols-2 gap-3 sm:w-52 sm:shrink-0 sm:grid-cols-1">
+        <Link
+          href={`/d/${d.id}`}
+          className={buttonVariants({ size: 'sm', className: 'neu-inset text-brand-700 px-3' })}
+        >
+          {t('search.viewProfile')}
+        </Link>
+        <Link
+          href={`/appointments/new?doctor=${encodeURIComponent(d.id)}`}
+          className={buttonVariants({ size: 'sm', className: 'px-3' })}
+        >
+          {t('search.book')}
+        </Link>
+      </div>
+    </Card>
   );
+  return card;
 }

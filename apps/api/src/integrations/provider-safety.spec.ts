@@ -123,7 +123,7 @@ describe('IntegrationsModule refuses to start on unsafe config', () => {
     const ref = await Test.createTestingModule({
       imports: [IntegrationsModule.forRoot({ config })],
     }).compile();
-    expect(ref.get<ProviderInfo[]>(BOUND_PROVIDERS)).toHaveLength(6);
+    expect(ref.get<ProviderInfo[]>(BOUND_PROVIDERS)).toHaveLength(7);
   });
 });
 

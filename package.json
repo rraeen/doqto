@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "pnpm --parallel --recursive --if-present run dev",
+    "dev:free": "node scripts/ops/free-dev-ports.mjs",
     "build": "pnpm --recursive --if-present run build",
     "typecheck": "pnpm --recursive --if-present run typecheck",
     "lint": "eslint . --max-warnings 0",

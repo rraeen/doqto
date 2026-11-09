@@ -5,6 +5,7 @@ import { Loading } from '@/components/shell/signed-in';
 import { EmptyState } from '@/components/ui/empty-state';
 import { useT } from '@/i18n/provider';
 import { searchApi } from '@/lib/api/lazy';
+import { sampleProfileBySlug } from '@/lib/sample-doctors';
 import { DoctorProfileView } from './profile-view';
 
 /**
@@ -24,7 +25,8 @@ export function MockProfileFallback({
     queryFn: ({ signal }) => searchApi.getDoctorBySlug(slug, signal),
   });
   if (q.isPending) return <Loading />;
-  if (!q.data) {
+  const profile = q.data ?? sampleProfileBySlug(slug);
+  if (!profile) {
     return (
       <EmptyState
         title={t('doctorPage.notFoundTitle')}
@@ -32,5 +34,5 @@ export function MockProfileFallback({
       />
     );
   }
-  return <DoctorProfileView profile={q.data} t={t} specialties={specialties} photoHost={null} />;
+  return <DoctorProfileView profile={profile} t={t} specialties={specialties} photoHost={null} />;
 }

@@ -14,7 +14,7 @@ export function testIntegrationsConfig(
     demoStorageDir: '.demo-storage-test',
     signedUrlTtlSeconds: 300,
     geocoderUserAgent: 'Doqto-test/0.1 (test@doqto.in)',
-    whatsapp: {},
+    whatsapp: { testRecipients: [], sendAsText: false },
     msg91: {},
     razorpay: {},
     r2: {},

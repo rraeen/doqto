@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Healthcare Management Dashboard - Neumorphic Vision</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ced14",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#102210",
+                        "neu-base": "#f0f2f5",
+                        "neu-shadow-light": "#ffffff",
+                        "neu-shadow-dark": "#d1d9e6",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Neumorphic Styles */
+        .neu-flat {
+            background: #f0f2f5;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+        }
+        .neu-inset {
+            background: #f0f2f5;
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .neu-button {
+            background: #f0f2f5;
+            box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+            transition: all 0.2s ease;
+        }
+        .neu-button:active {
+            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+        }
+        .neu-primary-glow {
+            box-shadow: 0 0 15px rgba(12, 237, 20, 0.4);
+        }
+        .chart-glow {
+            filter: drop-shadow(0 0 8px rgba(12, 237, 20, 0.6));
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1a2e1a] min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 flex flex-col p-6 gap-8 h-full">
+<div class="flex items-center gap-4 px-2">
+<div class="w-12 h-12 rounded-xl neu-flat flex items-center justify-center border-2 border-primary/20">
+<span class="material-symbols-outlined text-primary text-3xl font-bold">clinical_notes</span>
+</div>
+<div>
+<h1 class="text-lg font-extrabold leading-tight">Neumorphic</h1>
+<p class="text-xs font-bold text-primary uppercase tracking-widest">Vision System</p>
+</div>
+</div>
+<nav class="flex flex-col gap-6 flex-1">
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl neu-inset text-primary font-bold">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl hover:neu-button cursor-pointer group transition-all">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary">person</span>
+<span class="text-sm font-medium">Patients</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl hover:neu-button cursor-pointer group transition-all">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary">calendar_today</span>
+<span class="text-sm font-medium">Appointments</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded-xl hover:neu-button cursor-pointer group transition-all">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary">query_stats</span>
+<span class="text-sm font-medium">Analytics</span>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-4 rounded-xl neu-button flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+<span class="text-sm font-bold">Add Patient</span>
+</button>
+<div class="p-4 rounded-xl neu-inset flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-white shadow-sm" data-alt="Doctor profile portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFsA4SjpBV0Lzvr-5HKpPtw9EZo36IoV39Co7YrjD_Y3K8xbAdqVx0Uqn_0WDshXL5OtUVNFSejOuw6-xw8-6KpZj2JLKrHikeqXvDUP9nCYM0lnegXgbaslHzMQHDLB8xPe6In9oWHqlmIpNm9rye5U2lbGWU8XBCn9zB8D3eIgkQyEoj8ZQjDJ5v2PH-Cy0Gl_QLRDlCuI6_v8WbqpGmV6pJdrZPr7W5I9SKHjvPKDwllpxROxD0xmXes0YItEwYN20GvGojdcHh')"></div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Dr. Sarah Jenkins</p>
+<p class="text-[10px] text-gray-500 font-medium">Head of Surgery</p>
+</div>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto p-8 scroll-smooth">
+<!-- Top KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<!-- Total Patients -->
+<div class="neu-flat rounded-2xl p-6 relative overflow-hidden group">
+<div class="absolute top-4 right-4 w-3 h-3 rounded-full bg-primary neu-primary-glow"></div>
+<p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Total Patients</p>
+<div class="flex items-baseline gap-2 mt-2">
+<h2 class="text-4xl font-extrabold text-[#0d1c0e]">1,284</h2>
+<span class="text-xs font-bold text-primary">+12%</span>
+</div>
+<p class="text-[10px] text-gray-400 mt-1">Updated 2 mins ago</p>
+</div>
+<!-- Active Surgeries -->
+<div class="neu-flat rounded-2xl p-6 relative overflow-hidden">
+<div class="absolute top-4 right-4 w-3 h-3 rounded-full bg-primary neu-primary-glow animate-pulse"></div>
+<p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Active Surgeries</p>
+<div class="flex items-baseline gap-2 mt-2">
+<h2 class="text-4xl font-extrabold text-[#0d1c0e]">12</h2>
+<span class="text-xs font-bold text-primary">+2%</span>
+</div>
+<p class="text-[10px] text-gray-400 mt-1">3 emergency in progress</p>
+</div>
+<!-- Available Beds -->
+<div class="neu-flat rounded-2xl p-6 relative overflow-hidden">
+<div class="absolute top-4 right-4 w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]"></div>
+<p class="text-sm font-bold text-gray-500 uppercase tracking-wide">Available Beds</p>
+<div class="flex items-baseline gap-2 mt-2">
+<h2 class="text-4xl font-extrabold text-[#0d1c0e]">48</h2>
+<span class="text-xs font-bold text-red-500">-5%</span>
+</div>
+<p class="text-[10px] text-gray-400 mt-1">Capacity: 82%</p>
+</div>
+</div>
+<!-- Central Monitoring Section -->
+<div class="neu-flat rounded-3xl p-8 mb-8">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-2xl font-extrabold text-[#0d1c0e]">Live Vital Monitoring</h2>
+<p class="text-sm font-medium text-gray-500">Real-time telemetry feed: Ward 4, ICU</p>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 rounded-xl neu-button text-xs font-bold text-primary uppercase">Export Data</button>
+<button class="px-4 py-2 rounded-xl neu-inset text-xs font-bold text-gray-600 uppercase">Filters</button>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-8">
+<div class="col-span-3">
+<div class="flex items-baseline gap-4 mb-4">
+<span class="text-5xl font-black text-[#0d1c0e]">72</span>
+<div class="flex flex-col">
+<span class="text-primary font-bold">BPM</span>
+<span class="text-xs text-gray-400 font-bold">STABLE</span>
+</div>
+</div>
+<div class="w-full h-[240px] relative mt-4">
+<svg class="w-full h-full chart-glow" preserveaspectratio="none" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#0ced14" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#0ced14" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q50,150 100,100 T200,80 T300,120 T400,60 T500,140 T600,40 T700,100 T800,90 T900,130 T1000,100 V200 H0 Z" fill="url(#gradient)"></path>
+<path d="M0,150 Q50,150 100,100 T200,80 T300,120 T400,60 T500,140 T600,40 T700,100 T800,90 T900,130 T1000,100" fill="none" stroke="#0ced14" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2">
+<span>10:00 AM</span>
+<span>10:15 AM</span>
+<span>10:30 AM</span>
+<span>10:45 AM</span>
+<span>11:00 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="p-4 rounded-xl neu-inset">
+<p class="text-[10px] font-bold text-gray-500 uppercase">Oxygen Sat (SpO2)</p>
+<p class="text-xl font-extrabold">98<span class="text-sm font-medium text-primary ml-1">%</span></p>
+</div>
+<div class="p-4 rounded-xl neu-inset">
+<p class="text-[10px] font-bold text-gray-500 uppercase">Blood Pressure</p>
+<p class="text-xl font-extrabold">120/80</p>
+</div>
+<div class="p-4 rounded-xl neu-inset">
+<p class="text-[10px] font-bold text-gray-500 uppercase">Temp</p>
+<p class="text-xl font-extrabold">36.8<span class="text-sm font-medium text-primary ml-1">°C</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Layout: Recent Activity & Facility Status -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="neu-flat rounded-2xl p-6">
+<h3 class="text-lg font-bold mb-4">Recent Activity</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-3 rounded-xl hover:neu-inset transition-all cursor-pointer">
+<div class="w-10 h-10 rounded-full neu-button flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">vaccines</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Immunization Administered</p>
+<p class="text-[10px] text-gray-500">Patient: Elena Rodriguez • 14:22</p>
+</div>
+<span class="material-symbols-outlined text-gray-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-xl hover:neu-inset transition-all cursor-pointer">
+<div class="w-10 h-10 rounded-full neu-button flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined">lab_research</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Lab Results Uploaded</p>
+<p class="text-[10px] text-gray-500">Patient: Marcus Chen • 13:45</p>
+</div>
+<span class="material-symbols-outlined text-gray-300">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="neu-flat rounded-2xl p-6">
+<h3 class="text-lg font-bold mb-4">Facility Alerts</h3>
+<div class="space-y-3">
+<div class="p-4 rounded-xl border-l-4 border-primary bg-primary/5 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">info</span>
+<p class="text-xs font-medium text-gray-700">MRI Maintenance scheduled for 03:00 AM tonight.</p>
+</div>
+<div class="p-4 rounded-xl border-l-4 border-orange-500 bg-orange-500/5 flex items-start gap-3">
+<span class="material-symbols-outlined text-orange-500 text-sm mt-0.5">warning</span>
+<p class="text-xs font-medium text-gray-700">Low stock alert: Surgical gloves (Size M) in Ward 2.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Appointments Panel -->
+<aside class="w-80 p-8 h-full flex flex-col gap-6 overflow-y-auto">
+<h3 class="text-xl font-extrabold text-[#0d1c0e]">Upcoming</h3>
+<div class="flex flex-col gap-5">
+<!-- Appointment Card 1 (Concave) -->
+<div class="neu-inset p-5 rounded-2xl flex flex-col gap-3 relative">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-primary uppercase">Today • 14:30</span>
+<span class="material-symbols-outlined text-gray-400 text-sm">more_vert</span>
+</div>
+<div>
+<p class="text-sm font-extrabold">Thomas Miller</p>
+<p class="text-[10px] text-gray-500 font-medium">Post-Op Consultation</p>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-neu-base neu-button bg-cover" data-alt="Patient avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5CSZrcc-9fEoZ7bcYwXqMOAJqsgCLdTgf8RU87LMVSX2xfWE-Y8Ft3f27ZMUeu6FgfpRKURR78v_G34TI2xghQTjsmK-aDHwu0QkYeorGtoXR93ZK86TIGFL9sE2jFrjwvsRwDLeQhwKbcuAv3qfqz2hLKyolqYkiT8VpraPL-AHUuNchHl2o9y88hwvqB0oKahMBRD_b_TzpE_VoQF4q3jSp4M5lpKeBoFPyAoKpX6hGop-fiGSv0eDBFK6zDKiVyNxDSapw1Zts')"></div>
+<div class="w-6 h-6 rounded-full border-2 border-neu-base neu-button flex items-center justify-center bg-white">
+<span class="text-[8px] font-bold text-primary">+1</span>
+</div>
+</div>
+</div>
+<!-- Appointment Card 2 (Concave) -->
+<div class="neu-inset p-5 rounded-2xl flex flex-col gap-3 relative">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-gray-400 uppercase">Today • 15:45</span>
+<span class="material-symbols-outlined text-gray-400 text-sm">more_vert</span>
+</div>
+<div>
+<p class="text-sm font-extrabold">Sarah O'Connor</p>
+<p class="text-[10px] text-gray-500 font-medium">General Wellness Exam</p>
+</div>
+</div>
+<!-- Appointment Card 3 (Concave) -->
+<div class="neu-inset p-5 rounded-2xl flex flex-col gap-3 relative opacity-60">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-gray-400 uppercase">Tomorrow • 09:00</span>
+<span class="material-symbols-outlined text-gray-400 text-sm">more_vert</span>
+</div>
+<div>
+<p class="text-sm font-extrabold">Julian Wright</p>
+<p class="text-[10px] text-gray-500 font-medium">Cardiology Review</p>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<div class="neu-flat rounded-2xl p-6 text-center">
+<div class="w-16 h-16 rounded-full neu-inset mx-auto mb-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+</div>
+<h4 class="text-sm font-bold">System Integrity</h4>
+<p class="text-[10px] text-gray-500 mt-1 mb-4">All protocols operating at 100% capacity.</p>
+<button class="w-full py-2 rounded-xl bg-primary text-[#0d1c0e] text-[10px] font-bold uppercase tracking-widest neu-primary-glow">Check Nodes</button>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Health Record Detail View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neumorphic {
+            box-shadow: 6px 6px 12px #e0e5e0, -6px -6px 12px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 4px 4px 8px #d1d9d1, inset -4px -4px 8px #ffffff;
+        }
+        .dark .neumorphic {
+            box-shadow: 6px 6px 12px #081108, -2px -2px 10px #1a331a;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d] dark:text-slate-100 min-h-screen">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7f3e7] dark:border-primary/20 px-10 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h2 class="text-[#0d1b0d] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">City General Health</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#0d1b0d] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#0d1b0d] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">My Records</a>
+<a class="text-[#0d1b0d] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Appointments</a>
+<a class="text-[#0d1b0d] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Messages</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 bg-[#e7f3e7] dark:bg-primary/10 text-[#0d1b0d] dark:text-primary px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-[#e7f3e7] dark:bg-primary/10 text-[#0d1b0d] dark:text-primary px-2.5">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1-gCnzZEzDTI-EVfplsTVuS5picGbSB9StVuv--8vV81-TrBPO1NQDdHbPmRdJbi_JinC_EBQV34YJMHoLndlw14XJO4bS2P79YlBOOJNQvz9EJpyp3bU7xOE4x6ya04gQN3e9rrxlh3KMjBdl4QhXY3xkM7hMaXxJ_48uN9W_yZ8SbyIz3vRHI8M12cwMwyXrswURPYOMeYg5xcz57PL9wmEd1KDvHVYNh2PHlh1wjlx44PHe6UqKmW2UaY5eDagz7LLu9iqQsOx");'></div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-4 sm:px-10 py-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 py-2 mb-4">
+<a class="text-primary text-sm font-medium leading-normal" href="#">Medical Records</a>
+<span class="text-primary/50 text-sm font-medium leading-normal">/</span>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Lab Results</a>
+<span class="text-primary/50 text-sm font-medium leading-normal">/</span>
+<span class="text-[#0d1b0d] dark:text-white text-sm font-medium leading-normal">Blood Test - CBC</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-start gap-4 mb-8 bg-white dark:bg-background-dark/50 p-6 rounded-xl border border-[#e7f3e7] dark:border-primary/10 shadow-sm">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#0d1b0d] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Blood Test - CBC</h1>
+<p class="text-primary text-base font-medium leading-normal flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">person_pin</span>
+                    Ordered by Dr. Sarah Smith • Jan 15, 2024
+                </p>
+<p class="text-slate-500 text-sm">City General Diagnostic Center • Lab ID: #7729-XB</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-4 py-1.5 bg-primary/20 text-[#0d1b0d] dark:text-primary rounded-full text-sm font-bold">Hematology</span>
+<span class="px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">Standard Panel</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Content: PDF Viewer -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a2e1a] rounded-xl shadow-lg border border-[#cfe7cf] dark:border-primary/10 overflow-hidden flex flex-col h-[600px]">
+<div class="p-4 border-b border-[#cfe7cf] dark:border-primary/10 flex justify-between items-center bg-[#f8fcf8] dark:bg-background-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">visibility</span>
+<span class="font-bold text-sm">Full Report View</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">zoom_out</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-slate-900 overflow-auto flex justify-center p-8">
+<!-- Mock PDF Document -->
+<div class="w-full max-w-[500px] h-[800px] bg-white shadow-2xl rounded p-10 flex flex-col gap-6 relative">
+<div class="w-1/2 h-4 bg-slate-200 rounded"></div>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full"></div>
+<div class="flex flex-col gap-2 flex-1 pt-2">
+<div class="w-full h-2 bg-slate-100 rounded"></div>
+<div class="w-2/3 h-2 bg-slate-100 rounded"></div>
+</div>
+</div>
+<div class="space-y-4 mt-10">
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+<div class="w-full h-8 bg-slate-50 rounded border border-slate-100"></div>
+</div>
+<!-- Watermark / Scan overlay appearance -->
+<div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-primary/5 pointer-events-none"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Medical Summary Sidebar -->
+<div class="flex flex-col gap-6">
+<!-- Key Findings Card -->
+<div class="bg-white dark:bg-[#1a2e1a] rounded-xl shadow-lg border border-[#cfe7cf] dark:border-primary/10 p-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="text-lg font-bold">Key Findings</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<p class="text-sm leading-relaxed">Hemoglobin (14.2 g/dL) and WBC (6.5 x10^9/L) are well within the normal reference ranges.</p>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<p class="text-sm leading-relaxed">Platelet count shows optimal clotting capability.</p>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-yellow-500 mt-0.5">info</span>
+<p class="text-sm leading-relaxed">Minor variance in Hematocrit, but not clinically significant at this stage.</p>
+</li>
+</ul>
+</div>
+<!-- Doctor's Notes Card -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl shadow-lg border border-primary/20 p-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+<h3 class="text-lg font-bold">Doctor's Notes</h3>
+</div>
+<div class="space-y-4">
+<p class="text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">
+                            "Overall results are excellent. Patient continues to show stable hematological health. No immediate changes to current health plan required."
+                        </p>
+<div class="pt-4 border-t border-primary/10">
+<p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Recommendations</p>
+<div class="flex items-center gap-2 text-sm bg-white dark:bg-background-dark/50 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+<span>Schedule routine follow-up in 6 months.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Table: Additional Details -->
+<div class="mt-8 mb-24">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">list_alt</span>
+                Detailed Parameters
+            </h3>
+<div class="overflow-hidden rounded-xl border border-[#cfe7cf] dark:border-primary/10 bg-white dark:bg-[#1a2e1a] shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f8fcf8] dark:bg-background-dark/40">
+<th class="px-6 py-4 text-[#0d1b0d] dark:text-slate-300 text-sm font-semibold border-b border-[#cfe7cf] dark:border-primary/10">Parameter</th>
+<th class="px-6 py-4 text-[#0d1b0d] dark:text-slate-300 text-sm font-semibold border-b border-[#cfe7cf] dark:border-primary/10">Result</th>
+<th class="px-6 py-4 text-[#0d1b0d] dark:text-slate-300 text-sm font-semibold border-b border-[#cfe7cf] dark:border-primary/10">Reference Range</th>
+<th class="px-6 py-4 text-[#0d1b0d] dark:text-slate-300 text-sm font-semibold border-b border-[#cfe7cf] dark:border-primary/10">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-5 text-sm border-b border-slate-50 dark:border-primary/5">Hemoglobin</td>
+<td class="px-6 py-5 text-sm font-bold text-primary border-b border-slate-50 dark:border-primary/5">14.2 g/dL</td>
+<td class="px-6 py-5 text-sm text-slate-500 border-b border-slate-50 dark:border-primary/5">13.5 - 17.5 g/dL</td>
+<td class="px-6 py-5 border-b border-slate-50 dark:border-primary/5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold uppercase">Normal</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-5 text-sm border-b border-slate-50 dark:border-primary/5">White Blood Cell Count</td>
+<td class="px-6 py-5 text-sm font-bold text-primary border-b border-slate-50 dark:border-primary/5">6.5 x10^9/L</td>
+<td class="px-6 py-5 text-sm text-slate-500 border-b border-slate-50 dark:border-primary/5">4.5 - 11.0 x10^9/L</td>
+<td class="px-6 py-5 border-b border-slate-50 dark:border-primary/5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold uppercase">Normal</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-5 text-sm border-b border-slate-50 dark:border-primary/5">Platelets</td>
+<td class="px-6 py-5 text-sm font-bold text-primary border-b border-slate-50 dark:border-primary/5">250 x10^9/L</td>
+<td class="px-6 py-5 text-sm text-slate-500 border-b border-slate-50 dark:border-primary/5">150 - 450 x10^9/L</td>
+<td class="px-6 py-5 border-b border-slate-50 dark:border-primary/5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold uppercase">Normal</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-5 text-sm border-b border-slate-50 dark:border-primary/5">Hematocrit</td>
+<td class="px-6 py-5 text-sm font-bold text-primary border-b border-slate-50 dark:border-primary/5">42%</td>
+<td class="px-6 py-5 text-sm text-slate-500 border-b border-slate-50 dark:border-primary/5">41% - 50%</td>
+<td class="px-6 py-5 border-b border-slate-50 dark:border-primary/5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold uppercase">Normal</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Bottom Neumorphic Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-primary/10 py-4 z-[100]">
+<div class="max-w-[960px] mx-auto flex items-center justify-between px-6 gap-6">
+<button class="flex-1 neumorphic bg-[#f8fcf8] dark:bg-background-dark/50 py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 font-bold text-[#0d1b0d] dark:text-white transition-all active:shadow-inner hover:scale-[0.98]">
+<span class="material-symbols-outlined text-primary">download</span>
+<span>Download Record</span>
+</button>
+<button class="flex-[1.5] bg-primary shadow-lg shadow-primary/30 py-4 px-8 rounded-xl flex items-center justify-center gap-3 font-black text-[#0d1b0d] transition-all hover:scale-[1.02] active:scale-[0.98]">
+<span class="material-symbols-outlined">share</span>
+<span>Share with Doctor</span>
+</button>
+<button class="flex-1 neumorphic bg-[#f8fcf8] dark:bg-background-dark/50 py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 font-bold text-[#0d1b0d] dark:text-white transition-all active:shadow-inner hover:scale-[0.98]">
+<span class="material-symbols-outlined text-primary">note_add</span>
+<span>Add Note</span>
+</button>
+</div>
+</div>
+</body></html>

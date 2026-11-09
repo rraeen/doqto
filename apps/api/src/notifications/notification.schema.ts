@@ -33,6 +33,8 @@ export class Notification {
   @Prop() lockedUntil?: Date;
   @Prop() sentAt?: Date;
   @Prop() deliveredAt?: Date;
+  /** When the patient opened the inbox after this arrived. */
+  @Prop() readAt?: Date;
   @Prop({ type: Types.ObjectId, ref: 'Appointment' }) appointmentId?: Types.ObjectId;
   @Prop({ default: false }) isDemo: boolean;
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Smart Appointment Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                    boxShadow: {
+                        'neu-flat': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
+                        'neu-inset': 'inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff',
+                        'neu-sm': '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Manrope', sans-serif;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neumorphic-card {
+            background: #f0f2f5;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+        }
+        .neumorphic-inset {
+            background: #f0f2f5;
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .neumorphic-button-sm {
+            background: #f0f2f5;
+            box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+        }
+        .custom-checkbox {
+            appearance: none;
+            background-color: #f0f2f5;
+            box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: grid;
+            place-content: center;
+        }
+        .custom-checkbox:checked {
+            background-color: #13ec13;
+            box-shadow: 2px 2px 5px rgba(19, 236, 19, 0.3);
+        }
+        .custom-checkbox:checked::before {
+            content: "check";
+            font-family: 'Material Symbols Outlined';
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        .time-range-option input:checked + div {
+            background-color: #13ec13;
+            color: white;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        #auto-assign-check:checked ~ .time-range-container {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .input-border-radius {
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#0d1b0d] font-display">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/20 px-10 py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4 text-[#0d1b0d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clipPath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-extrabold leading-tight tracking-[-0.015em]">HealSoft</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Clinics</a>
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">My Appointments</a>
+</nav>
+<div class="flex gap-4">
+<button class="flex items-center justify-center rounded-full size-10 neumorphic-button-sm text-[#0d1b0d]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsJqxCKEzuhniF-Q0ameMYCkZVCb9El2d5fQaKSYiFYQi0q5AeqUVHHPm1YdVy2zEHY79ojdqiXiHwPEO5nc2xwExv9ItQVPn-q2VgiE7GKNPFg_ML3d33xpoWxUiij_-a8tOwGErLoew-XkXo_FUDo346R7ao6vH1rPoP01a4EkQs1S7EUsHN0s7OLNUmaEn9DU3VozFTMY3GkSBYDgqlnZ7e_NbN8uNzZm4mCY0xwhccyuFKcpa-SxqC1wOPkP-MTUR7z0HNnmVg");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[800px] mx-auto px-6 py-8">
+<div class="flex flex-wrap gap-2 py-4 mb-4">
+<a class="text-primary text-sm font-semibold flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span> Search
+        </a>
+<span class="text-gray-400 text-sm">/</span>
+<a class="text-gray-500 text-sm font-medium" href="#">Dr. Sarah Jenkins</a>
+<span class="text-gray-400 text-sm">/</span>
+<span class="text-[#0d1b0d] text-sm font-bold">Confirmation</span>
+</div>
+<div class="neumorphic-card rounded-xl p-8 mb-8 border border-white/40">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-white shadow-lg" data-alt="Professional portrait of Dr. Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR4xV5M2Aeb2qADT1tc8ZwZgV-y8yOGuDHfcXaIaIpisYFSCZJ42Pi1WTWjqs8FS8Fu4K5nbtY20EUIX8k7L5_3D_aXdm_135wBzIrBBv-wNmOPaLmyTHJi-Sru4Hvbc4g-67W0lKo_I2ux93NZ6zWPpKcpT90nLExvVGJjEUD99da8F0KnbbLMC1CeNL8dBPADCYOFhD8GAToK5olAC1OJ4PwvQqDpw-lHteIhIPHtID9c6lpfYQ9RhEXQzEqYfDbezsGt4vKKV5S");'>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                    Top Rated
+                </div>
+</div>
+<div class="flex flex-col text-center md:text-left">
+<h1 class="text-[#0d1b0d] text-3xl font-extrabold leading-tight mb-1">Dr. Sarah Jenkins</h1>
+<p class="text-primary text-lg font-semibold mb-2">Cardiologist • Specialist in Heart Health</p>
+<div class="flex items-center justify-center md:justify-start gap-4 text-gray-600">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 fill-1">star</span>
+<span class="font-bold text-[#0d1b0d]">4.9</span>
+<span class="text-sm">(2.4k reviews)</span>
+</div>
+<div class="w-px h-4 bg-gray-300"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+<span class="text-sm font-medium">12+ Years Experience</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h2 class="text-[#0d1b0d] text-xl font-bold mb-4 px-2">Appointment Schedule</h2>
+<div class="flex flex-col gap-6">
+<div class="neumorphic-card rounded-xl p-6 border border-white/40">
+<label class="flex items-center gap-3 cursor-pointer group mb-6">
+<input class="custom-checkbox" id="auto-assign-check" type="checkbox"/>
+<span class="text-[#0d1b0d] font-bold text-lg group-hover:text-primary transition-colors">Auto-assign the earliest available slot</span>
+</label>
+<div class="space-y-3 transition-opacity duration-300 time-range-container">
+<p class="px-2 text-sm font-semibold text-gray-600 uppercase tracking-wide">Preferred Time Range</p>
+<div class="grid grid-cols-3 gap-4">
+<label class="time-range-option cursor-pointer">
+<input checked="" class="hidden" name="time-range" type="radio" value="morning"/>
+<div class="neumorphic-button-sm rounded-full py-4 text-center font-bold text-sm transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">light_mode</span>
+                                Morning
+                            </div>
+</label>
+<label class="time-range-option cursor-pointer">
+<input class="hidden" name="time-range" type="radio" value="afternoon"/>
+<div class="neumorphic-button-sm rounded-full py-4 text-center font-bold text-sm transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">wb_sunny</span>
+                                Afternoon
+                            </div>
+</label>
+<label class="time-range-option cursor-pointer">
+<input class="hidden" name="time-range" type="radio" value="evening"/>
+<div class="neumorphic-button-sm rounded-full py-4 text-center font-bold text-sm transition-all flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">bedtime</span>
+                                Evening
+                            </div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<p class="mt-4 px-4 text-sm text-gray-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+            HealSoft Medical Center, Tower A, Level 4
+        </p>
+</div>
+<div class="mb-10">
+<h2 class="text-[#0d1b0d] text-xl font-bold mb-4 px-2">Visit Details</h2>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="px-2 text-sm font-semibold text-gray-600 uppercase tracking-wide">Reason for visit</label>
+<textarea class="neumorphic-inset w-full input-border-radius border-none focus:ring-2 focus:ring-primary/50 min-h-[100px] p-6 text-[#0d1b0d] placeholder:text-gray-400" placeholder="Please describe your symptoms or reason for the consultation..."></textarea>
+</div>
+<div class="flex flex-col gap-2">
+<label class="px-2 text-sm font-semibold text-gray-600 uppercase tracking-wide">Prior Medical Information</label>
+<textarea class="neumorphic-inset w-full input-border-radius border-none focus:ring-2 focus:ring-primary/50 min-h-[100px] p-6 text-[#0d1b0d] placeholder:text-gray-400" placeholder="Briefly list any past medical conditions, surgeries, or known allergies..."></textarea>
+</div>
+<div class="flex flex-col gap-2">
+<label class="px-2 text-sm font-semibold text-gray-600 uppercase tracking-wide">Upload Reports</label>
+<div class="neumorphic-inset input-border-radius border-2 border-dashed border-gray-300 p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-4xl text-gray-400 mb-2">cloud_upload</span>
+<p class="text-[#0d1b0d] font-bold">Drag &amp; Drop or Click to Upload</p>
+<p class="text-sm text-gray-400 mt-1">PDF, JPG, PNG (Max 10MB)</p>
+<button class="mt-4 px-6 py-2 bg-white/50 rounded-full text-xs font-bold uppercase tracking-widest text-gray-600 shadow-sm">Select Files</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-10">
+<h2 class="text-[#0d1b0d] text-xl font-bold mb-4 px-2">Payment Summary</h2>
+<div class="neumorphic-card rounded-xl p-8 border border-white/40">
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-gray-600 font-medium">Consultation Fee</span>
+<span class="text-[#0d1b0d] font-bold">$50.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-gray-600 font-medium">Service &amp; Technology Fee</span>
+<span class="text-[#0d1b0d] font-bold">$5.00</span>
+</div>
+<div class="h-px bg-gray-200 my-4"></div>
+<div class="flex justify-between items-center">
+<span class="text-[#0d1b0d] text-xl font-extrabold">Total Amount</span>
+<span class="text-primary text-3xl font-black">$55.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white text-lg font-extrabold py-5 rounded-full shadow-[0_10px_20px_rgba(19,236,19,0.3)] transition-all transform active:scale-[0.98]">
+            Confirm &amp; Book Appointment
+        </button>
+<div class="flex items-center gap-2 text-gray-500 text-sm font-medium">
+<span class="material-symbols-outlined text-primary">info</span>
+<span>Free cancellation up to 24h before the scheduled time</span>
+</div>
+</div>
+<div class="mt-16 text-center text-gray-400 text-xs">
+<p>© 2024 HealSoft Medical Systems. Secure &amp; Encrypted Payment.</p>
+</div>
+</main>
+
+</body></html>

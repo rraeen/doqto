@@ -37,6 +37,8 @@ export const DaySheetItemSchema = z.object({
   visitVerified: z.boolean(),
   /** Online bookings carry a 4-digit visit code; other entries check in with an OTP. */
   hasVisitCode: z.boolean(),
+  /** The patient moved this booking to a new time at least once. */
+  rescheduled: z.boolean().optional(),
   createdAt: IsoDateTimeSchema,
 });
 export type DaySheetItem = z.infer<typeof DaySheetItemSchema>;

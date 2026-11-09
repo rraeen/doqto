@@ -24,12 +24,12 @@ export function PhoneInput({
   return (
     <div
       className={cn(
-        'flex h-tap w-full items-center overflow-hidden rounded-md border border-line bg-surface focus-within:border-brand-600 focus-within:ring-2 focus-within:ring-brand-200 has-[[aria-invalid=true]]:border-danger',
+        'neu-inset flex h-tap w-full items-center overflow-hidden rounded-2xl focus-within:ring-2 focus-within:ring-brand-500/40 has-[[aria-invalid=true]]:ring-2 has-[[aria-invalid=true]]:ring-danger/50',
         className,
       )}
     >
       <span
-        className="flex h-full items-center border-r border-line bg-canvas px-3 text-base text-ink-muted"
+        className="flex h-full items-center px-4 text-base font-semibold text-ink-muted"
         aria-hidden
       >
         +91

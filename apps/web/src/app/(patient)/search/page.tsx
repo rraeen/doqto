@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import { RequireSignIn } from '@/components/auth/require-sign-in';
 import { SearchPage } from '@/components/search/search-page';
 import { Page } from '@/components/shell/page';
 import { getLocale } from '@/i18n/server';
@@ -18,9 +19,11 @@ function photoHost(): string | null {
 export default async function SearchRoute() {
   const { specialties } = getFormConfig(await getLocale());
   return (
-    <Page>
+    <Page size="wide">
       <Suspense>
-        <SearchPage specialties={specialties} photoHost={photoHost()} />
+        <RequireSignIn>
+          <SearchPage specialties={specialties} photoHost={photoHost()} />
+        </RequireSignIn>
       </Suspense>
     </Page>
   );

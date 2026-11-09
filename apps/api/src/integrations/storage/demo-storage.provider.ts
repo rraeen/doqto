@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { API_PREFIX } from '@doqto/shared';
 import { hmacSha256Hex, safeEqualHex } from '../crypto';
@@ -51,6 +51,10 @@ export class DemoStorageProvider implements StorageProvider {
     const body = stripImageMetadata(request.body, request.contentType);
     const stored = await this.write('public', { ...request, body });
     return { ...stored, url: `${this.baseUrl}/public/${encodeKey(request.key)}` };
+  }
+
+  async deletePrivate(key: string): Promise<void> {
+    await rm(this.pathFor('private', key), { force: true });
   }
 
   async signedUrl(key: string, ttlSeconds = this.defaultTtl, now = new Date()): Promise<string> {

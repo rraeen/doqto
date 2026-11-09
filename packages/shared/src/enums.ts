@@ -25,6 +25,8 @@ export type OtpPurpose = z.infer<typeof OtpPurposeSchema>;
 /** DB doc 3.5 `appointments.status`. */
 export const APPOINTMENT_STATUSES = [
   'pending_payment',
+  /** Paid; waiting for the doctor to accept the slot. */
+  'pending_confirmation',
   'confirmed',
   'checked_in',
   'in_consult',
@@ -40,6 +42,7 @@ export type AppointmentStatus = z.infer<typeof AppointmentStatusSchema>;
 /** Statuses that hold a slot (the unique partial index on `{ doctorId, slotStart }`). */
 export const ACTIVE_APPOINTMENT_STATUSES = [
   'pending_payment',
+  'pending_confirmation',
   'confirmed',
   'checked_in',
   'in_consult',

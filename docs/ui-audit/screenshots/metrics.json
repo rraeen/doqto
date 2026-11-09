@@ -1,0 +1,5733 @@
+{
+ "home": {
+  "360": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 5141,
+   "h1": "Care thatmoves with you. @ 48px",
+   "sizes": [
+    [
+     "15px/700",
+     11
+    ],
+    [
+     "13px/700",
+     5
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "36px/800",
+     4
+    ],
+    [
+     "18px/700",
+     4
+    ],
+    [
+     "11px/700",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "15px/900",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "48px/800",
+     2
+    ],
+    [
+     "18px/500",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "28px/900",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/900",
+     1
+    ],
+    [
+     "13px/400",
+     1
+    ],
+    [
+     "15px/800",
+     1
+    ],
+    [
+     "13px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "22px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Example\"",
+    "11px \"Queue position: #4 · about 25 min\"",
+    "11px \"Verified visit\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=364",
+    "div.md:hidden right=364",
+    "button.neu-raised flex size-10 items-center justify-cente right=364"
+   ]
+  },
+  "390": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 5040,
+   "h1": "Care thatmoves with you. @ 48px",
+   "sizes": [
+    [
+     "15px/700",
+     11
+    ],
+    [
+     "13px/700",
+     5
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "36px/800",
+     4
+    ],
+    [
+     "18px/700",
+     4
+    ],
+    [
+     "11px/700",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "15px/900",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "48px/800",
+     2
+    ],
+    [
+     "18px/500",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "28px/900",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/900",
+     1
+    ],
+    [
+     "13px/400",
+     1
+    ],
+    [
+     "15px/800",
+     1
+    ],
+    [
+     "13px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "22px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Example\"",
+    "11px \"Queue position: #4 · about 25 min\"",
+    "11px \"Verified visit\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 3156,
+   "h1": "Care thatmoves with you. @ 72px",
+   "sizes": [
+    [
+     "15px/700",
+     11
+    ],
+    [
+     "13px/700",
+     5
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "18px/700",
+     4
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "11px/700",
+     3
+    ],
+    [
+     "36px/800",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "15px/900",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "15px/800",
+     2
+    ],
+    [
+     "72px/800",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "28px/900",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "22px/500",
+     1
+    ],
+    [
+     "18px/900",
+     1
+    ],
+    [
+     "13px/400",
+     1
+    ],
+    [
+     "13px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "48px/800",
+     1
+    ],
+    [
+     "22px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Example\"",
+    "11px \"Queue position: #4 · about 25 min\"",
+    "11px \"Verified visit\""
+   ],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "79x21 a \"Why Doqto\"",
+    "90x21 a \"How it works\"",
+    "109x21 a \"Doctor console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "80x40 button \"Login\"",
+    "128x40 a \"Install now\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  }
+ },
+ "for-doctors": {
+  "360": {
+   "url": "/for-doctors",
+   "title": "Doctor console · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 3110,
+   "h1": "More patients.Less phone chaos. @ 48px",
+   "sizes": [
+    [
+     "15px/700",
+     10
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "48px/800",
+     2
+    ],
+    [
+     "18px/500",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "36px/800",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "127x42 a \"Log in to console\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=364",
+    "div.md:hidden right=364",
+    "button.neu-raised flex size-10 items-center justify-cente right=364"
+   ]
+  },
+  "390": {
+   "url": "/for-doctors",
+   "title": "Doctor console · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 2965,
+   "h1": "More patients.Less phone chaos. @ 48px",
+   "sizes": [
+    [
+     "15px/700",
+     10
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "48px/800",
+     2
+    ],
+    [
+     "18px/500",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "36px/800",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "122x21 a \"Log in to console\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/for-doctors",
+   "title": "Doctor console · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 2118,
+   "h1": "More patients.Less phone chaos. @ 72px",
+   "sizes": [
+    [
+     "15px/700",
+     10
+    ],
+    [
+     "22px/700",
+     4
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "16px/900",
+     3
+    ],
+    [
+     "72px/800",
+     2
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "36px/800",
+     2
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "15px/800",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "22px/500",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "79x21 a \"Why Doqto\"",
+    "90x21 a \"How it works\"",
+    "109x21 a \"Doctor console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "80x40 button \"Login\"",
+    "128x40 a \"Install now\"",
+    "122x21 a \"Log in to console\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  }
+ },
+ "install": {
+  "360": {
+   "url": "/install",
+   "title": "Get the app · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1491,
+   "h1": "Get the Doqto app @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     8
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/900",
+     6
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=364",
+    "div.md:hidden right=364",
+    "button.neu-raised flex size-10 items-center justify-cente right=364"
+   ]
+  },
+  "390": {
+   "url": "/install",
+   "title": "Get the app · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1466,
+   "h1": "Get the Doqto app @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     8
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/900",
+     6
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "72x40 button \"Login\"",
+    "40x40 button \"Menu\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/install",
+   "title": "Get the app · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1112,
+   "h1": "Get the Doqto app @ 48px",
+   "sizes": [
+    [
+     "15px/700",
+     8
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/900",
+     6
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "16px/500",
+     3
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "15px/800",
+     1
+    ],
+    [
+     "48px/800",
+     1
+    ],
+    [
+     "18px/400",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "79x21 a \"Why Doqto\"",
+    "90x21 a \"How it works\"",
+    "109x21 a \"Doctor console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "80x40 button \"Login\"",
+    "128x40 a \"Install now\"",
+    "94x21 a \"Find a doctor\"",
+    "110x21 a \"Doctor console\"",
+    "85x21 a \"Get the app\"",
+    "98x21 a \"Let’s connect\"",
+    "40x21 a \"Login\""
+   ],
+   "overflow": []
+  }
+ },
+ "login": {
+  "360": {
+   "url": "/login",
+   "title": "Sign in · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 780,
+   "h1": "Sign in with your phone @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/login",
+   "title": "Sign in · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "Sign in with your phone @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/login",
+   "title": "Sign in · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Sign in with your phone @ 36px",
+   "sizes": [
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-login": {
+  "360": {
+   "url": "/clinic/login",
+   "title": "Clinic console sign in · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1063,
+   "h1": "Sign in to the clinic console @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "13px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\"",
+    "110x21 a \"Partner with us\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/clinic/login",
+   "title": "Clinic console sign in · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1020,
+   "h1": "Sign in to the clinic console @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "13px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\"",
+    "110x21 a \"Partner with us\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/login",
+   "title": "Clinic console sign in · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1008,
+   "h1": "Sign in to the clinic console @ 36px",
+   "sizes": [
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "13px/700",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "13px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "264x31 a \"Doqto\nCLINIC CONSOLE\"",
+    "42x21 a \"Home\"",
+    "131x21 a \"About the console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "20x20 input \"\"",
+    "110x21 a \"Partner with us\""
+   ],
+   "overflow": []
+  }
+ },
+ "offline": {
+  "360": {
+   "url": "/offline",
+   "title": "Offline · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 780,
+   "h1": "You are offline @ 36px",
+   "sizes": [
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [],
+   "overflow": []
+  },
+  "390": {
+   "url": "/offline",
+   "title": "Offline · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "You are offline @ 36px",
+   "sizes": [
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/offline",
+   "title": "Offline · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "You are offline @ 36px",
+   "sizes": [
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [],
+   "overflow": []
+  }
+ },
+ "search": {
+  "360": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1180,
+   "h1": "Find a doctor @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/600",
+     6
+    ],
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "13px/400",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "Find a doctor @ 28px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Find a doctor @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ],
+    [
+     "16px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\""
+   ],
+   "overflow": []
+  }
+ },
+ "doctor-profile": {
+  "360": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1126,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1095,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  }
+ },
+ "help": {
+  "360": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1105,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1081,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 964,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\""
+   ],
+   "overflow": []
+  }
+ },
+ "patient-home": {
+  "360": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1662,
+   "h1": "Welcome to Doqto @ 20px",
+   "sizes": [
+    [
+     "13px/700",
+     6
+    ],
+    [
+     "15px/400",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/400",
+     3
+    ],
+    [
+     "18px/800",
+     3
+    ],
+    [
+     "16px/800",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "15px/800",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "20px/900",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ],
+    [
+     "22px/900",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "207x24 input \"Search doctors\"",
+    "63x41 button \"Find\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1614,
+   "h1": "Welcome to Doqto @ 20px",
+   "sizes": [
+    [
+     "13px/700",
+     6
+    ],
+    [
+     "15px/400",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/400",
+     3
+    ],
+    [
+     "18px/800",
+     3
+    ],
+    [
+     "16px/800",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "15px/800",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "20px/900",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ],
+    [
+     "22px/900",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "237x24 input \"Search doctors\"",
+    "63x41 button \"Find\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1177,
+   "h1": "Welcome to Doqto @ 28px",
+   "sizes": [
+    [
+     "15px/700",
+     10
+    ],
+    [
+     "15px/400",
+     4
+    ],
+    [
+     "16px/400",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "16px/800",
+     3
+    ],
+    [
+     "28px/900",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "15px/800",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "13px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "937x24 input \"Search doctors\"",
+    "71x41 button \"Find\""
+   ],
+   "overflow": []
+  }
+ },
+ "p-search": {
+  "360": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1180,
+   "h1": "Find a doctor @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/600",
+     6
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/400",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1073,
+   "h1": "Find a doctor @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/600",
+     6
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/400",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/search?city=Bareilly",
+   "title": "Find a doctor · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Find a doctor @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "13px/600",
+     6
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/400",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "p-doctor-profile": {
+  "360": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1126,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1105,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/d/dr-anita-sharma-bareilly",
+   "title": "Dr Anita Sharma, General Physician in Bareilly · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "15px/400",
+     6
+    ],
+    [
+     "16px/600",
+     5
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "22px/700",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "15px/600",
+     2
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "122x36 a \"Directions\"",
+    "75x36 a \"Call\""
+   ],
+   "overflow": []
+  }
+ },
+ "appointments": {
+  "360": {
+   "url": "/appointments",
+   "title": "My appointments · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1081,
+   "h1": "My appointments @ 36px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/700",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "256x24 input \"Search appointments\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/appointments",
+   "title": "My appointments · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1081,
+   "h1": "My appointments @ 36px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/700",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "286x24 input \"Search appointments\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/appointments",
+   "title": "My appointments · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "My appointments @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     6
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/700",
+     3
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "15px/400",
+     2
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "22px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "312x24 input \"Search appointments\""
+   ],
+   "overflow": []
+  }
+ },
+ "appointments-new": {
+  "360": {
+   "url": "/appointments/new",
+   "title": "Book a visit · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 2412,
+   "h1": "Book a visit @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     31
+    ],
+    [
+     "13px/700",
+     13
+    ],
+    [
+     "13px/400",
+     7
+    ],
+    [
+     "18px/700",
+     6
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "11px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "22px/900",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"View profile\"",
+    "11px \"Consultation fee is paid at the clinic\"",
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "256x21 input \"Search doctors\"",
+    "132x29 a \"VIEW PROFILE\"",
+    "36x36 button \"Previous month\"",
+    "36x36 button \"Next month\"",
+    "40x40 button \"\"",
+    "40x40 button \"1\"",
+    "40x40 button \"2\"",
+    "40x40 button \"3\"",
+    "40x40 button \"4\"",
+    "40x40 button \"5\"",
+    "40x40 button \"6\"",
+    "40x40 button \"7\"",
+    "40x40 button \"8\"",
+    "40x40 button \"9\"",
+    "40x40 button \"10\"",
+    "40x40 button \"11\"",
+    "40x40 button \"12\"",
+    "40x40 button \"13\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/appointments/new",
+   "title": "Book a visit · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 2412,
+   "h1": "Book a visit @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     31
+    ],
+    [
+     "13px/700",
+     13
+    ],
+    [
+     "13px/400",
+     7
+    ],
+    [
+     "18px/700",
+     6
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "11px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "22px/900",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"View profile\"",
+    "11px \"Consultation fee is paid at the clinic\"",
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "286x21 input \"Search doctors\"",
+    "132x29 a \"VIEW PROFILE\"",
+    "36x36 button \"Previous month\"",
+    "36x36 button \"Next month\"",
+    "40x40 button \"\"",
+    "40x40 button \"1\"",
+    "40x40 button \"2\"",
+    "40x40 button \"3\"",
+    "40x40 button \"4\"",
+    "40x40 button \"5\"",
+    "40x40 button \"6\"",
+    "40x40 button \"7\"",
+    "40x40 button \"8\"",
+    "40x40 button \"9\"",
+    "40x40 button \"10\"",
+    "40x40 button \"11\"",
+    "40x40 button \"12\"",
+    "40x40 button \"13\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/appointments/new",
+   "title": "Book a visit · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1162,
+   "h1": "Book a visit @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     31
+    ],
+    [
+     "13px/700",
+     13
+    ],
+    [
+     "15px/700",
+     8
+    ],
+    [
+     "13px/400",
+     7
+    ],
+    [
+     "18px/700",
+     6
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "11px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "16px/700",
+     1
+    ],
+    [
+     "22px/900",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"View profile\"",
+    "11px \"Consultation fee is paid at the clinic\""
+   ],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "568x21 input \"Search doctors\"",
+    "132x29 a \"VIEW PROFILE\"",
+    "36x36 button \"Previous month\"",
+    "36x36 button \"Next month\"",
+    "40x40 button \"\"",
+    "40x40 button \"1\"",
+    "40x40 button \"2\"",
+    "40x40 button \"3\"",
+    "40x40 button \"4\"",
+    "40x40 button \"5\"",
+    "40x40 button \"6\"",
+    "40x40 button \"7\"",
+    "40x40 button \"8\"",
+    "40x40 button \"9\""
+   ],
+   "overflow": []
+  }
+ },
+ "appointments-confirm": {
+  "360": {
+   "url": "/appointments/new/confirm",
+   "title": "Confirm your visit · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 780,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/appointments/new/confirm",
+   "title": "Confirm your visit · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/appointments/new/confirm",
+   "title": "Confirm your visit · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": null,
+   "sizes": [
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "consult": {
+  "360": {
+   "url": "/consult",
+   "title": "Talk to a doctor · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1237,
+   "h1": "Talk to a doctor @ 36px",
+   "sizes": [
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/700",
+     3
+    ],
+    [
+     "22px/800",
+     2
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "13px/500",
+     2
+    ],
+    [
+     "16px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "18px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "256x24 input \"Search conversations\"",
+    "111x37 button \"All chats\"",
+    "108x37 button \"Pending\"",
+    "129x37 button \"Completed\"",
+    "93x36 button \"Re-open\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/consult",
+   "title": "Talk to a doctor · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1215,
+   "h1": "Talk to a doctor @ 36px",
+   "sizes": [
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/700",
+     3
+    ],
+    [
+     "22px/800",
+     2
+    ],
+    [
+     "18px/800",
+     2
+    ],
+    [
+     "13px/500",
+     2
+    ],
+    [
+     "16px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "18px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "286x24 input \"Search conversations\"",
+    "111x37 button \"All chats\"",
+    "108x37 button \"Pending\"",
+    "129x37 button \"Completed\"",
+    "93x36 button \"Re-open\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/consult",
+   "title": "Talk to a doctor · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 989,
+   "h1": "Talk to a doctor @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     7
+    ],
+    [
+     "22px/800",
+     4
+    ],
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "13px/500",
+     2
+    ],
+    [
+     "16px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "13px/700",
+     1
+    ],
+    [
+     "18px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "13px/400",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "824x24 input \"Search conversations\"",
+    "111x37 button \"All chats\"",
+    "108x37 button \"Pending\"",
+    "129x37 button \"Completed\"",
+    "93x36 button \"Re-open\""
+   ],
+   "overflow": []
+  }
+ },
+ "records": {
+  "360": {
+   "url": "/records",
+   "title": "My health records · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 3057,
+   "h1": "My health records @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     16
+    ],
+    [
+     "18px/700",
+     8
+    ],
+    [
+     "13px/600",
+     8
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "36px/900",
+     3
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "256x28 input \"Search records\"",
+    "125x37 button \"All records\"",
+    "131x37 button \"Lab reports\"",
+    "146x37 button \"Prescriptions\"",
+    "93x37 button \"Scans\"",
+    "142x37 button \"Vaccinations\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/records",
+   "title": "My health records · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 2921,
+   "h1": "My health records @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     16
+    ],
+    [
+     "18px/700",
+     8
+    ],
+    [
+     "13px/600",
+     8
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "36px/900",
+     3
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "286x28 input \"Search records\"",
+    "125x37 button \"All records\"",
+    "131x37 button \"Lab reports\"",
+    "146x37 button \"Prescriptions\"",
+    "93x37 button \"Scans\"",
+    "142x37 button \"Vaccinations\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/records",
+   "title": "My health records · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1772,
+   "h1": "My health records @ 36px",
+   "sizes": [
+    [
+     "15px/400",
+     16
+    ],
+    [
+     "22px/700",
+     9
+    ],
+    [
+     "15px/700",
+     9
+    ],
+    [
+     "13px/600",
+     8
+    ],
+    [
+     "15px/600",
+     3
+    ],
+    [
+     "36px/900",
+     3
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "980x28 input \"Search records\"",
+    "125x37 button \"All records\"",
+    "131x37 button \"Lab reports\"",
+    "146x37 button \"Prescriptions\"",
+    "93x37 button \"Scans\"",
+    "142x37 button \"Vaccinations\""
+   ],
+   "overflow": []
+  }
+ },
+ "profile": {
+  "360": {
+   "url": "/profile",
+   "title": "Profile · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1944,
+   "h1": "Add your name @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     7
+    ],
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "16px/700",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/800",
+     2
+    ],
+    [
+     "13px/700",
+     2
+    ],
+    [
+     "36px/900",
+     2
+    ],
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "175x37 button \"ID: #5B5D8A7B\nCopy ID\"",
+    "86x25 a \"View all\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/profile",
+   "title": "Profile · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1919,
+   "h1": "Add your name @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     7
+    ],
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "16px/700",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/800",
+     2
+    ],
+    [
+     "13px/700",
+     2
+    ],
+    [
+     "36px/900",
+     2
+    ],
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "175x37 button \"ID: #5B5D8A7B\nCopy ID\"",
+    "86x25 a \"View all\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/profile",
+   "title": "Profile · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 981,
+   "h1": "Add your name @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     11
+    ],
+    [
+     "15px/600",
+     4
+    ],
+    [
+     "16px/700",
+     4
+    ],
+    [
+     "18px/600",
+     2
+    ],
+    [
+     "22px/800",
+     2
+    ],
+    [
+     "13px/700",
+     2
+    ],
+    [
+     "36px/900",
+     2
+    ],
+    [
+     "15px/500",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "175x37 button \"ID: #5B5D8A7B\nCopy ID\"",
+    "86x25 a \"View all\""
+   ],
+   "overflow": []
+  }
+ },
+ "profile-edit": {
+  "360": {
+   "url": "/profile/edit",
+   "title": "Edit profile · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1268,
+   "h1": "Edit profile @ 36px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "16px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "128x21 a \"Back to profile\"",
+    "81x32 button \"English\"",
+    "57x32 button \"हिन्दी\"",
+    "56x32 button \"\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/profile/edit",
+   "title": "Edit profile · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1268,
+   "h1": "Edit profile @ 36px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "15px/700",
+     2
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "16px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\"",
+    "128x21 a \"Back to profile\"",
+    "81x32 button \"English\"",
+    "57x32 button \"हिन्दी\"",
+    "56x32 button \"\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/profile/edit",
+   "title": "Edit profile · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1075,
+   "h1": "Edit profile @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     6
+    ],
+    [
+     "22px/800",
+     3
+    ],
+    [
+     "15px/500",
+     3
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "16px/700",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/800",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\"",
+    "128x21 a \"Back to profile\"",
+    "81x32 button \"English\"",
+    "57x32 button \"हिन्दी\"",
+    "56x32 button \"\""
+   ],
+   "overflow": []
+  }
+ },
+ "p-help": {
+  "360": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 1115,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1090,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Home\"",
+    "11px \"Appointments\"",
+    "11px \"Records\"",
+    "11px \"Consult\""
+   ],
+   "small": [
+    "104x31 a \"Doqto\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/help",
+   "title": "Help · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 964,
+   "h1": "Help @ 36px",
+   "sizes": [
+    [
+     "16px/800",
+     7
+    ],
+    [
+     "15px/400",
+     7
+    ],
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/900",
+     1
+    ],
+    [
+     "18px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "96x31 a \"Doqto\"",
+    "98x40 a \"Home\"",
+    "160x40 a \"Appointments\"",
+    "116x40 a \"Records\"",
+    "114x40 a \"Consult\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-dashboard": {
+  "360": {
+   "url": "/clinic",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 783,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "Dr Anita Sharma @ 28px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Dr Anita Sharma @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "16px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "15px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-queue": {
+  "360": {
+   "url": "/clinic/queue",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 783,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/queue",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/queue",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": null,
+   "sizes": [
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-schedule": {
+  "360": {
+   "url": "/clinic/schedule",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 783,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/schedule",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": null,
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/schedule",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": null,
+   "sizes": [
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-clinics": {
+  "360": {
+   "url": "/clinic/clinics",
+   "title": "Your clinics · Doqto",
+   "scrollWidth": 376,
+   "vw": 360,
+   "height": 815,
+   "h1": "Your clinics @ 28px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361",
+    "li. right=376",
+    "a.flex items-center gap-3 rounded-lg neu-raised p-4  right=376",
+    "nav.fixed inset-x-0 bottom-0 z-40 flex justify-center  right=376"
+   ]
+  },
+  "390": {
+   "url": "/clinic/clinics",
+   "title": "Your clinics · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "Your clinics @ 28px",
+   "sizes": [
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/clinics",
+   "title": "Your clinics · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Your clinics @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/500",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-clinics-new": {
+  "360": {
+   "url": "/clinic/clinics/new",
+   "title": "Add clinic · Doqto",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 1129,
+   "h1": "Add your clinic @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     10
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/clinics/new",
+   "title": "Add clinic · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 1129,
+   "h1": "Add your clinic @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     10
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/clinics/new",
+   "title": "Add clinic · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 1035,
+   "h1": "Add your clinic @ 36px",
+   "sizes": [
+    [
+     "15px/500",
+     10
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "16px/600",
+     3
+    ],
+    [
+     "13px/400",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "15px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-profile": {
+  "360": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 3400,
+   "h1": "Doctor profile @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\"",
+    "124x40 button \"Paediatrician\"",
+    "134x40 button \"Gynaecologist\"",
+    "133x40 button \"Dermatologist\"",
+    "120x40 button \"Orthopaedic\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 3313,
+   "h1": "Doctor profile @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\"",
+    "124x40 button \"Paediatrician\"",
+    "134x40 button \"Gynaecologist\"",
+    "133x40 button \"Dermatologist\"",
+    "120x40 button \"Orthopaedic\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 2877,
+   "h1": "Doctor profile @ 36px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-more": {
+  "360": {
+   "url": "/clinic/more",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 783,
+   "h1": "More @ 28px",
+   "sizes": [
+    [
+     "16px/500",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/more",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "More @ 28px",
+   "sizes": [
+    [
+     "16px/500",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/more",
+   "title": "Doqto: find a doctor, see live status, book",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "More @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "16px/500",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/500",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\""
+   ],
+   "overflow": []
+  }
+ },
+ "clinic-onboarding": {
+  "360": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 361,
+   "vw": 360,
+   "height": 3400,
+   "h1": "Doctor profile @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "182x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\"",
+    "124x40 button \"Paediatrician\"",
+    "134x40 button \"Gynaecologist\"",
+    "133x40 button \"Dermatologist\"",
+    "120x40 button \"Orthopaedic\""
+   ],
+   "overflow": [
+    "div.col-start-3 flex items-center justify-end gap-2 sm right=361",
+    "div.relative right=361",
+    "button.flex size-10 shrink-0 items-center justify-center  right=361"
+   ]
+  },
+  "390": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 3313,
+   "h1": "Doctor profile @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "11px/800",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [
+    "11px \"Today\"",
+    "11px \"Queue\"",
+    "11px \"Schedule\"",
+    "11px \"More\""
+   ],
+   "small": [
+    "186x39 a \"Doqto\nClinic console\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\"",
+    "124x40 button \"Paediatrician\"",
+    "134x40 button \"Gynaecologist\"",
+    "133x40 button \"Dermatologist\"",
+    "120x40 button \"Orthopaedic\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/clinic/profile",
+   "title": "Doctor profile · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 2877,
+   "h1": "Doctor profile @ 36px",
+   "sizes": [
+    [
+     "15px/500",
+     42
+    ],
+    [
+     "18px/600",
+     7
+    ],
+    [
+     "15px/600",
+     6
+    ],
+    [
+     "15px/700",
+     5
+    ],
+    [
+     "13px/400",
+     5
+    ],
+    [
+     "16px/600",
+     4
+    ],
+    [
+     "15px/400",
+     3
+    ],
+    [
+     "13px/600",
+     2
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "16px/400",
+     1
+    ],
+    [
+     "18px/800",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "211x31 a \"Doqto\nClinic console\"",
+    "99x40 a \"Today\"",
+    "104x40 a \"Queue\"",
+    "125x40 a \"Schedule\"",
+    "93x40 a \"More\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "40x40 button \"Account menu\"",
+    "176x21 a \"View your public page\"",
+    "1x1 input \"\"",
+    "105x40 button \"Female\"",
+    "66x40 button \"Male\"",
+    "73x40 button \"Other\"",
+    "91x40 button \"Hindi\"",
+    "106x40 button \"English\"",
+    "66x40 button \"Urdu\"",
+    "85x40 button \"Punjabi\"",
+    "84x40 button \"Bengali\"",
+    "91x40 button \"Bhojpuri\"",
+    "182x40 button \"General Physician\""
+   ],
+   "overflow": []
+  }
+ },
+ "admin": {
+  "360": {
+   "url": "/admin/doctors",
+   "title": "Doctor verification · Doqto",
+   "scrollWidth": 360,
+   "vw": 360,
+   "height": 780,
+   "h1": "Doctor verification @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "13px/700",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "172x31 a \"Doqto\nAdmin\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "107x40 a \"Doctors\"",
+    "107x40 a \"Reviews\"",
+    "107x40 a \"Notifications\"",
+    "104x37 a \"Pending\"",
+    "104x37 a \"Verified\"",
+    "104x37 a \"Rejected\""
+   ],
+   "overflow": []
+  },
+  "390": {
+   "url": "/admin/doctors",
+   "title": "Doctor verification · Doqto",
+   "scrollWidth": 390,
+   "vw": 390,
+   "height": 844,
+   "h1": "Doctor verification @ 28px",
+   "sizes": [
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "13px/700",
+     3
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "15px/700",
+     1
+    ],
+    [
+     "28px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "172x31 a \"Doqto\nAdmin\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "117x40 a \"Doctors\"",
+    "117x40 a \"Reviews\"",
+    "117x40 a \"Notifications\"",
+    "114x37 a \"Pending\"",
+    "114x37 a \"Verified\"",
+    "114x37 a \"Rejected\""
+   ],
+   "overflow": []
+  },
+  "desktop": {
+   "url": "/admin/doctors",
+   "title": "Doctor verification · Doqto",
+   "scrollWidth": 1440,
+   "vw": 1440,
+   "height": 900,
+   "h1": "Doctor verification @ 36px",
+   "sizes": [
+    [
+     "15px/700",
+     4
+    ],
+    [
+     "15px/500",
+     4
+    ],
+    [
+     "22px/700",
+     1
+    ],
+    [
+     "13px/600",
+     1
+    ],
+    [
+     "36px/700",
+     1
+    ],
+    [
+     "18px/600",
+     1
+    ]
+   ],
+   "tiny": [],
+   "small": [
+    "164x31 a \"Doqto\nAdmin\"",
+    "40x32 button \"EN\"",
+    "36x32 button \"हि\"",
+    "361x40 a \"Doctors\"",
+    "361x40 a \"Reviews\"",
+    "361x40 a \"Notifications\"",
+    "345x37 a \"Pending\"",
+    "345x37 a \"Verified\"",
+    "345x37 a \"Rejected\""
+   ],
+   "overflow": []
+  }
+ }
+}

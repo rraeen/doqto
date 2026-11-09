@@ -45,7 +45,11 @@ export class Clinic {
   @Prop({ type: ClinicAddressSchema, required: true }) address: ClinicAddress;
   @Prop({ type: GeoPointSchema }) location?: GeoPoint;
   @Prop({ type: [ClinicPhotoSchema], default: [] }) photos: ClinicPhoto[];
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true }) ownerUserId: Types.ObjectId;
+  /** The patient-side owner of a clinic made through the old flow. Absent for one from an approved application. */
+  @Prop({ type: Types.ObjectId, ref: 'User' }) ownerUserId?: Types.ObjectId;
+  /** The provider account that applied, and the application (unit) this clinic comes from. */
+  @Prop({ type: Types.ObjectId, ref: 'Account' }) ownerAccountId?: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Unit' }) unitId?: Types.ObjectId;
   /** Access-control source of truth for clinic_staff. */
   @Prop({ type: [Types.ObjectId], ref: 'User', default: [] }) staffUserIds: Types.ObjectId[];
   /** When/by whom each staff member was added (display only; staffUserIds decides access). */
@@ -63,3 +67,4 @@ export const ClinicSchema = SchemaFactory.createForClass(Clinic);
 ClinicSchema.index({ location: '2dsphere' });
 ClinicSchema.index({ 'address.city': 1 });
 ClinicSchema.index({ staffUserIds: 1 });
+ClinicSchema.index({ unitId: 1 }, { unique: true, partialFilterExpression: { unitId: { $exists: true } } });

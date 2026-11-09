@@ -17,6 +17,8 @@ export const ERROR_CODES = [
   'OTP_EXPIRED', // 400: no live OTP for this phone (expired, never requested, or already used)
   'OTP_LOCKED', // 400: too many wrong codes; request a new OTP
   'REFRESH_INVALID', // 401: refresh token unknown, expired or revoked; log in again
+  'INVALID_CREDENTIALS', // 401: wrong phone, email or password (provider sign-in)
+  'CONTACT_NOT_VERIFIED', // 403: registered but the phone or email code was never confirmed
   'ACCOUNT_SUSPENDED', // 403: user status is suspended or deleted
   'INTERNAL', // 500
 ] as const;

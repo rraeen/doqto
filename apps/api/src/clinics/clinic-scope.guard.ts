@@ -49,7 +49,9 @@ export async function resolveClinicAccess(
   doctors: Model<Doctor>,
 ): Promise<ClinicAccess | null> {
   const uid = new Types.ObjectId(userId);
-  if (clinic.ownerUserId.equals(uid)) return 'manage';
+  if (clinic.ownerUserId?.equals(uid)) return 'manage';
+  // A clinic from an approved application is owned by the provider account that applied.
+  if (clinic.ownerAccountId?.equals(uid)) return 'manage';
   const doctor = await doctors.findOne({ userId: uid }, { _id: 1 }).exec();
   if (doctor && clinic.doctorIds.some((d) => d.equals(doctor._id))) return 'manage';
   if (clinic.staffUserIds.some((s) => s.equals(uid))) return 'staff';

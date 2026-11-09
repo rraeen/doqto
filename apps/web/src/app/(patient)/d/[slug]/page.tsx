@@ -11,6 +11,7 @@ import { getTranslator } from '@/i18n/server';
 import { fetchDoctorProfile } from '@/lib/api/server';
 import { specialtyLabels } from '@/lib/contract-data';
 import { env } from '@/lib/env';
+import { sampleProfileBySlug } from '@/lib/sample-doctors';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -67,15 +68,25 @@ export default async function DoctorPage({ params }: Props) {
     if (process.env.NEXT_PUBLIC_API_MOCKS === 'true') {
       const { MockProfileFallback } = await import('@/components/doctor-page/mock-fallback');
       return (
-        <Page>
+        <Page size="wide">
           <MockProfileFallback slug={slug} specialties={specialties} />
+        </Page>
+      );
+    }
+    // Demo and local builds: the example doctors from the search cards have a page too.
+    const sample =
+      env.demoMode || process.env.NODE_ENV !== 'production' ? sampleProfileBySlug(slug) : null;
+    if (sample) {
+      return (
+        <Page size="wide">
+          <DoctorProfileView profile={sample} t={t} specialties={specialties} photoHost={null} />
         </Page>
       );
     }
     notFound();
   }
   return (
-    <Page>
+    <Page size="wide">
       <script
         type="application/ld+json"
         // Escaped in physicianJsonLd, so profile text cannot break out of the script element.

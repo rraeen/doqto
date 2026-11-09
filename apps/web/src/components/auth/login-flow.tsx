@@ -6,6 +6,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useI18n } from '@/i18n/provider';
 import { authApi } from '@/lib/api/lazy';
+import { toast } from '@/components/ui/toast';
+import { postLoginPath, type LoginAudience } from '@/lib/post-login';
 import { meQueryKey } from '@/lib/session';
 import { OtpStep } from './otp-step';
 import { PhoneStep } from './phone-step';
@@ -27,11 +29,23 @@ export function safeNext(next: string | null, origin = window.location.origin): 
   }
 }
 
-export function LoginFlow({ otpLength }: { otpLength: number }) {
+export function LoginFlow({
+  otpLength,
+  audience: audienceProp,
+  next: nextProp,
+}: {
+  otpLength: number;
+  /** Where to go after signing in, when the address has no `?next=` (the login dialog). */
+  next?: string;
+  /** `clinic` for the doctor and staff sign-in; read from `?audience=clinic` when not given. */
+  audience?: LoginAudience;
+}) {
   const router = useRouter();
   const params = useSearchParams();
   const qc = useQueryClient();
-  const { locale, setLocale } = useI18n();
+  const { locale, setLocale, t } = useI18n();
+  const audience: LoginAudience =
+    audienceProp ?? (params.get('audience') === 'clinic' ? 'clinic' : 'patient');
   const [lastPhone, setLastPhone] = useState<string>();
   const [sent, setSent] = useState<{
     phone: string;
@@ -44,6 +58,7 @@ export function LoginFlow({ otpLength }: { otpLength: number }) {
     return (
       <PhoneStep
         initialPhone={lastPhone}
+        audience={audience}
         onSent={(phone, whatsappOptIn, otp) => {
           setLastPhone(phone);
           setSent({ phone, whatsappOptIn, otp, at: Date.now() });
@@ -70,12 +85,14 @@ export function LoginFlow({ otpLength }: { otpLength: number }) {
           setLocale(user.language);
         }
         qc.setQueryData(meQueryKey, me);
-        const next = safeNext(params.get('next'));
-        router.replace(
-          isNewUser
-            ? `/profile?welcome=1${next ? `&next=${encodeURIComponent(next)}` : ''}`
-            : (next ?? '/'),
-        );
+        const { path, denied } = postLoginPath({
+          roles: me.roles,
+          isNewUser,
+          next: safeNext(params.get('next') ?? nextProp ?? null),
+          audience,
+        });
+        if (denied) toast.error(t('auth.notConsoleAccount'));
+        router.replace(path);
       }}
     />
   );

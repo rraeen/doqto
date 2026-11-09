@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'neu-flat': '8px 8px 16px #d1d4d1, -8px -8px 16px #ffffff',
+                        'neu-inset': 'inset 4px 4px 8px #d1d4d1, inset -4px -4px 8px #ffffff',
+                        'neu-primary': '6px 6px 12px #10c810, -6px -6px 12px #16ff16',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neu-card {
+            background: #f6f8f6;
+            box-shadow: 10px 10px 20px #e0e4e0, -10px -10px 20px #ffffff;
+        }
+        .neu-button {
+            background: #13ec13;
+            box-shadow: 4px 4px 10px #10c810, -4px -4px 10px #16ff16;
+        }
+        .neu-button-white {
+            background: #f6f8f6;
+            box-shadow: 4px 4px 10px #d1d4d1, -4px -4px 10px #ffffff;
+        }
+        .neu-input {
+            background: #f6f8f6;
+            box-shadow: inset 4px 4px 8px #d1d4d1, inset -4px -4px 8px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<div class="relative min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 px-6 py-4 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 neu-card flex items-center justify-center rounded-xl bg-primary">
+<span class="material-symbols-outlined text-background-dark font-bold">medical_services</span>
+</div>
+<h1 class="text-2xl font-extrabold tracking-tight">Heal<span class="text-primary">Soft</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-medium hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="font-medium hover:text-primary transition-colors" href="#">Specialties</a>
+<a class="font-medium hover:text-primary transition-colors" href="#">How it works</a>
+<a class="font-medium hover:text-primary transition-colors" href="#">Health Feed</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="neu-button-white px-6 py-2 rounded-full font-bold text-sm">Login</button>
+<button class="neu-button px-6 py-2 rounded-full font-bold text-sm text-background-dark">Sign Up</button>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<section class="relative px-6 py-16 md:py-24 overflow-hidden">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-8 z-10">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full neu-card text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                            Trusted by 1000+ patients
+                        </div>
+<h1 class="text-5xl md:text-6xl font-black leading-[1.1] tracking-tight text-slate-900">
+                            Find Trusted Doctors <br/><span class="text-primary">Near You</span> — Book in Seconds
+                        </h1>
+<p class="text-lg text-slate-600 max-w-lg leading-relaxed">
+                            Search verified doctors, book appointments instantly, and get reminders — all in one place. Your health, simplified.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<button class="neu-button px-8 py-4 rounded-full font-bold text-background-dark flex items-center gap-2 group">
+                                Search Doctors
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">search</span>
+</button>
+<button class="neu-button-white px-8 py-4 rounded-full font-bold flex items-center gap-2">
+                                Book Appointment
+                                <span class="material-symbols-outlined">calendar_month</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="neu-card rounded-xl p-4 relative z-10">
+<img alt="Doctor Visual" class="rounded-lg w-full h-[500px] object-cover" data-alt="Friendly professional female doctor smiling in clinic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL34jlDYxfmCBLqkzz7FDaYnF850duH7pijL9PRJCDPvxu5beD8888aQAW05rw-to7K23vMreFXGcwSLr0uB5U5s7mfYW5DpLURj7hf0Pyw9H4diovPtLJJaUHgY9smgyIa2K4jfHzvWS4C0vv_uQ1HBiBSLswPXJMNRFDPDaWc3SX6or8SFZKEAR6qr5Mo_cU6w60i1PYxF0cbNi32nNJ5Lr0gVUXsIrkYBhnHiYfTBV_qHxBdM0f_cU0Fq3-M_1V0e9_-CMBeiUU"/>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-12 -mt-16 relative z-20">
+<div class="max-w-5xl mx-auto neu-card p-8 rounded-xl">
+<div class="grid md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-bold ml-4 text-slate-500 uppercase tracking-wider">Doctor Name</label>
+<div class="neu-input rounded-full px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">person_search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-slate-400" placeholder="Ex: Dr. Smith" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold ml-4 text-slate-500 uppercase tracking-wider">Specialty</label>
+<div class="neu-input rounded-full px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">stethoscope</span>
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-slate-400" placeholder="Ex: Cardiology" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold ml-4 text-slate-500 uppercase tracking-wider">Location</label>
+<div class="neu-input rounded-full px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-slate-400" placeholder="City or Zip Code" type="text"/>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="neu-button px-12 py-4 rounded-full font-black text-lg text-background-dark tracking-wide">
+                            FIND MY DOCTOR
+                        </button>
+</div>
+</div>
+</section>
+<section class="px-6 py-20 bg-background-light">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-black text-slate-900">How It Works</h2>
+<div class="h-1.5 w-24 bg-primary mx-auto mt-4 rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="text-center group">
+<div class="w-20 h-20 neu-card rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">search_insights</span>
+</div>
+<h3 class="font-bold text-xl mb-2">1. Search</h3>
+<p class="text-slate-500">Find your specialist by name or location easily.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 neu-card rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">event_available</span>
+</div>
+<h3 class="font-bold text-xl mb-2">2. Choose Time</h3>
+<p class="text-slate-500">Pick a convenient slot that fits your schedule.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 neu-card rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">video_chat</span>
+</div>
+<h3 class="font-bold text-xl mb-2">3. Visit/Consult</h3>
+<p class="text-slate-500">Meet your doctor in person or via video call.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 neu-card rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">notifications_active</span>
+</div>
+<h3 class="font-bold text-xl mb-2">4. Get Reminders</h3>
+<p class="text-slate-500">Stay updated with smart automated notifications.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="neu-card p-8 rounded-xl border border-white/50">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">verified</span>
+<h3 class="font-bold text-xl mb-2">Verified Doctors</h3>
+<p class="text-sm text-slate-500">Every medical professional is manually vetted for your safety.</p>
+</div>
+<div class="neu-card p-8 rounded-xl border border-white/50">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">bolt</span>
+<h3 class="font-bold text-xl mb-2">Instant Booking</h3>
+<p class="text-sm text-slate-500">Confirm your appointment in under 60 seconds with real-time sync.</p>
+</div>
+<div class="neu-card p-8 rounded-xl border border-white/50">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">smart_toy</span>
+<h3 class="font-bold text-xl mb-2">Smart Reminders</h3>
+<p class="text-sm text-slate-500">Never miss a check-up with AI-powered health alerts.</p>
+</div>
+<div class="neu-card p-8 rounded-xl border border-white/50">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">edit_calendar</span>
+<h3 class="font-bold text-xl mb-2">Easy Rescheduling</h3>
+<p class="text-sm text-slate-500">Life happens. Change your appointment time with one tap.</p>
+</div>
+</div>
+</section>
+<section class="px-6 py-20 bg-background-light">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="text-4xl font-black text-slate-900">Explore Specialties</h2>
+<p class="text-slate-500 mt-2">Find the right care for your specific needs</p>
+</div>
+<button class="neu-button-white px-8 py-3 rounded-full font-bold flex items-center gap-2">
+                            View All <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<a class="neu-card p-6 rounded-xl text-center hover:scale-105 transition-transform group" href="#">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-background-dark">home_health</span>
+</div>
+<span class="font-bold">General Physician</span>
+</a>
+<a class="neu-card p-6 rounded-xl text-center hover:scale-105 transition-transform group" href="#">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-background-dark">dentistry</span>
+</div>
+<span class="font-bold">Dentist</span>
+</a>
+<a class="neu-card p-6 rounded-xl text-center hover:scale-105 transition-transform group" href="#">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-background-dark">face</span>
+</div>
+<span class="font-bold">Dermatologist</span>
+</a>
+<a class="neu-card p-6 rounded-xl text-center hover:scale-105 transition-transform group" href="#">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-background-dark">cardiology</span>
+</div>
+<span class="font-bold">Cardiologist</span>
+</a>
+<a class="neu-card p-6 rounded-xl text-center hover:scale-105 transition-transform group" href="#">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-background-dark">child_care</span>
+</div>
+<span class="font-bold">Pediatrician</span>
+</a>
+</div>
+</div>
+</section>
+<section class="px-6 py-20">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-black text-slate-900 mb-12 text-center">Top Rated Doctors</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="neu-card p-6 rounded-xl">
+<div class="flex gap-4 mb-6">
+<img alt="Doctor Portrait" class="w-24 h-24 rounded-lg object-cover" data-alt="Male doctor with stethoscope profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEAhKj98wPQ-32aZ_QrcCwSvQsPVhivuFrewXPcNMBDr8PL_wADn8T8qgMtQBYFvY8EA8rkm5PpjutykgCK3t8d5xHIvMkqptTqDka7WmsL6uOi2g_n28sVFKGWExOefiv3FU63CDTmJdvlwL_q7bR2NV_oVsVpwZ3UxREhi1gBd4Q29UyHz1jEnsAzbrGmwCdu1t7__BqDfr3hrdZXe4Q0PzevS8R0AJzoN49JCF9Ok7R32Q6iHkAtWRUby-elMOOO5Iiczsb8daC"/>
+<div>
+<h4 class="text-xl font-bold">Dr. James Wilson</h4>
+<p class="text-primary font-medium">Cardiologist</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-yellow-500 fill-current text-sm">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-slate-400 text-xs">(120 Reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-t border-slate-100">
+<span class="text-sm font-medium text-slate-500">12 Years Experience</span>
+<button class="neu-button px-6 py-2 rounded-full text-sm font-bold text-background-dark">Book</button>
+</div>
+</div>
+<div class="neu-card p-6 rounded-xl">
+<div class="flex gap-4 mb-6">
+<img alt="Doctor Portrait" class="w-24 h-24 rounded-lg object-cover" data-alt="Female pediatrician smiling profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACx6LCSIOLQHo7URkfcp17LiRaaZ1ZbEMgTNzRYMVIz55zq-Tf8nAs0NFQqDLp8LNhNWgqCGbmlRkx-rshy7xvivarIuxpVblPY7iGL4SpSpfQ6L4LpIiDZiIUW03itcyNPgClQ4LToaXPW4n6wqWIjf-bxUORbqUsWysJ-SHT62QFi04cgC-1Sz3P5DzIRgRWxslEKG0j9OJW59OkGGim11SdF4Uk3HUWNs6jDSUfqaknG9w9SeXaE_0xornTVRjZ2MfKbO4M9c9e"/>
+<div>
+<h4 class="text-xl font-bold">Dr. Sarah Chen</h4>
+<p class="text-primary font-medium">Pediatrician</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-yellow-500 fill-current text-sm">star</span>
+<span class="font-bold">4.8</span>
+<span class="text-slate-400 text-xs">(95 Reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-t border-slate-100">
+<span class="text-sm font-medium text-slate-500">8 Years Experience</span>
+<button class="neu-button px-6 py-2 rounded-full text-sm font-bold text-background-dark">Book</button>
+</div>
+</div>
+<div class="neu-card p-6 rounded-xl">
+<div class="flex gap-4 mb-6">
+<img alt="Doctor Portrait" class="w-24 h-24 rounded-lg object-cover" data-alt="Male general practitioner professional profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-KjTPmQ_gLrqXJUhDxxx8QaArTNcaIriTYGPFR9EMmFiMDL1y6kTDdVbiEt7z8goaJSR7_ehSb6QvLsHQfnMcwdWguP4-5Rlbc0L6oLu664hA6W6wwn-D_4JLa6wn1OOGkL9Qw-I3uKmqJkpS1s3QHma3CfQmEpeiDvqX4dlsVkJy3gVpRxWkol8DJW-QfVq2ka3Um6-XCtwEhiq1sT8fYaexMxvK4oNN3-qlHJp2dcXCPwmMHm9kpU8rWPd2HSaRUCMTxnZX-fYB"/>
+<div>
+<h4 class="text-xl font-bold">Dr. Michael Ross</h4>
+<p class="text-primary font-medium">Dermatologist</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-yellow-500 fill-current text-sm">star</span>
+<span class="font-bold">5.0</span>
+<span class="text-slate-400 text-xs">(210 Reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-t border-slate-100">
+<span class="text-sm font-medium text-slate-500">15 Years Experience</span>
+<button class="neu-button px-6 py-2 rounded-full text-sm font-bold text-background-dark">Book</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-20 bg-primary/5">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-black text-slate-900 mb-12 text-center">Patient Stories</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="neu-card p-8 rounded-xl italic">
+<div class="flex gap-1 text-yellow-500 mb-4">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+</div>
+<p class="text-slate-600 mb-6">"Booking was super easy. I found a top specialist near me and got an appointment for the very next day. The reminders kept me on track!"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="font-bold text-sm">Emma Thompson</p>
+<p class="text-xs text-slate-400">Patient since 2023</p>
+</div>
+</div>
+</div>
+<div class="neu-card p-8 rounded-xl italic">
+<div class="flex gap-1 text-yellow-500 mb-4">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+</div>
+<p class="text-slate-600 mb-6">"Finally a platform that values my time. No more waiting on hold to book. The interface is clean and works perfectly on my phone."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="font-bold text-sm">David Miller</p>
+<p class="text-xs text-slate-400">Patient since 2024</p>
+</div>
+</div>
+</div>
+<div class="neu-card p-8 rounded-xl italic md:hidden lg:block">
+<div class="flex gap-1 text-yellow-500 mb-4">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+</div>
+<p class="text-slate-600 mb-6">"The doctor verification really gives me peace of mind. I've recommended HealSoft to all my family members. Truly great service."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="font-bold text-sm">Sofia Rodriguez</p>
+<p class="text-xs text-slate-400">Patient since 2022</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 py-20">
+<div class="max-w-4xl mx-auto neu-card bg-primary p-12 rounded-xl text-center relative overflow-hidden">
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-white/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h2 class="text-4xl font-black text-background-dark mb-6">Book your doctor appointment today</h2>
+<p class="text-background-dark/80 text-lg mb-10 max-w-xl mx-auto">Join thousands of patients who have simplified their healthcare journey with HealSoft.</p>
+<button class="neu-button-white px-12 py-5 rounded-full font-black text-xl text-slate-900 shadow-xl hover:scale-105 transition-transform">
+                            Search Doctors Now
+                        </button>
+</div>
+</div>
+</section>
+</main>
+<footer class="px-6 py-16 bg-background-light border-t border-primary/10">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 neu-card flex items-center justify-center rounded-lg bg-primary">
+<span class="material-symbols-outlined text-background-dark text-sm font-bold">medical_services</span>
+</div>
+<h2 class="text-xl font-extrabold">Heal<span class="text-primary">Soft</span></h2>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">Making healthcare accessible and convenient for everyone, everywhere.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 neu-card rounded-full flex items-center justify-center hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="w-10 h-10 neu-card rounded-full flex items-center justify-center hover:text-primary" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="w-10 h-10 neu-card rounded-full flex items-center justify-center hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+<li><a class="hover:text-primary" href="#">Press</a></li>
+<li><a class="hover:text-primary" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Support</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">Help Center</a></li>
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="neu-card p-6 rounded-xl">
+<h4 class="font-bold mb-4">Stay Healthy</h4>
+<p class="text-xs text-slate-500 mb-4">Get health tips and platform updates.</p>
+<div class="neu-input rounded-full px-4 py-2 flex items-center gap-2 mb-4">
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full" placeholder="Email address" type="email"/>
+</div>
+<button class="w-full neu-button py-2 rounded-full font-bold text-sm text-background-dark">Subscribe</button>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
+                    © 2024 HealSoft Healthcare Systems. All rights reserved.
+                </div>
+</div>
+</footer>
+</div>
+</body></html>

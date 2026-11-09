@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: 'Doctor profile', robots: { index: fa
 
 export default async function DoctorProfileRoute() {
   return (
-    <Page>
+    <Page size="medium">
       <DoctorProfilePage config={getFormConfig(await getLocale())} />
     </Page>
   );

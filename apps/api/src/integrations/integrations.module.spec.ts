@@ -10,6 +10,7 @@ import {
   OTP_PROVIDER,
   PAYMENT_PROVIDER,
   SMS_PROVIDER,
+  EMAIL_PROVIDER,
   STORAGE_PROVIDER,
   WHATSAPP_PROVIDER,
 } from './tokens';
@@ -28,6 +29,7 @@ describe('IntegrationsModule', () => {
       OTP_PROVIDER,
       WHATSAPP_PROVIDER,
       SMS_PROVIDER,
+      EMAIL_PROVIDER,
       PAYMENT_PROVIDER,
       STORAGE_PROVIDER,
     ]) {
@@ -40,6 +42,7 @@ describe('IntegrationsModule', () => {
         .map((p) => p.providerName)
         .sort(),
     ).toEqual([
+      'demo-email',
       'demo-geocoder',
       'demo-otp',
       'demo-payment',

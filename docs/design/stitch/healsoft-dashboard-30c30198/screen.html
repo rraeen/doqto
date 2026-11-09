@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Patient Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style data-purpose="custom-fonts">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F2F5F3; /* Light grayish-green background */
+      color: #333;
+    }
+  </style>
+<style data-purpose="neumorphism">
+    /* Custom Neumorphic Styles */
+    .neu-flat {
+      background: #F2F5F3;
+      box-shadow: 10px 10px 20px #d9dcd9, -10px -10px 20px #ffffff;
+      border-radius: 1rem;
+    }
+    .neu-pressed {
+      background: #F2F5F3;
+      box-shadow: inset 10px 10px 20px #d9dcd9, inset -10px -10px 20px #ffffff;
+      border-radius: 1rem;
+    }
+    .neu-nav {
+       background: #F2F5F3;
+       box-shadow: 0px -4px 12px rgba(217, 220, 217, 0.5);
+       border-top-left-radius: 1.5rem;
+       border-top-right-radius: 1.5rem;
+    }
+    .text-green-accent {
+      color: #00E640;
+    }
+    .bg-green-accent {
+      background-color: #00E640;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased pb-24">
+<!-- BEGIN: MainHeader -->
+<header class="p-6 flex justify-between items-center" data-purpose="app-header">
+<div class="flex items-center gap-3">
+<!-- Logo Placeholder -->
+<div class="w-10 h-10 rounded-full bg-green-accent flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-green-400/50">
+<i class="fa-solid fa-leaf"></i>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight">HealSoft</h1>
+<p class="text-[10px] font-bold text-green-accent tracking-wider uppercase">Patient Portal</p>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<!-- Notification Bell -->
+<button class="w-10 h-10 rounded-full neu-flat flex items-center justify-center text-gray-600">
+<i class="fa-solid fa-bell"></i>
+</button>
+<!-- User Avatar -->
+<div class="w-10 h-10 rounded-full neu-flat overflow-hidden p-1">
+<img alt="User Avatar" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDymboxsYhzZYGWTzBPCNhj_3sxqWhcOiJckgl6j3esUvK7CRLQyPI1C2ki-_8GfiwkpHp2ApoPT3qIxXZdAPbvQU_C9Zh7c6GG0jtJ_rR54ug-BtBx2dAtrK8CrrV4gV_vtWsa7MiygtCn8WWskwmiSUm3TTUXbUVnZMuT2k9tBa12RwDspC4ZNcaFnIYpEHJmPFWH1JuslNYfT0gHKmSIYz8splIGZCH6dq4z4PYcrTukmpP1EmxS7wu0WIbKGgV1Z1g4t7O1EGgI"/>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main class="px-6 space-y-8">
+<!-- BEGIN: Greeting Section -->
+<section data-purpose="greeting">
+<h2 class="text-3xl font-bold text-gray-800 mb-1">Good morning, Raunak</h2>
+<p class="text-gray-500 text-sm">Your care is up to date &amp; appointments are sync'd.</p>
+</section>
+<!-- END: Greeting Section -->
+<!-- BEGIN: Search Bar -->
+<section data-purpose="search-bar">
+<div class="neu-flat p-2 flex items-center gap-2 rounded-full">
+<i class="fa-solid fa-magnifying-glass text-green-accent pl-3"></i>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm text-gray-600 placeholder-gray-400 py-2" placeholder="Search by name, specialty, or hospital..." type="text"/>
+<button class="bg-green-accent text-black font-semibold px-4 py-2 rounded-xl text-sm shadow-md shadow-green-400/30">Find Doctors</button>
+</div>
+</section>
+<!-- END: Search Bar -->
+<!-- BEGIN: Upcoming Appointment -->
+<section data-purpose="upcoming-appointment">
+<div class="neu-flat p-4 rounded-3xl flex flex-col sm:flex-row gap-4 relative overflow-hidden">
+<!-- Decorative background block -->
+<div class="absolute top-0 left-0 w-1/3 h-full bg-[#E0ECE8] -z-10 rounded-l-3xl hidden sm:block"></div>
+<!-- Doctor Image area (simulated with a colored box for now as per design style) -->
+<div class="w-full sm:w-1/3 h-40 bg-[#94B8A3] rounded-2xl sm:rounded-none sm:rounded-l-2xl flex-shrink-0 relative overflow-hidden flex items-end justify-center">
+<img alt="Dr. Sarah Jenkins" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB54W2SL0Ou_H9_PCfkl5AanMCX-p1VkUbXUHp8iprQlMCdJN3eaL0cS6kK51PjmMBPm53d3g3Z70PP9lNXIY-Cl1tyTod4FMgTs9EtrcAy_Baj1q96tdxBoNf564Qt_ynAugFYziRPwds8qQZ-l0wNmzZdbtdvTuvHQd2cXAri-gniSl28bcUdoffX23JV_UHQvbGNcX_TN1W3iR9dW12HUvmzhSjy0b56INuP1ZIEJhaWNyz5QIkoOej_yhQX8KzutBYQVfj5a1is"/>
+</div>
+<div class="flex-1 py-2 pr-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-[10px] font-bold text-green-accent uppercase tracking-wider bg-green-100 px-2 py-1 rounded-md">Confirmed</span>
+<p class="text-xs text-green-800 mt-1">Primary Physician</p>
+</div>
+<span class="text-xs text-gray-400 font-medium">Tomorrow</span>
+</div>
+<h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Sarah Jenkins</h3>
+<p class="text-sm text-gray-500 mb-4 flex items-center gap-2">
+<i class="fa-regular fa-clock"></i> 10:30 AM — Video Call
+          </p>
+<button class="w-full bg-green-accent text-black font-semibold py-3 rounded-xl flex items-center justify-center gap-2 shadow-md shadow-green-400/30">
+<i class="fa-solid fa-video"></i> Join Consultation
+          </button>
+</div>
+</div>
+</section>
+<!-- END: Upcoming Appointment -->
+<!-- BEGIN: Quick Actions -->
+<section data-purpose="quick-actions">
+<h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-border-all text-green-accent"></i> Quick Actions
+      </h3>
+<div class="grid grid-cols-4 gap-4 text-center">
+<!-- Action Item 1 -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 rounded-2xl neu-flat flex items-center justify-center text-green-accent text-xl transition-transform active:scale-95">
+<i class="fa-regular fa-calendar-check"></i>
+</button>
+<span class="text-[10px] font-semibold text-gray-700">Book Visit</span>
+</div>
+<!-- Action Item 2 -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 rounded-2xl neu-flat flex items-center justify-center text-green-accent text-xl transition-transform active:scale-95">
+<i class="fa-solid fa-file-medical"></i>
+</button>
+<span class="text-[10px] font-semibold text-gray-700">Health Records</span>
+</div>
+<!-- Action Item 3 -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 rounded-2xl neu-flat flex items-center justify-center text-green-accent text-xl transition-transform active:scale-95">
+<i class="fa-regular fa-message"></i>
+</button>
+<span class="text-[10px] font-semibold text-gray-700">Talk to Doctor</span>
+</div>
+<!-- Action Item 4 -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-16 h-16 rounded-2xl neu-flat flex items-center justify-center text-green-accent text-xl transition-transform active:scale-95">
+<i class="fa-solid fa-pills"></i>
+</button>
+<span class="text-[10px] font-semibold text-gray-700">Prescriptions</span>
+</div>
+</div>
+</section>
+<!-- END: Quick Actions -->
+<div class="flex flex-col md:flex-row gap-6">
+<!-- BEGIN: Health Snapshot -->
+<div class="w-full md:w-1/2 flex flex-col">
+<section class="flex-1 flex flex-col" data-purpose="health-snapshot">
+<h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-chart-simple text-green-accent"></i> Health Snapshot
+        </h3>
+<div class="neu-flat p-5 rounded-3xl flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm text-gray-500">Latest Vitals</p>
+<i class="fa-solid fa-heart text-green-accent"></i>
+</div>
+<div>
+<div class="flex items-baseline gap-1 mb-2">
+<span class="text-4xl font-bold text-gray-800">72</span>
+<span class="text-xs text-gray-500">BPM</span>
+</div>
+<!-- Simple simulated bar chart -->
+<div class="flex items-end gap-1 h-12 mb-2">
+<div class="w-2 h-1/3 bg-green-200 rounded-t-sm"></div>
+<div class="w-2 h-2/3 bg-green-300 rounded-t-sm"></div>
+<div class="w-2 h-full bg-green-accent rounded-t-sm"></div>
+<div class="w-2 h-4/5 bg-green-300 rounded-t-sm"></div>
+<div class="w-2 h-1/2 bg-green-200 rounded-t-sm"></div>
+<div class="w-2 h-1/4 bg-gray-200 rounded-t-sm"></div>
+<div class="w-2 h-1/3 bg-gray-200 rounded-t-sm"></div>
+</div>
+<p class="text-[10px] font-bold text-green-accent uppercase tracking-wider">Normal Range</p>
+</div>
+</div>
+</section>
+</div>
+<!-- END: Health Snapshot -->
+<!-- BEGIN: Reminders -->
+<div class="w-full md:w-1/2 flex flex-col">
+<section class="space-y-4 flex-1" data-purpose="reminders">
+<h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-bell text-green-accent"></i> Reminders
+        </h3>
+<!-- Medication Reminder -->
+<div class="neu-flat p-4 rounded-3xl flex items-center gap-4 border-l-4 border-green-accent">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-accent flex-shrink-0">
+<i class="fa-solid fa-capsules"></i>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-800">Medication Reminder</h4>
+<p class="text-xs text-gray-500">Vitamin D3 - 2000 IU</p>
+<p class="text-xs text-green-accent font-semibold mt-1">10:00 AM Today</p>
+</div>
+</div>
+<!-- Appointment Reminder -->
+<div class="neu-flat p-4 rounded-3xl flex items-center gap-4 border-l-4 border-blue-400">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-400 flex-shrink-0">
+<i class="fa-regular fa-calendar"></i>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-800">Appointment Reminder</h4>
+<p class="text-xs text-gray-500">Dental Cleaning</p>
+<p class="text-xs text-blue-400 font-semibold mt-1">Next Tuesday, 9:00 AM</p>
+</div>
+</div>
+</section>
+</div>
+<!-- END: Reminders -->
+</div>
+</main>
+<!-- BEGIN: Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full neu-nav p-4 flex justify-around items-center" data-purpose="bottom-navigation">
+<a class="flex flex-col items-center gap-1 text-green-accent" href="#">
+<i class="fa-solid fa-house text-xl"></i>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600" href="#">
+<i class="fa-regular fa-calendar-days text-xl"></i>
+<span class="text-[10px] font-semibold uppercase">Visits</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600" href="#">
+<i class="fa-regular fa-folder-open text-xl"></i>
+<span class="text-[10px] font-semibold uppercase">Records</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600" href="#">
+<i class="fa-regular fa-envelope text-xl"></i>
+<span class="text-[10px] font-semibold uppercase">Mail</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600" href="#">
+<i class="fa-regular fa-user text-xl"></i>
+<span class="text-[10px] font-semibold uppercase">Profile</span>
+</a>
+</nav>
+<!-- END: Bottom Navigation -->
+</body></html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detailed Prescription Dosage View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neumorphic-card {
+            background: #f6f8f6;
+            box-shadow: 6px 6px 12px #d1d3d1, -6px -6px 12px #ffffff;
+        }
+        .dark .neumorphic-card {
+            background: #102210;
+            box-shadow: 6px 6px 12px #081108, -6px -6px 12px #183318;
+        }
+        .neumorphic-inset {
+            background: #f6f8f6;
+            box-shadow: inset 4px 4px 8px #d1d3d1, inset -4px -4px 8px #ffffff;
+        }
+        .dark .neumorphic-inset {
+            background: #102210;
+            box-shadow: inset 4px 4px 8px #081108, inset -4px -4px 8px #183318;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">prescriptions</span>
+</div>
+<h2 class="text-lg font-extrabold leading-tight tracking-tight">Prescription Details</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-8 max-md:hidden">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">My Records</a>
+<a class="text-sm font-semibold text-primary" href="#">Current Treatment</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-900 dark:text-white hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxmMyzEsAKeLGpXIBkUZ8Me7LS_ngh95EYj0voiKNq602YbUne5Bch0W3wLxr14uiG1tyXc_nuobEOPeKbRUBE0RryaPpwuURjezgQKJ2LYt-9I_TttJQEEP1dhCaB7KXfIX9SZtJdEPBJQOxhMTxY9sLldRZQ8qmm_CJFAIfoQUadTPLzWLfWnKu3Spp-AmljOqNBJPYlUNjQ6sl7VIe7LWLn8U7x2Avd9hfjp8hRKdCj8r1ePrSkAIrzt8Bs2igEFYPv64JjzPtU");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1024px] mx-auto w-full px-6 py-8">
+<!-- Doctor Profile Header -->
+<div class="neumorphic-card rounded-xl p-8 mb-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-2xl size-40 ring-4 ring-primary/20 shadow-lg" data-alt="Professional portrait of Dr. Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiMXP3kA8AKxh6gxfASfmHYV9Ot7kx4POevWBBS2cWcz0DfHDl9dZHQeXDiFzMW8nFKtfGFayLOYCqe4AZYqrF-6XmXEY9puoxxygEIm1keiAwddT6PPZew0rIe2EbWdBb0l-b8bLkJsMu6VRI2CNzSIOCCYcNXcG_et7Fl2hsBTLyKoYtLZifMYGS4aAR4bhzobwd88twdnXItDYQTJZOCsTBxXTlfXLNGhSVIOnPtFjAD9pojl5YWhvpleR5B7jS75rJ4r-77mWm");'></div>
+<div class="flex flex-col justify-center text-center md:text-left">
+<div class="flex flex-wrap items-center gap-3 justify-center md:justify-start">
+<h1 class="text-3xl font-extrabold text-slate-900 dark:text-white">Dr. Sarah Jenkins</h1>
+<span class="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Verified Physician</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-lg font-medium mt-1">Senior Cardiologist • City Health Medical Center</p>
+<div class="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
+<div class="flex items-center gap-2 bg-white/50 dark:bg-black/20 px-4 py-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">calendar_today</span>
+<span class="text-sm font-bold">Issued: Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-2 bg-white/50 dark:bg-black/20 px-4 py-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">id_card</span>
+<span class="text-sm font-bold">RX: #99281-XC</span>
+</div>
+</div>
+</div>
+</div>
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6 px-2">
+<h3 class="text-xl font-extrabold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pill</span>
+                        Prescribed Medication
+                    </h3>
+<span class="text-sm font-semibold text-slate-500">2 Medications Total</span>
+</div>
+<!-- Medication Stack -->
+<div class="flex flex-col gap-6">
+<!-- Medication Card 1 -->
+<div class="neumorphic-card rounded-xl p-6 transition-transform hover:scale-[1.01]">
+<div class="flex flex-col @[600px]:flex-row justify-between gap-6">
+<div class="flex-1 space-y-4">
+<div>
+<h4 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Amoxicillin 500mg</h4>
+<p class="text-slate-500 font-bold text-sm uppercase tracking-widest mt-1">Antibiotic Treatment</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">medication</span>
+<span class="font-bold">1 Tablet</span>
+</div>
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_repeat</span>
+<span class="font-bold">5 Days Duration</span>
+</div>
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+<span class="font-bold">After Food</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-4 min-w-[240px] bg-white/30 dark:bg-black/10 rounded-xl p-4">
+<p class="text-xs font-black uppercase text-slate-400 tracking-tighter">Daily Dosage Schedule</p>
+<div class="flex gap-4">
+<!-- Morning Active -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 text-white">
+<span class="material-symbols-outlined font-bold">light_mode</span>
+</div>
+<span class="text-[10px] font-black uppercase text-primary">Morning</span>
+</div>
+<!-- Afternoon Inactive -->
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<span class="text-[10px] font-black uppercase">Noon</span>
+</div>
+<!-- Night Active -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 text-white">
+<span class="material-symbols-outlined font-bold">dark_mode</span>
+</div>
+<span class="text-[10px] font-black uppercase text-primary">Night</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Medication Card 2 -->
+<div class="neumorphic-card rounded-xl p-6 transition-transform hover:scale-[1.01]">
+<div class="flex flex-col @[600px]:flex-row justify-between gap-6">
+<div class="flex-1 space-y-4">
+<div>
+<h4 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Lisinopril 10mg</h4>
+<p class="text-slate-500 font-bold text-sm uppercase tracking-widest mt-1">Blood Pressure Management</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">medication</span>
+<span class="font-bold">0.5 Tablet</span>
+</div>
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_repeat</span>
+<span class="font-bold">30 Days Duration</span>
+</div>
+<div class="bg-primary/10 text-slate-900 dark:text-white px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+<span class="font-bold">With Water</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-4 min-w-[240px] bg-white/30 dark:bg-black/10 rounded-xl p-4">
+<p class="text-xs font-black uppercase text-slate-400 tracking-tighter">Daily Dosage Schedule</p>
+<div class="flex gap-4">
+<!-- Morning Active -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 text-white">
+<span class="material-symbols-outlined font-bold">light_mode</span>
+</div>
+<span class="text-[10px] font-black uppercase text-primary">Morning</span>
+</div>
+<!-- Afternoon Inactive -->
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<span class="text-[10px] font-black uppercase">Noon</span>
+</div>
+<!-- Night Inactive -->
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<span class="text-[10px] font-black uppercase">Night</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Doctor's Instructions -->
+<section class="mb-12">
+<h3 class="text-xl font-extrabold mb-4 px-2">Doctor's Instructions</h3>
+<div class="neumorphic-inset rounded-xl p-6 border-l-4 border-primary">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary mt-1">info</span>
+<div class="space-y-4">
+<p class="text-lg leading-relaxed font-medium">
+                                "Please ensure you complete the full course of Amoxicillin even if you start feeling better after 2 days. For Lisinopril, monitor your blood pressure daily at the same time and record it in the app. Avoid excessive grapefruit consumption while on this medication."
+                            </p>
+<div class="flex gap-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+<div>
+<p class="text-[10px] font-black uppercase text-slate-400 mb-1">Emergency Contact</p>
+<p class="font-bold text-sm">+1 (555) 902-1234</p>
+</div>
+<div>
+<p class="text-[10px] font-black uppercase text-slate-400 mb-1">Follow-up Date</p>
+<p class="font-bold text-sm">Nov 15, 2023</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 justify-between pt-8 border-t border-primary/10">
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-800 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                        Download PDF
+                    </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-800 font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
+<span class="material-symbols-outlined">share</span>
+                        Share with Pharmacy
+                    </button>
+</div>
+<button class="flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-slate-900 font-extrabold shadow-lg shadow-primary/20 hover:brightness-105 transition-all">
+<span class="material-symbols-outlined">alarm_add</span>
+                    Set Medicine Reminders
+                </button>
+</div>
+</main>
+<footer class="mt-20 py-10 text-center border-t border-primary/10">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© 2023 City Health Systems • Patient Safety Portal</p>
+</footer>
+</div>
+</body></html>

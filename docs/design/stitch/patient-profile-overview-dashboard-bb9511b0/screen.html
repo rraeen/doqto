@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Profile Overview Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec13",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210",
+              "soft-white": "#ffffff",
+              "soft-shadow": "#e2e8e2",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            boxShadow: {
+              'neumorphic': '8px 8px 16px #e2e8e2, -8px -8px 16px #ffffff',
+              'neumorphic-sm': '4px 4px 8px #e2e8e2, -4px -4px 8px #ffffff',
+              'neumorphic-inset': 'inset 4px 4px 8px #e2e8e2, inset -4px -4px 8px #ffffff',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#0d1b0d] font-display">
+<!-- Navbar Component -->
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7f3e7] bg-soft-white dark:bg-background-dark/50 px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#0d1b0d] dark:text-white text-xl font-extrabold leading-tight tracking-[-0.015em]">HealthTrust</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">Patients</a>
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-[#0d1b0d] dark:text-gray-300 text-sm font-semibold leading-normal hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden lg:flex items-stretch rounded-lg bg-[#e7f3e7] dark:bg-background-dark/80 h-10 w-64 shadow-neumorphic-inset border border-white/50">
+<div class="text-[#4c9a4c] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-lg">search</span>
+</div>
+<input class="form-input w-full border-none bg-transparent focus:ring-0 text-sm placeholder:text-[#4c9a4c]" placeholder="Search patients..." type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-soft-white dark:bg-background-dark shadow-neumorphic border border-white/40">
+<span class="material-symbols-outlined text-[#0d1b0d] dark:text-white">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-soft-white dark:bg-background-dark shadow-neumorphic border border-white/40">
+<span class="material-symbols-outlined text-[#0d1b0d] dark:text-white">help_outline</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5QHTgoKcW5Htiwsk2k12PLkgrRCw2qRUe60fxrb8gRqTf50Xiox4Ag_hJD95qsT3oX1M_Gf4IvyCeucU9TD9bP5fAnAdzxQFOUW1T22NFgJ7pZVk_X_Q8HX9lF09_wZkRKYcFJbUwzVrK65aj882j_MsdRuR3gHfzT4LO63fKwsnCNImv_cEvH10KPd3mvnpjh37ovBoasdpGTohmvYeyhPqcxVtbUQG-gwcsyUdfn3B2HiogQwozfHkYoKSUEwt25_TZEy05Zkn4");'></div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto w-full px-6 py-10 space-y-12">
+<!-- Profile Header Section -->
+<section class="flex flex-col md:flex-row items-center gap-8 p-8 rounded-xl bg-soft-white dark:bg-background-dark shadow-neumorphic border border-white/50">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-40 w-40 border-8 border-white dark:border-background-dark shadow-neumorphic" data-alt="Patient profile portrait of a smiling man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDq8-gQ5fMOCTwPFlQfYTdYmj_0Q5iOAJLY5icVphYmZPT48DJtDdATiZequADNUQm76Ca84YpTgZwbvdD2oBZUWbt5LrXK8lc9zJE6bIhq3u2Y45X3PvKHWn0Sjujaq9oKH_poWxv0Z8iPiOf9JwnM2cguCv-hz1Pl-W9AK0v9_5kBabrSKQuixYvHjoWiNJyMplehMr6Y-Z9U59GumS3bDUun1WxCDVSbDXAjlnsuHw064tZ5EKlElVCVXQsfGB7ySQD7lzK4DdIQ");'>
+</div>
+<div class="absolute bottom-2 right-2 bg-primary rounded-full p-2 text-white shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-sm">verified</span>
+</div>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+<h1 class="text-[#0d1b0d] dark:text-white text-4xl font-extrabold tracking-tight">Johnathan Doe</h1>
+<div class="flex items-center gap-3 text-[#4c9a4c] font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> 34 years old</span>
+<span class="text-gray-300">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">male</span> Male</span>
+</div>
+<div class="mt-4 flex items-center gap-2 bg-[#e7f3e7] dark:bg-primary/10 px-4 py-2 rounded-full border border-primary/20 cursor-pointer hover:bg-primary/20 transition-all shadow-neumorphic-sm group">
+<span class="text-[#0d1b0d] dark:text-primary text-xs font-mono font-bold tracking-wider">ID: #9821-4432-XC</span>
+<span class="material-symbols-outlined text-sm text-primary group-hover:scale-110 transition-transform">content_copy</span>
+</div>
+</div>
+<div class="md:ml-auto flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-xl shadow-lg hover:shadow-primary/40 transition-all hover:-translate-y-1">
+<span class="material-symbols-outlined">edit</span>
+                        Edit Profile
+                    </button>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<!-- Basic Information Card -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<div class="p-8 rounded-xl bg-soft-white dark:bg-background-dark shadow-neumorphic border border-white/50 h-full">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">info</span>
+<h3 class="text-xl font-bold dark:text-white">Basic Information</h3>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-center border-b border-[#e7f3e7] pb-4">
+<span class="text-[#4c9a4c] text-sm font-semibold uppercase tracking-wider">Date of Birth</span>
+<span class="text-[#0d1b0d] dark:text-gray-100 font-bold">May 12, 1989</span>
+</div>
+<div class="flex justify-between items-center border-b border-[#e7f3e7] pb-4">
+<span class="text-[#4c9a4c] text-sm font-semibold uppercase tracking-wider">Blood Group</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-md font-bold shadow-neumorphic-sm">O Positive (O+)</span>
+</div>
+<div class="flex justify-between items-center border-b border-[#e7f3e7] pb-4">
+<span class="text-[#4c9a4c] text-sm font-semibold uppercase tracking-wider">Height</span>
+<span class="text-[#0d1b0d] dark:text-gray-100 font-bold">182 cm</span>
+</div>
+<div class="flex justify-between items-center border-b border-[#e7f3e7] pb-4">
+<span class="text-[#4c9a4c] text-sm font-semibold uppercase tracking-wider">Weight</span>
+<span class="text-[#0d1b0d] dark:text-gray-100 font-bold">78 kg</span>
+</div>
+<div class="pt-2">
+<span class="text-[#4c9a4c] text-xs font-semibold uppercase tracking-widest block mb-2">Emergency Contact</span>
+<div class="p-4 rounded-lg bg-[#f8fcf8] dark:bg-background-dark/50 shadow-neumorphic-inset">
+<p class="font-bold text-[#0d1b0d] dark:text-white">Jane Doe (Wife)</p>
+<p class="text-sm text-[#4c9a4c] flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs">phone</span> +1 555-0123
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Health Summary Card -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="p-8 rounded-xl bg-soft-white dark:bg-background-dark shadow-neumorphic border border-white/50">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+<h3 class="text-xl font-bold dark:text-white">Health Summary</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="text-sm font-bold text-[#4c9a4c] uppercase tracking-widest">Known Allergies</h4>
+<div class="flex flex-wrap gap-3">
+<span class="bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-lg font-bold shadow-neumorphic-sm text-sm">Peanuts</span>
+<span class="bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-lg font-bold shadow-neumorphic-sm text-sm">Penicillin</span>
+<span class="bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-lg font-bold shadow-neumorphic-sm text-sm">Latex</span>
+<span class="bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-lg font-bold shadow-neumorphic-sm text-sm">Dust Mites</span>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-sm font-bold text-[#4c9a4c] uppercase tracking-widest">Chronic Conditions</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-[#0d1b0d] dark:text-gray-200 font-semibold">
+<span class="size-2 bg-primary rounded-full"></span>
+                                        Type 1 Diabetes (Managed)
+                                    </li>
+<li class="flex items-center gap-3 text-[#0d1b0d] dark:text-gray-200 font-semibold">
+<span class="size-2 bg-primary rounded-full"></span>
+                                        Seasonal Asthma
+                                    </li>
+</ul>
+</div>
+</div>
+<div class="mt-10 p-6 rounded-xl bg-primary/5 dark:bg-primary/10 border-2 border-primary/20 flex items-center justify-between shadow-neumorphic-inset">
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary text-3xl">medication</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#4c9a4c] uppercase">Current Medications</p>
+<p class="text-2xl font-black text-[#0d1b0d] dark:text-white">04 <span class="text-sm font-medium text-gray-500">Active Prescriptions</span></p>
+</div>
+</div>
+<button class="text-primary font-bold hover:underline flex items-center gap-1">
+                                View all <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Quick Action Tiles -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<button class="group flex flex-col items-center justify-center p-6 bg-soft-white dark:bg-background-dark rounded-xl shadow-neumorphic border border-white/50 hover:shadow-neumorphic-inset transition-all">
+<span class="material-symbols-outlined text-3xl text-primary mb-3 group-hover:scale-110 transition-transform">history</span>
+<span class="text-sm font-bold dark:text-white">Medical History</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-6 bg-soft-white dark:bg-background-dark rounded-xl shadow-neumorphic border border-white/50 hover:shadow-neumorphic-inset transition-all">
+<span class="material-symbols-outlined text-3xl text-primary mb-3 group-hover:scale-110 transition-transform">shield</span>
+<span class="text-sm font-bold dark:text-white">Insurance Details</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-6 bg-soft-white dark:bg-background-dark rounded-xl shadow-neumorphic border border-white/50 hover:shadow-neumorphic-inset transition-all">
+<span class="material-symbols-outlined text-3xl text-primary mb-3 group-hover:scale-110 transition-transform">event_repeat</span>
+<span class="text-sm font-bold dark:text-white">Appointments</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-6 bg-soft-white dark:bg-background-dark rounded-xl shadow-neumorphic border border-white/50 hover:shadow-neumorphic-inset transition-all">
+<span class="material-symbols-outlined text-3xl text-primary mb-3 group-hover:scale-110 transition-transform">description</span>
+<span class="text-sm font-bold dark:text-white">Lab Results</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto py-10 px-10 border-t border-[#e7f3e7] bg-soft-white dark:bg-background-dark/50">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="text-sm font-semibold text-[#4c9a4c]">End-to-End Encrypted Health Record</span>
+</div>
+<div class="text-xs text-gray-400 font-medium">
+                    © 2024 HealthTrust Inc. • Privacy Policy • Patient Data Rights
+                </div>
+<div class="flex gap-4">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase tracking-tighter">HIPAA Compliant</span>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase tracking-tighter">GDPR Ready</span>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

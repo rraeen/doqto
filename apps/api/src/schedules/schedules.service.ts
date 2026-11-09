@@ -70,11 +70,19 @@ export class SchedulesService {
     clinicId: Types.ObjectId,
   ): Promise<ScheduleInput | null> {
     const s = await this.schedules.findOne({ doctorId, clinicId }).lean().exec();
-    return s ? { weekly: s.weekly, exceptions: s.exceptions, isActive: s.isActive } : null;
+    return s
+      ? {
+          weekly: s.weekly,
+          exceptions: s.exceptions,
+          isActive: s.isActive,
+          bookingWindowDays: s.bookingWindowDays,
+          walkInShare: s.walkInShare,
+        }
+      : null;
   }
 }
 
-function toSchedule(
+export function toSchedule(
   doctorId: Types.ObjectId,
   clinicId: Types.ObjectId,
   s: ScheduleDocument | null,

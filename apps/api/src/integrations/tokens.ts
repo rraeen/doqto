@@ -3,6 +3,7 @@ export const INTEGRATIONS_CONFIG = Symbol('INTEGRATIONS_CONFIG');
 export const OTP_PROVIDER = Symbol('OTP_PROVIDER');
 export const WHATSAPP_PROVIDER = Symbol('WHATSAPP_PROVIDER');
 export const SMS_PROVIDER = Symbol('SMS_PROVIDER');
+export const EMAIL_PROVIDER = Symbol('EMAIL_PROVIDER');
 export const PAYMENT_PROVIDER = Symbol('PAYMENT_PROVIDER');
 export const STORAGE_PROVIDER = Symbol('STORAGE_PROVIDER');
 /** `VisitCodes`: issue and check 4-digit visit codes (INT-08). */

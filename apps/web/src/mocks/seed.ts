@@ -13,7 +13,105 @@ const address = (line1: string, area: string, city: string, pincode: string): Ad
   pincode,
 });
 
+const CITIES = [
+  {
+    city: 'Bareilly',
+    pin: '2430',
+    lat: 28.36,
+    lng: 79.43,
+    areas: ['Civil Lines', 'Rajendra Nagar'],
+  },
+  { city: 'Lucknow', pin: '2260', lat: 26.85, lng: 80.95, areas: ['Gomti Nagar', 'Aliganj'] },
+  { city: 'Kanpur', pin: '2080', lat: 26.45, lng: 80.33, areas: ['Swaroop Nagar', 'Kakadeo'] },
+] as const;
+
+/** Extra clinics (two per city) that the generated example doctors practise in. */
+const GENERATED_CLINICS: MockClinic[] = CITIES.flatMap((c, ci) =>
+  c.areas.map((area, ai) => {
+    const n = 111 + ci * 2 + ai;
+    return {
+      id: id(n),
+      name: `${area} Health Clinic`,
+      phone: null,
+      address: address(`${10 + ai * 7} Main Road`, area, c.city, `${c.pin}${10 + ai}`),
+      location: point(c.lat + ai * 0.012, c.lng + ai * 0.014),
+      photoUrls: [],
+      ownerUserId: id(n),
+      doctorIds: [] as string[],
+      staffUserIds: [],
+      createdAt: at,
+    } satisfies MockClinic;
+  }),
+);
+
+const FIRST = [
+  'Aarav',
+  'Neha',
+  'Imran',
+  'Pooja',
+  'Sandeep',
+  'Ritu',
+  'Mohit',
+  'Kavita',
+  'Arjun',
+  'Seema',
+  'Tariq',
+  'Meena',
+  'Rohit',
+  'Anjali',
+];
+const LAST = [
+  'Verma',
+  'Singh',
+  'Agarwal',
+  'Saxena',
+  'Ansari',
+  'Tiwari',
+  'Yadav',
+  'Pandey',
+  'Srivastava',
+];
+const SPECIALTY_ROTATION: [MockDoctor['specialties'], string][] = [
+  [['general_physician'], 'MBBS, MD (Medicine)'],
+  [['paediatrics'], 'MBBS, DCH'],
+  [['dermatology'], 'MBBS, MD (Dermatology)'],
+  [['orthopaedics'], 'MBBS, MS (Ortho)'],
+  [['ophthalmology'], 'MBBS, MS (Ophthalmology)'],
+  [['gynaecology'], 'MBBS, MS (Obs & Gyn)'],
+  [['dentistry'], 'BDS, MDS'],
+  [['ent'], 'MBBS, MS (ENT)'],
+];
+
+/** 52 example doctors spread over the generated clinics, so search has enough to page through. */
+function doctorsFromGenerator(): MockDoctor[] {
+  const out: MockDoctor[] = [];
+  for (let i = 0; i < 52; i++) {
+    const clinic = GENERATED_CLINICS[i % GENERATED_CLINICS.length] as MockClinic;
+    const [specialties, degree] = SPECIALTY_ROTATION[i % SPECIALTY_ROTATION.length] as [
+      MockDoctor['specialties'],
+      string,
+    ];
+    const female = i % 2 === 0;
+    const name = `Dr. ${FIRST[i % FIRST.length]} ${LAST[Math.floor(i / FIRST.length) % LAST.length]}`;
+    const d = doctor(
+      301 + i,
+      301 + i,
+      name,
+      female ? 'female' : 'male',
+      specialties,
+      degree,
+      4 + ((i * 3) % 22),
+      20000 + (i % 6) * 5000,
+      clinic.address.city,
+    );
+    clinic.doctorIds.push(d.id);
+    out.push(d);
+  }
+  return out;
+}
+
 export const SEED_CLINICS: MockClinic[] = [
+  ...GENERATED_CLINICS,
   {
     id: id(101),
     name: 'Sharma Family Clinic',
@@ -98,6 +196,7 @@ function doctor(
 }
 
 export const SEED_DOCTORS: MockDoctor[] = [
+  ...doctorsFromGenerator(),
   doctor(
     201,
     1,

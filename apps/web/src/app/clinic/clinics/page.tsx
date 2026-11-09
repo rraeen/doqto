@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Your clinics', robots: { index: fals
 
 export default function ClinicsRoute() {
   return (
-    <Page>
+    <Page size="wide">
       <ClinicListPage />
     </Page>
   );

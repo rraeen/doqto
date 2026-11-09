@@ -9,6 +9,10 @@ export interface ScheduleInput {
   weekly: (BlockInput & { day: number })[];
   exceptions: { date: string; type: 'leave' | 'custom'; blocks?: BlockInput[] }[];
   isActive: boolean;
+  /** How many days ahead patients can book online (default 7). */
+  bookingWindowDays?: number;
+  /** Share of each day's slots kept for walk-ins and manual bookings (default 0.3). */
+  walkInShare?: number;
 }
 export interface Slot {
   start: Date;
@@ -44,6 +48,16 @@ export function expandSlots(schedule: ScheduleInput, date: string): Slot[] {
     }
   }
   return slots;
+}
+
+/**
+ * The slots offered to online patients: `walkInShare` of the day (rounded down) stays with the
+ * front desk, spread evenly through the day so walk-ins are never all at the end. Depends only on
+ * the day's full slot list, never on what is booked, so a slot is either always or never online.
+ */
+export function onlineSlots(all: Slot[], walkInShare: number): Slot[] {
+  const share = Math.min(1, Math.max(0, walkInShare));
+  return all.filter((_, i) => Math.floor((i + 1) * share + 1e-9) === Math.floor(i * share + 1e-9));
 }
 
 /** First scheduled start on `date`, if the doctor works that day. */

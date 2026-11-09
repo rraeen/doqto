@@ -28,6 +28,8 @@ export interface PublicObject extends StoredObject {
 export interface StorageProvider extends ProviderInfo {
   putPrivate(request: PutObjectRequest): Promise<StoredObject>;
   putPublic(request: PutObjectRequest): Promise<PublicObject>;
+  /** Removes a private object (account deletion, a record the patient deleted). Missing is fine. */
+  deletePrivate(key: string): Promise<void>;
   /** Signed URL for a private object; default lifetime SIGNED_URL_TTL_SECONDS (5 minutes). */
   signedUrl(key: string, ttlSeconds?: number): Promise<string>;
 }

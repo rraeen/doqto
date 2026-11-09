@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unified Healthcare Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                        "neumorphic-bg": "#f0f4f0",
+                        "neumorphic-shadow-dark": "#d1d9d1",
+                        "neumorphic-shadow-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neumorphic-flat': '8px 8px 16px #d1d9d1, -8px -8px 16px #ffffff',
+                        'neumorphic-inset': 'inset 6px 6px 12px #d1d9d1, inset -6px -6px 12px #ffffff',
+                        'primary-glow': '0 0 20px rgba(19, 236, 19, 0.4), 8px 8px 16px #d1d9d1',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Custom Neumorphic Helpers */
+        .neumorphic-card {
+            background: #f0f4f0;
+            box-shadow: 20px 20px 60px #d1d9d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-field {
+            background: #f0f4f0;
+            box-shadow: inset 6px 6px 12px #d1d9d1, inset -6px -6px 12px #ffffff;
+        }
+        .neumorphic-button-secondary {
+            background: #f0f4f0;
+            box-shadow: 6px 6px 12px #d1d9d1, -6px -6px 12px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="w-full px-6 py-4 md:px-20 lg:px-40">
+<div class="flex items-center justify-between max-w-[1200px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl shadow-lg">
+<span class="material-symbols-outlined text-white text-2xl">health_metrics</span>
+</div>
+<h1 class="text-xl font-extrabold tracking-tight text-background-dark dark:text-white">Unified Healthcare</h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors" href="#">Support</a>
+<button class="bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:scale-105 transition-transform active:scale-95">
+                    Register
+                </button>
+</nav>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex items-center justify-center p-6 relative">
+<!-- Decorative abstract background elements (simulated) -->
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+<div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<!-- Central Login Card -->
+<div class="w-full max-w-[480px] neumorphic-card rounded-xl p-10 md:p-14 border border-white/20">
+<!-- Headline -->
+<div class="text-center mb-10">
+<h2 class="text-3xl font-extrabold text-background-dark mb-2">Welcome Back</h2>
+<p class="text-gray-500 text-sm font-medium">Please enter your details to sign in</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-8">
+<!-- Email/Phone Field -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-gray-700 ml-2">Email or Phone</label>
+<div class="neumorphic-field rounded-2xl flex items-center px-5 h-14">
+<span class="material-symbols-outlined text-gray-400 mr-3">alternate_email</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-background-dark placeholder:text-gray-400 font-medium" placeholder="Enter your credentials" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center ml-2">
+<label class="text-sm font-bold text-gray-700">Password</label>
+<a class="text-xs font-bold text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="neumorphic-field rounded-2xl flex items-center px-5 h-14">
+<span class="material-symbols-outlined text-gray-400 mr-3">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-background-dark placeholder:text-gray-400 font-medium" placeholder="••••••••" type="password"/>
+<button class="text-gray-400 hover:text-gray-600" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Button -->
+<div class="pt-4">
+<button class="w-full bg-primary h-14 rounded-full text-background-dark font-extrabold text-lg shadow-primary-glow hover:brightness-110 active:scale-95 transition-all duration-200" type="submit">
+                        Log in
+                    </button>
+</div>
+</form>
+<!-- Secondary Actions -->
+<div class="mt-10 text-center">
+<p class="text-sm font-medium text-gray-500 mb-6">
+                    New here? Register as 
+                    <a class="text-primary font-bold hover:underline" href="#">Patient</a>
+<span class="mx-1 text-gray-300">|</span>
+<a class="text-primary font-bold hover:underline" href="#">Doctor</a>
+</p>
+<div class="flex items-center gap-4 mb-8">
+<div class="h-[1px] flex-1 bg-gray-200"></div>
+<span class="text-xs font-bold text-gray-400 uppercase tracking-widest">or continue with</span>
+<div class="h-[1px] flex-1 bg-gray-200"></div>
+</div>
+<!-- Social Login -->
+<button class="w-full neumorphic-button-secondary h-14 rounded-full flex items-center justify-center gap-3 text-gray-700 font-bold hover:scale-[1.02] active:scale-98 transition-all">
+<div class="w-6 h-6 flex items-center justify-center">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+</div>
+                    Google
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer Information -->
+<footer class="py-10 text-center">
+<p class="text-xs text-gray-400 font-medium">
+            © 2024 Unified Healthcare Management. Certified &amp; Secure.
+        </p>
+</footer>
+</body></html>

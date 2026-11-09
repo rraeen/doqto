@@ -3,7 +3,7 @@ import { Page } from '@/components/shell/page';
 
 export default function ClinicHomePage() {
   return (
-    <Page>
+    <Page size="wide">
       <ClinicHome />
     </Page>
   );

@@ -4,7 +4,7 @@ import {
   AdminDoctorQueueItemSchema,
   ClinicPrivateSchema,
   CreateClinicRequestSchema,
-  DoctorListItemSchema,
+  DoctorSearchPageSchema,
   DoctorOnboardingRequestSchema,
   DoctorPrivateProfileSchema,
   DoctorProfileSchema,
@@ -434,11 +434,6 @@ export const handlersV1 = [
     const q = new URL(request.url).searchParams;
     const city = q.get('city') ?? undefined;
     const nearRaw = q.get('near');
-    if (!city && !nearRaw) {
-      return apiError(400, 'VALIDATION_FAILED', 'Provide city or near', {
-        issues: [{ path: 'city', message: 'Provide city or near' }],
-      });
-    }
     const [lat, lng] = (nearRaw ?? '').split(',').map(Number);
     const near =
       nearRaw && Number.isFinite(lat) && Number.isFinite(lng)
@@ -452,10 +447,10 @@ export const handlersV1 = [
       q: q.get('q') ?? undefined,
       radiusKm: Number(q.get('radiusKm')) || 25,
     });
-    return ok(
-      pageSchema(DoctorListItemSchema),
-      paginate(all, q.get('cursor'), Number(q.get('limit')) || 20),
-    );
+    return ok(DoctorSearchPageSchema, {
+      ...paginate(all, q.get('cursor'), Number(q.get('limit')) || 20),
+      total: all.length,
+    });
   }),
 
   http.get(url('/doctors/:slug'), ({ params }) => {

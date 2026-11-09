@@ -124,7 +124,7 @@ export class StatusAlertsService {
       doctorId: doctor._id,
       clinicId,
       date,
-      status: 'confirmed' as const,
+      status: { $in: ['confirmed', 'pending_confirmation'] },
       ...(state === 'done_for_day' ? { slotStart: { $gt: now } } : {}),
     };
     const left = await this.appointments.find(filter, { _id: 1 }).exec();
@@ -134,9 +134,10 @@ export class StatusAlertsService {
     for (const { _id } of left) {
       const a = await this.appointments
         .findOneAndUpdate(
-          { _id, status: 'confirmed' },
+          { _id, status: { $in: ['confirmed', 'pending_confirmation'] } },
           {
             $set: { status: 'cancelled_by_clinic', cancelReason: reason },
+            $unset: { visitCode: 1, visitCodeSealed: 1 },
             $push: {
               statusHistory: {
                 $each: [{ status: 'cancelled_by_clinic', at: now, note: reason }],
@@ -151,7 +152,7 @@ export class StatusAlertsService {
       cancelled++;
       // Only online bookings paid a fee; the front desk tells phone and walk-in patients.
       if (a.source !== 'online') continue;
-      await this.refunds.clinicCancelled(a._id);
+      await this.refunds.clinicCancelled(a);
       const r = await this.notifications.notify({
         userId: a.patientUserId,
         template: 'appointment_cancelled_by_clinic',

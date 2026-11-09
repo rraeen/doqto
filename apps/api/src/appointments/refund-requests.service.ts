@@ -1,18 +1,17 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import type { Types } from 'mongoose';
+import { PaymentsService } from '../payments/payments.service';
 
 /**
- * Hook for refunds the clinic side causes (doctor on leave or done early, BE-22). Stubbed until
- * BE-29 builds refunds: it only records that a refund is owed. Payments stay out of this module.
+ * Refunds the clinic side causes (doctor on leave or done early, BE-22): the booking fee goes
+ * back in full through the gateway. The patient is told by the cancellation message, so no
+ * second "refund processed" message is sent. A failed gateway call is retried by the job.
  */
 @Injectable()
 export class RefundRequests {
-  private readonly logger = new Logger(RefundRequests.name);
+  constructor(private readonly payments: PaymentsService) {}
 
-  async clinicCancelled(appointmentId: Types.ObjectId): Promise<void> {
-    this.logger.log(
-      `Refund owed for clinic-cancelled appointment ${appointmentId.toHexString()} (BE-29)`,
-    );
-    return Promise.resolve();
+  async clinicCancelled(a: { _id: Types.ObjectId; doctorId: Types.ObjectId }): Promise<void> {
+    await this.payments.refundPayment(a, 'clinic_cancelled', { notify: false });
   }
 }

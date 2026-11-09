@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function AdminDoctorRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   return (
-    <Page withNav={false}>
+    <Page withNav={false} size="medium">
       <AdminDoctorPage id={id} specialties={specialtyLabels(await getLocale())} />
     </Page>
   );

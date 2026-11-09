@@ -7,7 +7,7 @@ export const OTP_LENGTH = 6;
 export const OTP_TTL_SECONDS = 300;
 export const OTP_MAX_ATTEMPTS = 5;
 /** OTP requests allowed per phone and, separately, per IP, in `OTP_REQUEST_WINDOW_SECONDS`. */
-export const OTP_REQUEST_LIMIT = 3;
+export const OTP_REQUEST_LIMIT = 10;
 export const OTP_REQUEST_WINDOW_SECONDS = 600;
 export const ACCESS_TOKEN_TTL_SECONDS = 15 * 60;
 export const REFRESH_TOKEN_TTL_SECONDS = 30 * 24 * 60 * 60;

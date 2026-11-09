@@ -1,5 +1,5 @@
 import { parseNear, type DoctorListItem, type DoctorProfile, type Page } from '@doqto/shared';
-import { Controller, Get, HttpStatus, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Public } from '../auth/decorators';
 import { AppException } from '../common/http/app-exception';
@@ -14,12 +14,7 @@ export class DoctorsController {
 
   @Get()
   @ApiOkResponse({ description: 'Page<DoctorListItem>' })
-  list(@Query() q: DoctorSearchQueryDto): Promise<Page<DoctorListItem>> {
-    if (!q.city && !q.near) {
-      throw new AppException(HttpStatus.BAD_REQUEST, 'VALIDATION_FAILED', 'Provide city or near', {
-        issues: [{ path: 'city', message: 'Provide city or near' }],
-      });
-    }
+  list(@Query() q: DoctorSearchQueryDto): Promise<Page<DoctorListItem> & { total: number }> {
     const near = q.near ? parseNear(q.near) : undefined;
     return this.search.search({
       city: q.city,

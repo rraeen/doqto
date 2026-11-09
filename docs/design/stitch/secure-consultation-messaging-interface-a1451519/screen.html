@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Consultation - MedConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neu-flat': '6px 6px 12px #ced0d3, -6px -6px 12px #ffffff',
+                        'neu-inset': 'inset 4px 4px 8px #ced0d3, inset -4px -4px 8px #ffffff',
+                        'neu-doctor': '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff',
+                        'neu-patient': '4px 4px 8px #b8e6b8, -4px -4px 8px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neu-pressed {
+            box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff;
+        }
+        .neu-raised {
+            box-shadow: 4px 4px 8px #babecc, -4px -4px 10px #ffffff;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d1b0d] font-display min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#e0e0e0] dark:border-[#1a301a]">
+<div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white shadow-neu-flat">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<h1 class="text-xl font-extrabold tracking-tight">MedConnect</h1>
+</div>
+<div class="h-8 w-px bg-[#d1d5db]"></div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-12 rounded-full bg-cover bg-center border-2 border-white shadow-neu-flat" data-alt="Professional headshot of Dr. Aris Thorne" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDBybKOkiFWOvrbdLE7YeqUzlkYe1_M8fKF80waLvywag9uLdPA8luVeRohnmHJw70J50OeRVr7yzNnCkaS-_3zbV6DPUOM1wXD31LJ2o6mEw38jekCBxjk2K3l1a2O7z-OVUdxv3XbX5dQ1IBlN0th-1EwNywbc8k5jOjHl7a_Xf8cbNZulkHCZTL9ARbfWGPlKrmG6ZxaW4jV40wW6VKo0njCDuPY0JH1CICBSyJgRm5DlQHpiwF-Bb4fju8gjJlgOgm0VJC6YWD');"></div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary border-2 border-white rounded-full"></div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-lg font-bold">Dr. Aris Thorne, MD</h2>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full">Verified</span>
+</div>
+<p class="text-sm text-[#4c9a4c] font-medium leading-tight">Senior Cardiologist • 12+ Years Exp.</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end mr-4">
+<span class="text-xs font-bold text-primary uppercase flex items-center gap-1">
+<span class="size-2 bg-primary rounded-full animate-pulse"></span>
+                        Secure Connection
+                    </span>
+<span class="text-xs text-gray-500">AES-256 Encrypted</span>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full bg-background-light shadow-neu-flat hover:shadow-neu-inset transition-all">
+<span class="material-symbols-outlined text-gray-600">settings</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-red-50 text-red-500 shadow-neu-flat hover:shadow-neu-inset transition-all">
+<span class="material-symbols-outlined">call_end</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 flex max-w-[1440px] mx-auto w-full overflow-hidden">
+<!-- Left Sidebar / Navigation (Simplified) -->
+<nav class="w-20 flex flex-col items-center py-8 gap-8 border-r border-[#e0e0e0] dark:border-[#1a301a]">
+<button class="size-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-neu-flat">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="size-12 rounded-xl bg-background-light flex items-center justify-center text-gray-400 shadow-neu-flat hover:text-primary transition-colors">
+<span class="material-symbols-outlined">folder_open</span>
+</button>
+<button class="size-12 rounded-xl bg-background-light flex items-center justify-center text-gray-400 shadow-neu-flat hover:text-primary transition-colors">
+<span class="material-symbols-outlined">event</span>
+</button>
+<button class="size-12 rounded-xl bg-background-light flex items-center justify-center text-gray-400 shadow-neu-flat hover:text-primary transition-colors mt-auto">
+<span class="material-symbols-outlined">help</span>
+</button>
+</nav>
+<!-- Chat Area -->
+<section class="flex-1 flex flex-col bg-background-light dark:bg-background-dark relative">
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="px-4 py-1 rounded-full bg-gray-200/50 text-gray-500 text-[11px] font-bold tracking-wider uppercase">Today, Oct 24</span>
+</div>
+<!-- Doctor Message -->
+<div class="flex items-end gap-3 max-w-[80%]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0 shadow-sm" data-alt="Avatar of Dr. Aris Thorne" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwhaerEV98c0IR60_MHX83Z12wM7UPi95wwncbCAGrU-pG-ZPUXrmiA2pkIe09_G6cQDEheGD8Mufg87QRG_owWFe93l4-YB0nzryA3s28s8q5_phQICH9cbffz8DH1XsvgJRXU5L7QKsdiMZqEAWLiUCozLMi6hOY8zKfcaXSqBi2HC-yE8dU86BUfRWfkdNz2U2VTNG1ZODNK8Tzya2Tjk2HCZxzk2o0g13XgUuzHQcLehbywWFmlyLUhiWdLYG34qiknE6RBjAQ');"></div>
+<div class="flex flex-col gap-1 items-start">
+<p class="text-[#4c9a4c] text-[12px] font-semibold ml-1">Dr. Aris Thorne</p>
+<div class="rounded-2xl rounded-bl-none px-5 py-3.5 bg-white text-[#0d1b0d] shadow-neu-doctor text-sm leading-relaxed">
+                            Hello! I've just finished reviewing your latest ECG and blood work. How are you feeling today? Any changes in that chest tightness?
+                        </div>
+<span class="text-[10px] text-gray-400 ml-1">09:41 AM</span>
+</div>
+</div>
+<!-- Patient Message -->
+<div class="flex items-end gap-3 justify-end max-w-[80%] ml-auto">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-[#4c9a4c] text-[12px] font-semibold mr-1 text-right">You (Patient)</p>
+<div class="rounded-2xl rounded-br-none px-5 py-3.5 bg-[#eaffea] text-[#0d1b0d] shadow-neu-patient text-sm leading-relaxed">
+                            I'm still experiencing some mild fatigue, especially in the afternoon, but the sharp chest pain has subsided since yesterday morning. I've been resting as you suggested.
+                        </div>
+<div class="flex items-center gap-1 mr-1">
+<span class="text-[10px] text-gray-400">09:43 AM</span>
+<span class="material-symbols-outlined text-primary text-xs">done_all</span>
+</div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0 shadow-sm" data-alt="Patient profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBd5KJY4o_NINWm41Ss75rEF0og1Ws4rvxj4tnK80f7SpUPEc--i5jE6wlmjtF-v6B-7379oQS5d6a8RUIjgjwR6De9fW34aRbYS2P-WbFxls702OZvaZLEZaqK4OgKggXelFFpbh15Nr_N2arpRPdt3MUrxhEQXQwuZ3KJpAtNcjKKtpzDjpGPD7cF4OgcUDFhIYQZbIrF9PkELH0oV6ALDj8tNoxXMOgphB4qQMFIHV5CRF_VkqtGXhKlaFDsB-bK-VidcSZwFUzW');"></div>
+</div>
+<!-- Doctor Message -->
+<div class="flex items-end gap-3 max-w-[80%]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0 shadow-sm" data-alt="Avatar of Dr. Aris Thorne" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG5qFTg1fHLB4sPETxeYT8oIEPFFiK5DrF5ojy7zOjDx-5bE1lNhB5nokuOW5kGntxNL4oGRnl-OVusZZVsKu_Xhgpq9osKzzlhrP_q195_kwYdP1WAvERoue6iHUSCbdfnZI4Ga33mkZJV0p2KMV7W-P8iQ2OzK3ttOpjm3b5LdSBQQjQvHhcaySXvDcD_RourzwnRwdqaAjrgx6sk8HxQz7I_8HJkzEmT4hlqBrDakHIa9tn3AT3KtqXG9f2IEdgzC8CnrMKmZ8S');"></div>
+<div class="flex flex-col gap-1 items-start">
+<p class="text-[#4c9a4c] text-[12px] font-semibold ml-1">Dr. Aris Thorne</p>
+<div class="rounded-2xl rounded-bl-none px-5 py-3.5 bg-white text-[#0d1b0d] shadow-neu-doctor text-sm leading-relaxed">
+                            That's a positive sign regarding the pain. Regarding the fatigue, have you been taking the Lisinopril 10mg exactly as prescribed? Sometimes initial adjustments can cause temporary tiredness.
+                        </div>
+<span class="text-[10px] text-gray-400 ml-1">09:45 AM</span>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-end gap-3 max-w-[80%] opacity-60">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0 shadow-sm" data-alt="Doctor avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA64QtB5CAF8JGwqByb5UwbwCyVpSf-VMTbVwmHyQav18lxmRtDaOziG8EE7l0UtbLV4cYsJzU9hOwYIzLjCPmxzSqatMEQcBZ6xjjdfuycVy0wR3Ze8LG2m3LO2sa2akZ57--Dqb0syYOvSTvU3wG57cf0lUKLiMVTajVDJxYR2_-HEtQt9hcSSPdJX-SPLEeJ1Uz9VlP2vrisrX5vo6Nj0R5oHTluI2ZJe4AwT3CHz3F71F0tEokgSQZ6MK7mYY5-eZUoXXYqTSzx');"></div>
+<div class="flex gap-1.5 px-4 py-3 bg-white rounded-full shadow-neu-doctor">
+<div class="size-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+<div class="size-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="size-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-6 bg-background-light dark:bg-background-dark">
+<div class="max-w-[800px] mx-auto flex items-center gap-4">
+<div class="flex gap-2">
+<button class="size-11 flex items-center justify-center rounded-xl bg-background-light shadow-neu-flat hover:shadow-neu-inset text-gray-600 transition-all">
+<span class="material-symbols-outlined">attachment</span>
+</button>
+<button class="size-11 flex items-center justify-center rounded-xl bg-background-light shadow-neu-flat hover:shadow-neu-inset text-gray-600 transition-all">
+<span class="material-symbols-outlined">image</span>
+</button>
+</div>
+<div class="flex-1 relative">
+<input class="w-full h-12 bg-background-light border-none rounded-xl px-6 shadow-neu-inset focus:ring-1 focus:ring-primary/30 text-sm placeholder:text-gray-400 transition-all" placeholder="Describe your concern..." type="text"/>
+</div>
+<button class="h-12 px-8 flex items-center gap-2 rounded-xl bg-primary text-[#0d1b0d] font-bold shadow-neu-flat hover:scale-[0.98] transition-all">
+<span>Send</span>
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- Security Badge -->
+<div class="mt-4 flex justify-center items-center gap-2 text-[11px] text-gray-400 font-medium">
+<span class="material-symbols-outlined text-sm">lock</span>
+                    End-to-end encrypted medical consultation
+                </div>
+</div>
+</section>
+<!-- Right Side Context Panel -->
+<aside class="w-80 bg-background-light dark:bg-background-dark border-l border-[#e0e0e0] dark:border-[#1a301a] p-6 hidden xl:flex flex-col gap-6">
+<h3 class="text-sm font-bold uppercase tracking-widest text-gray-400">Clinical Context</h3>
+<!-- Reason for Consultation -->
+<div class="p-4 rounded-xl bg-white shadow-neu-flat dark:bg-background-dark">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-xl">assignment</span>
+<h4 class="text-xs font-bold uppercase tracking-wide">Goal</h4>
+</div>
+<p class="text-sm font-semibold text-[#0d1b0d]">Chest pain follow-up</p>
+<p class="text-xs text-gray-500 mt-1 italic">Last incident: 24h ago</p>
+</div>
+<!-- Active Symptoms -->
+<div class="p-4 rounded-xl bg-white shadow-neu-flat dark:bg-background-dark">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined text-xl">vital_signs</span>
+<h4 class="text-xs font-bold uppercase tracking-wide">Symptoms</h4>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-lg bg-orange-50 text-orange-600 text-[10px] font-bold border border-orange-100">Shortness of breath</span>
+<span class="px-2 py-1 rounded-lg bg-blue-50 text-blue-600 text-[10px] font-bold border border-blue-100">Mild fatigue</span>
+<span class="px-2 py-1 rounded-lg bg-gray-50 text-gray-600 text-[10px] font-bold border border-gray-100">+2 more</span>
+</div>
+</div>
+<!-- Shared Medications -->
+<div class="p-4 rounded-xl bg-white shadow-neu-flat dark:bg-background-dark">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined text-xl">medication</span>
+<h4 class="text-xs font-bold uppercase tracking-wide">Active Meds</h4>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center pb-2 border-b border-gray-50 last:border-0 last:pb-0">
+<div>
+<p class="text-xs font-bold">Lisinopril</p>
+<p class="text-[10px] text-gray-400">10mg • Daily</p>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+</div>
+</div>
+</div>
+<!-- Lab Results Quick View -->
+<div class="p-4 rounded-xl bg-white shadow-neu-flat dark:bg-background-dark mt-auto">
+<h4 class="text-[10px] font-bold text-gray-400 uppercase mb-3">Recent Reports</h4>
+<div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-red-400">picture_as_pdf</span>
+<div class="flex-1">
+<p class="text-[10px] font-bold truncate">ECG_Report_Oct22.pdf</p>
+<p class="text-[9px] text-gray-400">Shared by you</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

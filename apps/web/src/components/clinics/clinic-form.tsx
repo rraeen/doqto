@@ -237,7 +237,7 @@ function LocationPicker({
               key={`${c.lat},${c.lng}`}
               type="button"
               role="listitem"
-              className="flex w-full items-center gap-2 rounded-md border border-line bg-surface px-3 py-3 text-left text-sm hover:bg-canvas"
+              className="flex w-full items-center gap-2 rounded-md neu-raised px-3 py-3 text-left text-sm hover:brightness-105"
               onClick={() => {
                 set({
                   pin: {

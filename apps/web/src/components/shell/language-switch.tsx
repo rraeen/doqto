@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/components/ui/toast';
 import { authApi } from '@/lib/api/lazy';
 import { meQueryKey } from '@/lib/session';
-import { localeNames, locales, type Locale } from '@/i18n/config';
+import { localeNames, localeShort, locales, type Locale } from '@/i18n/config';
 import { useI18n } from '@/i18n/provider';
 import { cn } from '@/lib/cn';
 
@@ -13,7 +13,14 @@ import { cn } from '@/lib/cn';
  * Switches the UI language. The choice is kept in a cookie for everyone and,
  * for a signed-in user, saved to their account with `PATCH /me`.
  */
-export function LanguageSwitch({ className }: { className?: string }) {
+export function LanguageSwitch({
+  className,
+  compact,
+}: {
+  className?: string;
+  /** Show EN / हि instead of the full names. */
+  compact?: boolean;
+}) {
   const { locale, setLocale, t } = useI18n();
   const qc = useQueryClient();
 
@@ -31,7 +38,7 @@ export function LanguageSwitch({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label={t('common.language')}
-      className={cn('inline-flex rounded-md bg-canvas p-0.5 ring-1 ring-line', className)}
+      className={cn('neu-inset inline-flex rounded-full p-1', className)}
     >
       {locales.map((l) => (
         <button
@@ -44,11 +51,12 @@ export function LanguageSwitch({ className }: { className?: string }) {
             if (l !== locale) change(l);
           }}
           className={cn(
-            'h-8 rounded-[5px] px-3 text-sm font-medium',
-            l === locale ? 'bg-surface text-brand-700 shadow-xs' : 'text-ink-muted',
+            'h-10 rounded-full text-sm font-medium',
+            compact ? 'min-w-10 px-2.5' : 'px-4',
+            l === locale ? 'neu-raised font-bold text-brand-700' : 'text-ink-muted',
           )}
         >
-          {localeNames[l]}
+          {compact ? localeShort[l] : localeNames[l]}
         </button>
       ))}
     </div>

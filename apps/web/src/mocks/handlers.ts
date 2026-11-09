@@ -13,6 +13,9 @@ import {
 } from '@doqto/shared';
 import { delay, http, HttpResponse } from 'msw';
 import * as db from './db';
+import { handlersAccount } from './handlers-account';
+import { handlersBooking } from './handlers-booking';
+import { handlersReviews } from './handlers-reviews';
 import { handlersV1 } from './handlers-v1';
 import { apiError, ok, parseBody, unauthenticated, url } from './respond';
 
@@ -80,6 +83,12 @@ const handlersV0 = [
     return new HttpResponse(null, { status: 204 });
   }),
 
+  http.post(url(ENDPOINTS.auth.logoutAll), () => {
+    if (!db.sessionUser()) return unauthenticated();
+    db.endSession();
+    return new HttpResponse(null, { status: 204 });
+  }),
+
   http.get(url(ENDPOINTS.me), () => {
     const user = db.sessionUser();
     return user ? ok(MeSchema, user) : unauthenticated();
@@ -96,4 +105,10 @@ const handlersV0 = [
   }),
 ];
 
-export const handlers = [...handlersV0, ...handlersV1];
+export const handlers = [
+  ...handlersV0,
+  ...handlersV1,
+  ...handlersBooking,
+  ...handlersReviews,
+  ...handlersAccount,
+];

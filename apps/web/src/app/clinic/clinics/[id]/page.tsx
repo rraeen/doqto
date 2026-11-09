@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: 'Clinic', robots: { index: false } };
 export default async function ClinicRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   return (
-    <Page>
+    <Page size="medium">
       <ClinicDetailPage id={id} config={getFormConfig(await getLocale())} />
     </Page>
   );

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Patient Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13EC13",
+                        "background-light": "#f0f4f0",
+                        "background-dark": "#0d140d",
+                        "neumorphic-shadow-light": "#ffffff",
+                        "neumorphic-shadow-dark": "#d1d9d1",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1.5rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neu': '8px 8px 16px #d1d9d1, -8px -8px 16px #ffffff',
+                        'neu-inset': 'inset 4px 4px 8px #d1d9d1, inset -4px -4px 8px #ffffff',
+                        'neu-dark': '8px 8px 16px #070a07, -8px -8px 16px #131e13',
+                        'neu-inset-dark': 'inset 4px 4px 8px #050805, inset -4px -4px 8px #152015',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .neu-card {
+            background: #f0f4f0;
+            box-shadow: 12px 12px 24px #d1d9d1, -12px -12px 24px #ffffff;
+        }
+        .dark .neu-card {
+            background: #0d140d;
+            box-shadow: 8px 8px 16px #050805, -8px -8px 16px #152015;
+        }
+        .neu-button {
+            background: #f0f4f0;
+            box-shadow: 6px 6px 12px #d1d9d1, -6px -6px 12px #ffffff;
+            transition: all 0.2s ease;
+        }
+        .neu-button:active {
+            box-shadow: inset 4px 4px 8px #d1d9d1, inset -4px -4px 8px #ffffff;
+        }
+        .dark .neu-button {
+            background: #0d140d;
+            box-shadow: 4px 4px 8px #050805, -4px -4px 8px #152015;
+        }
+        .dark .neu-button:active {
+            box-shadow: inset 3px 3px 6px #050805, inset -3px -3px 6px #152015;
+        }
+        .neu-search-inset {
+            box-shadow: inset 6px 6px 12px #d1d9d1, inset -6px -6px 12px #ffffff;
+        }
+        .dark .neu-search-inset {
+            box-shadow: inset 6px 6px 12px #050805, inset -6px -6px 12px #152015;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#0d1c0d] dark:text-[#e7f4e7] selection:bg-primary/30">
+<header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+<svg class="size-7 text-black" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-2xl font-black tracking-tight">HealSoft</h1>
+<p class="text-xs font-bold text-primary uppercase tracking-widest">Patient Portal</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex flex-col text-right">
+<span class="text-sm font-bold opacity-60">Status</span>
+<span class="text-sm font-bold text-primary flex items-center gap-1 justify-end">
+<span class="size-2 bg-primary rounded-full animate-pulse"></span> Protected
+            </span>
+</div>
+<button class="neu-button p-3 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="size-12 rounded-full border-2 border-primary/20 p-1">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Profile photo of a male patient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuATr17TzZ0YT-JORXoXd85zTIqlKE_q_C7jqOx_v8exR-BQVT6cH_pvNe21ZINRY3vfMUe1F6ETmPbzVgKxejC1ANSaccanapLESWxk4UNYfKCdEVHpTF7siFOBwWnKGydXWt9BS3QiEodG1S3apDW9MY-HHhSjIdagVGZFUFBwI5yWZJNwtTzhwd06_U5FInfJH7MW8-bmyM2aS1qOi4R_0PUlX4AZgkR5EyB0cVtDU2Ngig-mDUbrrVwMOyIk1jsyMbQUqM_d3g5G");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-6 pb-32">
+<div class="mb-6">
+<h2 class="text-4xl font-black text-[#0d1c0d] dark:text-white tracking-tight">Good morning, Raunak</h2>
+<p class="text-lg text-[#499c49] font-medium mt-1">Your care is up to date &amp; appointments are sync'd.</p>
+</div>
+<div class="mb-12">
+<div class="neu-search-inset bg-background-light dark:bg-background-dark rounded-2xl flex items-center px-6 py-4 transition-all">
+<span class="material-symbols-outlined text-primary mr-4 text-2xl">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-lg font-medium placeholder:text-gray-400 dark:placeholder:text-gray-600 text-[#0d1c0d] dark:text-white" placeholder="Search by name, specialty, or hospital..." type="text"/>
+<button class="hidden md:flex bg-primary text-black px-6 py-2 rounded-xl font-bold text-sm ml-4 shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity whitespace-nowrap">
+                Find Doctors
+            </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<div class="lg:col-span-2 space-y-10">
+<section class="neu-card rounded-xl overflow-hidden p-1">
+<div class="flex flex-col md:flex-row h-full">
+<div class="w-full md:w-2/5 min-h-[200px] bg-center bg-cover rounded-lg m-2" data-alt="Female doctor in a modern medical clinic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAc_q5KB4aOQNBn-izJqOx2IWSTjrqWiUqKM8CO7v7LVMAjld4OpFSs89GR_mu5CTk9K3DUzCOv2ATCPU_lxZH73qSHldxC7W7EqRO7QwXzCO1-I44ot7yp3WaCnicGWAyzvuuznBn4KYiC_ID6_CaKlBZ_l_-jnfZ_Nkocc0oSgnGpSui0VH595X7WW4EfJpp5TEg-Ub0hPd7WvLGB8E6tR_ttoP8liXXfMYhHmIOPvoCmLG6P8wyWWi3m9faXyh5X1uKuI-ihfCTS");'></div>
+<div class="flex-1 p-6 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Confirmed</span>
+<span class="text-xs font-bold opacity-40">Tomorrow</span>
+</div>
+<p class="text-[#499c49] text-sm font-semibold">Primary Physician</p>
+<h3 class="text-2xl font-black text-[#0d1c0d] dark:text-white">Dr. Sarah Jenkins</h3>
+<div class="flex items-center gap-2 mt-2 text-sm opacity-70">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>10:30 AM — Video Call</span>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-black font-black py-4 rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">videocam</span>
+                                Join Consultation
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h4 class="text-xl font-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span> Quick Actions
+                </h4>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+<button class="neu-button flex flex-col items-center justify-center p-6 rounded-xl gap-3 text-center group">
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors">
+<span class="material-symbols-outlined text-2xl">event_available</span>
+</div>
+<span class="text-sm font-bold">Book Visit</span>
+</button>
+<button class="neu-button flex flex-col items-center justify-center p-6 rounded-xl gap-3 text-center group">
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors">
+<span class="material-symbols-outlined text-2xl">description</span>
+</div>
+<span class="text-sm font-bold">Health Records</span>
+</button>
+<button class="neu-button flex flex-col items-center justify-center p-6 rounded-xl gap-3 text-center group">
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</div>
+<span class="text-sm font-bold">Talk to Doctor</span>
+</button>
+<button class="neu-button flex flex-col items-center justify-center p-6 rounded-xl gap-3 text-center group">
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors">
+<span class="material-symbols-outlined text-2xl">medication</span>
+</div>
+<span class="text-sm font-bold">Prescriptions</span>
+</button>
+</div>
+</section>
+<section>
+<h4 class="text-xl font-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span> Health Snapshot
+                </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="neu-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="font-bold opacity-60">Latest Vitals</p>
+<span class="material-symbols-outlined text-primary">favorite</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black">72</span>
+<span class="text-sm font-bold opacity-60">BPM</span>
+</div>
+<div class="mt-4 h-12 flex items-end gap-1">
+<div class="w-2 bg-primary/20 h-1/2 rounded-full"></div>
+<div class="w-2 bg-primary/20 h-2/3 rounded-full"></div>
+<div class="w-2 bg-primary/40 h-3/4 rounded-full"></div>
+<div class="w-2 bg-primary h-full rounded-full"></div>
+<div class="w-2 bg-primary/60 h-4/5 rounded-full"></div>
+<div class="w-2 bg-primary/30 h-1/2 rounded-full"></div>
+<div class="w-2 bg-primary/10 h-1/4 rounded-full"></div>
+</div>
+<p class="text-xs font-bold text-primary mt-4 tracking-wider uppercase">Normal Range</p>
+</div>
+<div class="neu-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="font-bold opacity-60">Blood Work Status</p>
+<span class="material-symbols-outlined text-primary">lab_research</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative size-16 flex items-center justify-center">
+<svg class="size-16 -rotate-90">
+<circle class="text-primary/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="176" stroke-dashoffset="35" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-xs font-black">80%</span>
+</div>
+<div>
+<p class="font-bold text-sm">Metabolic Panel</p>
+<p class="text-xs opacity-60">Processing results...</p>
+</div>
+</div>
+<p class="text-xs font-bold text-primary mt-6 tracking-wider uppercase">Estimated: Today</p>
+</div>
+</div>
+</section>
+</div>
+<div class="space-y-8">
+<section>
+<h4 class="text-xl font-black mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notifications_active</span> Reminders
+                </h4>
+<div class="space-y-4">
+<div class="neu-card p-5 rounded-xl border-l-4 border-primary">
+<div class="flex gap-4">
+<div class="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div>
+<p class="font-black text-sm">Medication Reminder</p>
+<p class="text-xs opacity-70 mt-0.5">Vitamin D3 - 2000 IU</p>
+<p class="text-xs font-bold text-primary mt-2">10:00 AM Today</p>
+</div>
+</div>
+</div>
+<div class="neu-card p-5 rounded-xl border-l-4 border-blue-400">
+<div class="flex gap-4">
+<div class="size-10 rounded-lg bg-blue-400/10 text-blue-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="font-black text-sm">Appointment Reminder</p>
+<p class="text-xs opacity-70 mt-0.5">Dental Cleaning</p>
+<p class="text-xs font-bold text-blue-400 mt-2">Next Tuesday, 9:00 AM</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="neu-card p-6 rounded-xl">
+<h4 class="font-black mb-4">Health Tip of the Day</h4>
+<div class="aspect-square rounded-lg bg-primary/20 flex items-center justify-center overflow-hidden relative" data-alt="Abstract green medical pattern">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent"></div>
+<span class="material-symbols-outlined text-6xl text-primary opacity-50">eco</span>
+</div>
+<p class="mt-4 text-sm opacity-80 leading-relaxed">
+                    Staying hydrated can improve your focus and energy levels by up to 20%. Aim for 8 glasses today!
+                </p>
+</section>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+<div class="neu-card px-8 py-4 rounded-full flex items-center gap-8 md:gap-12">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary font-bold">home</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Visits</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Records</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Mail</span>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">person_outline</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Profile</span>
+</a>
+</div>
+</nav>
+
+</body></html>

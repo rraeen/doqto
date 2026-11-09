@@ -1,0 +1,31 @@
+{
+  "name": "@doqto/i18n",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Translation core for Doqto web apps: typed message keys, the translator, a cookie-backed locale provider and a server helper. Each app owns its own message catalogs",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.tsx",
+    "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "server-only": "^0.0.1"
+  },
+  "peerDependencies": {
+    "next": ">=16.0.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.3.0",
+    "next": "16.4.2",
+    "react": "^19.3.0",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.3"
+  }
+}

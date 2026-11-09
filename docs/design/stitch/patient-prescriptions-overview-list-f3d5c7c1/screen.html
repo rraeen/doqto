@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Prescriptions Overview List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neumorphic-flat {
+            background: #f6f8f6;
+            box-shadow: 8px 8px 16px #e2e4e2, -8px -8px 16px #ffffff;
+        }
+        .dark .neumorphic-flat {
+            background: #102210;
+            box-shadow: 8px 8px 16px #081108, -8px -8px 16px #183318;
+        }
+        .neumorphic-inset {
+            background: #f6f8f6;
+            box-shadow: inset 4px 4px 8px #e2e4e2, inset -4px -4px 8px #ffffff;
+        }
+        .dark .neumorphic-inset {
+            background: #102210;
+            box-shadow: inset 4px 4px 8px #081108, inset -4px -4px 8px #183318;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d] dark:text-white min-h-screen">
+<div class="layout-container flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7f3e7] dark:border-[#1a351a] px-10 py-5 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#0d1b0d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">PrescriptionHub</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-sm font-semibold opacity-60 hover:opacity-100 transition-opacity" href="#">Dashboard</a>
+<a class="text-sm font-bold text-primary" href="#">Prescriptions</a>
+<a class="text-sm font-semibold opacity-60 hover:opacity-100 transition-opacity" href="#">Doctors</a>
+<a class="text-sm font-semibold opacity-60 hover:opacity-100 transition-opacity" href="#">Appointments</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<div class="flex items-center neumorphic-inset rounded-full px-4 py-2 w-64">
+<span class="material-symbols-outlined text-[#4c9a4c] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder-[#4c9a4c]" placeholder="Search medications..." type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="flex size-10 items-center justify-center rounded-full neumorphic-flat hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full neumorphic-flat hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6PjuAfP-Aw8ERlwt5tHubxZnI-1LtdMvvikPFm0JqP-s2Mb1GwWCGfq_5ID99ms9bJ5sE0FfMI6Un73Sv2c73xSpFu1JngMZWmlRYLmt2AGpJiL-maiSoBg_IoBskuMpco_o5HgLjqYxdLfIDhjiFXiT709DhvEq23gSV_Bgg-l4UMNW5hg8f0gtCw8ZUX-ufXgPHM3D7L041eckEzCtJpYMwLkF7d28Llu6KaAt-rQmp-0n0O-x3DYQI0E1_17Zo3VYz6_3ff71h");'></div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-10 px-6 overflow-y-auto">
+<div class="max-w-[1000px] w-full flex flex-col gap-8">
+<!-- PageHeading Component -->
+<div class="flex flex-wrap justify-between items-end gap-3 px-2">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em]">My Prescriptions</h1>
+<p class="text-[#4c9a4c] text-lg font-medium opacity-80">Manage your active treatments and medical history with clarity.</p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full neumorphic-flat text-sm font-bold hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download History</span>
+</button>
+</div>
+<!-- Chips Component -->
+<div class="flex gap-4 p-2 flex-wrap">
+<button class="flex h-11 px-8 items-center justify-center rounded-full bg-primary text-background-dark text-sm font-bold shadow-lg shadow-primary/20">
+                        Active
+                    </button>
+<button class="flex h-11 px-8 items-center justify-center rounded-full neumorphic-flat text-[#0d1b0d] dark:text-white text-sm font-bold hover:text-primary">
+                        Completed
+                    </button>
+<button class="flex h-11 px-8 items-center justify-center rounded-full neumorphic-flat text-[#0d1b0d] dark:text-white text-sm font-bold hover:text-primary">
+                        All
+                    </button>
+</div>
+<!-- Prescription List Area -->
+<div class="flex flex-col gap-6">
+<!-- Card Variant: Neumorphic Prescription Card -->
+<div class="neumorphic-flat p-6 rounded-xl flex flex-col md:flex-row gap-6 items-start md:items-center group hover:-translate-y-1 transition-transform duration-300">
+<div class="relative">
+<div class="size-20 bg-center bg-no-repeat bg-cover rounded-full border-4 border-white dark:border-[#102210] shadow-md" data-alt="Doctor portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8WBQ6zK_orNkj799YskgjRfohapEv04IR5J3nY86EsS_urLjUsUgwMUVlGpOIPNB3qi8y65BCyFCQ7BzDEV0pVWH7DeyId-5CrLjjXrscn1lsddx46VpRcp19roMaEN7tj2gPqzrB2kH-9kDh78G20xzs_Sod8InyNoMtb68QJCasnR9cCf0zhd2Mt7MlBW513ThQbPPu12Qz7h6PtdWWpY451Y5sgxikTK3St0x-smC4p9EGRopg6MWv6dm7KzU23mTK9402R-fw");'></div>
+<div class="absolute bottom-0 right-0 size-6 bg-primary rounded-full flex items-center justify-center border-2 border-white dark:border-[#102210]">
+<span class="material-symbols-outlined text-background-dark text-[14px] font-bold">check</span>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="bg-primary/20 text-[#0d1b0d] dark:text-primary text-[11px] uppercase tracking-widest font-black px-3 py-1 rounded-full">Active</span>
+<span class="text-[#4c9a4c] text-sm font-medium">Oct 12, 2023</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Dr. Sarah Jenkins</h3>
+<p class="text-[#4c9a4c] font-semibold text-sm">Pulmonology Specialist</p>
+<div class="flex items-center gap-4 mt-4 py-3 border-t border-b border-[#e7f3e7] dark:border-[#1a351a]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">medical_information</span>
+<p class="text-sm font-bold">Acute Bronchitis</p>
+</div>
+<div class="w-px h-4 bg-[#e7f3e7] dark:border-[#1a351a]"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4c9a4c]">medication</span>
+<p class="text-sm text-[#4c9a4c]">3 Items prescribed</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full md:w-auto">
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full bg-primary text-background-dark font-bold text-sm">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full neumorphic-flat font-bold text-sm text-[#0d1b0d] dark:text-white">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                                Refill Request
+                            </button>
+</div>
+</div>
+<!-- ListItem Style Card 2 -->
+<div class="neumorphic-flat p-6 rounded-xl flex flex-col md:flex-row gap-6 items-start md:items-center group">
+<div class="relative">
+<div class="size-20 bg-center bg-no-repeat bg-cover rounded-full border-4 border-white dark:border-[#102210] shadow-md" data-alt="Doctor portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWX38zYxn9AVJzi4GN4O_3ChDbYQjZXQ9HPuJYet4s9YdE807ySSamjAlhi1dyJqsPAKEOJ1xfy_IV21jnpWNWdrmLpoBnFVu4tsIGwzLkEMEuDxiflWlEWGwOXqmJxuF2zcLcI5ij9Ns2SJFu42dZgAiKkibPQdcpHzGuKkk17KRHFWg85J52SudWvd3mrFqIrEBVIo37cEkfQTOXxhoRVqj4yHLAYnPC1c6ldu0swkQz9JDjsLElP1j_ZYOTsH8a1TViL2WyYiMI");'></div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="bg-primary/20 text-[#0d1b0d] dark:text-primary text-[11px] uppercase tracking-widest font-black px-3 py-1 rounded-full">Active</span>
+<span class="text-[#4c9a4c] text-sm font-medium">Sep 28, 2023</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Dr. Marcus Thorne</h3>
+<p class="text-[#4c9a4c] font-semibold text-sm">Cardiology Department</p>
+<div class="flex items-center gap-4 mt-4 py-3 border-t border-b border-[#e7f3e7] dark:border-[#1a351a]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">heart_broken</span>
+<p class="text-sm font-bold">Hypertension Control</p>
+</div>
+<div class="w-px h-4 bg-[#e7f3e7] dark:border-[#1a351a]"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4c9a4c]">medication</span>
+<p class="text-sm text-[#4c9a4c]">2 Items prescribed</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full md:w-auto">
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full bg-primary text-background-dark font-bold text-sm">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full neumorphic-flat font-bold text-sm text-[#0d1b0d] dark:text-white">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                                Refill Request
+                            </button>
+</div>
+</div>
+<!-- ListItem Style Card 3 -->
+<div class="neumorphic-flat p-6 rounded-xl flex flex-col md:flex-row gap-6 items-start md:items-center group">
+<div class="relative">
+<div class="size-20 bg-center bg-no-repeat bg-cover rounded-full border-4 border-white dark:border-[#102210] shadow-md" data-alt="Doctor portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDj1JQSB_1aDUL3YyAKnDKUMSUKRKwb0RTK_yLbHnii9IJqHv3Yti5ySxLWem6LO_3ZWnU_CCnm_Zr6SHMozaoOeCZkFg8SVjrdCUc1S9U4MMzelaSeO-GtRUehEXq8NQtBm0dWAStPyfOfzqx9ncq1Q2ZRPk4oT1eF397tHFAP6LNYd_ee9xq9cAW-HhIl3MxiU3HYBSZbyM4nMBin18UlW0rC1uqCTRVh3oTzU_dXltdnaufFWgsn0Ess0UGQcppNDQDk98tUw1N");'></div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="bg-primary/20 text-[#0d1b0d] dark:text-primary text-[11px] uppercase tracking-widest font-black px-3 py-1 rounded-full">Active</span>
+<span class="text-[#4c9a4c] text-sm font-medium">Aug 15, 2023</span>
+</div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Dr. Elena Rodriguez</h3>
+<p class="text-[#4c9a4c] font-semibold text-sm">Endocrinology</p>
+<div class="flex items-center gap-4 mt-4 py-3 border-t border-b border-[#e7f3e7] dark:border-[#1a351a]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bloodtype</span>
+<p class="text-sm font-bold">Type 2 Diabetes</p>
+</div>
+<div class="w-px h-4 bg-[#e7f3e7] dark:border-[#1a351a]"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#4c9a4c]">medication</span>
+<p class="text-sm text-[#4c9a4c]">4 Items prescribed</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full md:w-auto">
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full bg-primary text-background-dark font-bold text-sm">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="flex w-full md:w-44 h-12 items-center justify-center gap-2 rounded-full neumorphic-flat font-bold text-sm text-[#0d1b0d] dark:text-white">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                                Refill Request
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Stats/Quick Info (Optional addition for full screen feel) -->
+<footer class="p-8 flex justify-center border-t border-[#e7f3e7] dark:border-[#1a351a]">
+<div class="max-w-[1000px] w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="neumorphic-inset p-4 rounded-xl flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+<p class="text-xs text-[#4c9a4c] font-bold uppercase">Active Treatments</p>
+<p class="text-lg font-black">03</p>
+</div>
+</div>
+<div class="neumorphic-inset p-4 rounded-xl flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">event_note</span>
+</div>
+<div>
+<p class="text-xs text-[#4c9a4c] font-bold uppercase">Next Refill Due</p>
+<p class="text-lg font-black">Oct 30, 2023</p>
+</div>
+</div>
+<div class="neumorphic-inset p-4 rounded-xl flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<p class="text-xs text-[#4c9a4c] font-bold uppercase">Verified Doctors</p>
+<p class="text-lg font-black">12</p>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

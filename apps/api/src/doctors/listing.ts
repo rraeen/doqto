@@ -6,10 +6,13 @@ type Requirement = z.infer<typeof ProfileRequirementSchema>;
 
 /** What the profile still needs before it can be listed (FE-05 checklist). */
 export function missingRequirements(
-  d: Pick<Doctor, 'registration' | 'clinicIds' | 'specialties' | 'qualifications' | 'bookingFee'>,
+  d: Pick<Doctor, 'registration' | 'clinicIds' | 'specialties' | 'qualifications' | 'bookingFee'> &
+    Partial<Pick<Doctor, 'unitId'>>,
 ): Requirement[] {
   const missing: Requirement[] = [];
-  if (!d.registration?.docKey) missing.push('registration_document');
+  // A doctor listed from an approved application had the registration checked by Doqto's team
+  // (document uploads on the application form come later); the old flow needs the scan.
+  if (!d.registration?.docKey && !d.unitId) missing.push('registration_document');
   if (d.clinicIds.length === 0) missing.push('clinic');
   if (d.specialties.length === 0) missing.push('specialties');
   if (d.qualifications.length === 0) missing.push('qualifications');

@@ -1,5 +1,6 @@
 'use client';
 
+import { mediaSrc } from '@/lib/media';
 import type { DoctorPrivateProfile } from '@doqto/shared';
 import { FileCheck2, FileWarning, UserRound } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
@@ -125,7 +126,11 @@ export function ProfileEditor({
           {profile.photoUrl ? (
             // Doctor's own preview; the public page uses next/image.
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={profile.photoUrl} alt="" className="size-20 rounded-full object-cover" />
+            <img
+              src={mediaSrc(profile.photoUrl)}
+              alt=""
+              className="size-20 rounded-full object-cover"
+            />
           ) : (
             <div className="flex size-20 items-center justify-center rounded-full bg-canvas text-ink-muted">
               <UserRound className="size-10" aria-hidden />
@@ -197,14 +202,8 @@ export function ProfileEditor({
         <FeesSection form={form} set={set} errors={errors} config={config} />
       </Block>
 
-      <div className="sticky bottom-20 z-10">
-        <Button
-          size="lg"
-          loading={saving}
-          disabled={!patch}
-          onClick={() => void save()}
-          className="shadow-lg"
-        >
+      <div className="sticky bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-10 rounded-2xl bg-surface p-3 shadow-md md:bottom-4">
+        <Button size="lg" loading={saving} disabled={!patch} onClick={() => void save()}>
           {t('form.saveChanges')}
         </Button>
       </div>

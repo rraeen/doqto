@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Health Records Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#102210",
+                        "neu-light": "#ffffff",
+                        "neu-shadow": "#d1d9e6",
+                        "neu-dark-light": "#1a351a",
+                        "neu-dark-shadow": "#081108",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neu-flat': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
+                        'neu-pressed': 'inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff',
+                        'neu-dark-flat': '8px 8px 16px #081108, -8px -8px 16px #1a351a',
+                        'neu-dark-pressed': 'inset 6px 6px 12px #081108, inset -6px -6px 12px #1a351a',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neu-card {
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+        }
+        .dark .neu-card {
+            box-shadow: 8px 8px 16px #081108, -8px -8px 16px #1a351a;
+        }
+        .neu-inset {
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .dark .neu-inset {
+            box-shadow: inset 6px 6px 12px #081108, inset -6px -6px 12px #1a351a;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#0d1b0d] dark:text-white/90">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap px-10 py-5 bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-4 text-[#0d1b0d] dark:text-primary">
+<div class="size-6 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">health_and_safety</span>
+</div>
+<h2 class="text-[#0d1b0d] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">HealthSync</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-[#0d1b0d] dark:text-white/70 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">Health Records</a>
+<a class="text-[#0d1b0d] dark:text-white/70 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Appointments</a>
+<a class="text-[#0d1b0d] dark:text-white/70 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Messages</a>
+</nav>
+<div class="flex gap-4">
+<button class="flex items-center justify-center rounded-full size-10 neu-card bg-background-light dark:bg-background-dark hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all duration-300">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 neu-card bg-background-light dark:bg-background-dark hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all duration-300">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 neu-card border-2 border-white/50" data-alt="User profile portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6dSSKQeKni8n5TRMYSq_CaKXW540vkpiA1MNR2g_ZBB4RKOa3OB9s0009IfncGK-9tPMdDf6np4wUAEaItPQKqXxtHtz52VrQdMr6dnZvpVzLj5tgAyADFo7pdw9XiFUpGOxx8ciCgz2VZbRDWe5N-EmQf6K2ARL8yj51GYTyGMMI7RFCA9abtrv4kqRd0L9ChaEYk07fFnhbtRVkxm_ykKQUxsYkmQHDIRC8-Fg3zMNHXTWhr3zefEDd08c_lRJIv1jy0iYWmWaf");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[1100px] mx-auto w-full px-6 py-10">
+<div class="flex flex-wrap justify-between items-end gap-3 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d1b0d] dark:text-white text-4xl font-extrabold leading-tight tracking-[-0.033em]">My Health Records</h1>
+<p class="text-[#4c9a4c] dark:text-primary/70 text-lg font-medium leading-normal">Your central hub for a healthier lifestyle.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center gap-2 rounded-full px-6 py-3 neu-card bg-background-light dark:bg-background-dark text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all group">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add Report</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-full px-6 py-3 neu-card bg-background-light dark:bg-background-dark text-[#0d1b0d] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Download All</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="flex flex-col gap-2 rounded-xl p-8 neu-card bg-background-light dark:bg-background-dark group hover:scale-[1.02] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<p class="text-[#4c9a4c] dark:text-primary/60 text-sm font-semibold uppercase tracking-wider">Total Records</p>
+</div>
+<p class="text-[#0d1b0d] dark:text-white tracking-tight text-3xl font-black leading-tight">42</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-8 neu-card bg-background-light dark:bg-background-dark group hover:scale-[1.02] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">update</span>
+<p class="text-[#4c9a4c] dark:text-primary/60 text-sm font-semibold uppercase tracking-wider">Last Updated</p>
+</div>
+<p class="text-[#0d1b0d] dark:text-white tracking-tight text-3xl font-black leading-tight">Oct 24, 2023</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-8 neu-card bg-background-light dark:bg-background-dark group hover:scale-[1.02] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">local_hospital</span>
+<p class="text-[#4c9a4c] dark:text-primary/60 text-sm font-semibold uppercase tracking-wider">Recent Visit</p>
+</div>
+<p class="text-[#0d1b0d] dark:text-white tracking-tight text-3xl font-black leading-tight">General Hospital</p>
+</div>
+</div>
+<div class="space-y-6 mb-10">
+<div class="neu-inset rounded-2xl h-14 w-full flex items-center px-5 bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-[#4c9a4c] mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-lg placeholder:text-[#4c9a4c]/50 text-[#0d1b0d] dark:text-white" placeholder="Search records, doctors, or facilities..." type="text"/>
+</div>
+<div class="flex gap-4 flex-wrap">
+<button class="px-6 py-2 rounded-full neu-card bg-primary text-background-dark font-bold text-sm transition-all hover:scale-105">All Records</button>
+<button class="px-6 py-2 rounded-full neu-card bg-background-light dark:bg-background-dark text-[#0d1b0d] dark:text-white/70 font-semibold text-sm hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all">Lab Reports</button>
+<button class="px-6 py-2 rounded-full neu-card bg-background-light dark:bg-background-dark text-[#0d1b0d] dark:text-white/70 font-semibold text-sm hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all">Prescriptions</button>
+<button class="px-6 py-2 rounded-full neu-card bg-background-light dark:bg-background-dark text-[#0d1b0d] dark:text-white/70 font-semibold text-sm hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all">Scans</button>
+<button class="px-6 py-2 rounded-full neu-card bg-background-light dark:bg-background-dark text-[#0d1b0d] dark:text-white/70 font-semibold text-sm hover:shadow-neu-pressed dark:hover:shadow-neu-dark-pressed transition-all">Vaccinations</button>
+</div>
+</div>
+<div class="space-y-6 mb-20">
+<div class="neu-card rounded-2xl p-6 bg-background-light dark:bg-background-dark flex flex-wrap items-center justify-between gap-4 transition-all hover:scale-[1.01]">
+<div class="flex items-center gap-6">
+<div class="size-14 rounded-full neu-inset flex items-center justify-center bg-background-light dark:bg-background-dark text-primary">
+<span class="material-symbols-outlined text-3xl">biotech</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Blood Test - CBC</h3>
+<div class="flex items-center gap-4 mt-1 text-sm text-[#4c9a4c] dark:text-white/50">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">person</span> Dr. Sarah Smith</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Oct 12, 2023</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-4 py-1.5 rounded-full bg-primary/20 text-[#0d1b0d] dark:text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Normal</span>
+<button class="material-symbols-outlined text-[#4c9a4c] hover:text-primary transition-colors cursor-pointer">more_vert</button>
+</div>
+</div>
+<div class="neu-card rounded-2xl p-6 bg-background-light dark:bg-background-dark flex flex-wrap items-center justify-between gap-4 transition-all hover:scale-[1.01]">
+<div class="flex items-center gap-6">
+<div class="size-14 rounded-full neu-inset flex items-center justify-center bg-background-light dark:bg-background-dark text-primary">
+<span class="material-symbols-outlined text-3xl">radiology</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Chest X-Ray</h3>
+<div class="flex items-center gap-4 mt-1 text-sm text-[#4c9a4c] dark:text-white/50">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">person</span> Dr. Robert Chen</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Sep 28, 2023</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-bold uppercase tracking-wider border border-amber-200">Follow-up</span>
+<button class="material-symbols-outlined text-[#4c9a4c] hover:text-primary transition-colors cursor-pointer">more_vert</button>
+</div>
+</div>
+<div class="neu-card rounded-2xl p-6 bg-background-light dark:bg-background-dark flex flex-wrap items-center justify-between gap-4 transition-all hover:scale-[1.01]">
+<div class="flex items-center gap-6">
+<div class="size-14 rounded-full neu-inset flex items-center justify-center bg-background-light dark:bg-background-dark text-primary">
+<span class="material-symbols-outlined text-3xl">prescriptions</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Amoxicillin Prescription</h3>
+<div class="flex items-center gap-4 mt-1 text-sm text-[#4c9a4c] dark:text-white/50">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">person</span> Dr. Emily Watson</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Aug 15, 2023</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-4 py-1.5 rounded-full bg-primary/20 text-[#0d1b0d] dark:text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Normal</span>
+<button class="material-symbols-outlined text-[#4c9a4c] hover:text-primary transition-colors cursor-pointer">more_vert</button>
+</div>
+</div>
+<div class="neu-card rounded-2xl p-6 bg-background-light dark:bg-background-dark flex flex-wrap items-center justify-between gap-4 transition-all hover:scale-[1.01]">
+<div class="flex items-center gap-6">
+<div class="size-14 rounded-full neu-inset flex items-center justify-center bg-background-light dark:bg-background-dark text-primary">
+<span class="material-symbols-outlined text-3xl">vaccines</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Annual Flu Shot</h3>
+<div class="flex items-center gap-4 mt-1 text-sm text-[#4c9a4c] dark:text-white/50">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">person</span> City Clinic</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">calendar_today</span> Oct 05, 2023</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-4 py-1.5 rounded-full bg-primary/20 text-[#0d1b0d] dark:text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Completed</span>
+<button class="material-symbols-outlined text-[#4c9a4c] hover:text-primary transition-colors cursor-pointer">more_vert</button>
+</div>
+</div>
+</div>
+</main>
+<button class="fixed bottom-12 right-12 size-16 bg-primary rounded-full flex items-center justify-center text-background-dark shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group">
+<span class="material-symbols-outlined text-4xl font-bold">add</span>
+<span class="absolute right-full mr-4 bg-background-dark text-white px-4 py-2 rounded-xl text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Upload New Record</span>
+</button>
+</div>
+
+</body></html>

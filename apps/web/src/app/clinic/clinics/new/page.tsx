@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Add clinic', robots: { index: false 
 
 export default function NewClinicRoute() {
   return (
-    <Page>
+    <Page size="medium">
       <NewClinicPage />
     </Page>
   );

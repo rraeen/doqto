@@ -5,7 +5,16 @@ import {
   type OtpVerifyResponse,
   type TokenPair,
 } from '@doqto/shared';
-import { Body, Controller, HttpCode, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Req,
+  Res,
+  SetMetadata,
+} from '@nestjs/common';
 import { ApiHeader } from '@nestjs/swagger';
 import {
   ApiBadRequestResponse,
@@ -21,7 +30,8 @@ import { AppConfig } from '../config/app-config.service';
 import { clientIp } from '../common/http/client-ip';
 import { clearAuthCookies, presentedRefreshToken, setAuthCookies } from './auth-cookies';
 import { AuthService, RefreshRacedException } from './auth.service';
-import { Public } from './decorators';
+import type { AuthUser } from './auth.types';
+import { CurrentUser, IS_PUBLIC_KEY, Public } from './decorators';
 import {
   OtpRequestDto,
   OtpRequestResponseDto,
@@ -115,6 +125,20 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<void> {
     await this.auth.logout(presentedRefreshToken(req, body.refreshToken));
+    clearAuthCookies(res, this.config);
+  }
+
+  /** Signs the patient out of every device (lost phone, shared device). Needs a signed-in session. */
+  @Post('logout-all')
+  // The rest of this controller is public; this one needs a session.
+  @SetMetadata(IS_PUBLIC_KEY, false)
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  async logoutAll(
+    @CurrentUser() user: AuthUser,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<void> {
+    await this.auth.logoutAll(user.id);
     clearAuthCookies(res, this.config);
   }
 }

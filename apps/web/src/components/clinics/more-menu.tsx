@@ -28,7 +28,7 @@ function Row({
     <li>
       <Link
         href={href}
-        className="flex items-center gap-3 px-4 py-4 hover:bg-canvas"
+        className="flex items-center gap-3 px-4 py-4 hover:brightness-105"
         {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
       >
         <Icon className="size-5 text-brand-600" aria-hidden />
@@ -51,7 +51,7 @@ export function MoreMenu() {
   return (
     <>
       <PageTitle>{t('nav.more')}</PageTitle>
-      <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
+      <ul className="divide-y divide-line overflow-hidden rounded-lg neu-raised">
         {d && <Row href="/clinic/profile" icon={UserRound} label={t('doctor.editProfile')} />}
         <Row href="/clinic/clinics" icon={Building2} label={t('doctor.manageClinics')} />
         {d?.isListed && (

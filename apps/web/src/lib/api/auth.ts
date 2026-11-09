@@ -42,6 +42,11 @@ export function logout(): Promise<void> {
   });
 }
 
+/** Ends the session on every device (lost phone, shared device). */
+export function logoutAll(): Promise<void> {
+  return apiRequest(ENDPOINTS.auth.logoutAll, { method: 'POST', body: {}, schema: NoContent });
+}
+
 export function getMe(signal?: AbortSignal): Promise<Me> {
   return apiRequest(ENDPOINTS.me, { schema: MeSchema, signal });
 }

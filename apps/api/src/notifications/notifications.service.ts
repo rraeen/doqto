@@ -20,6 +20,7 @@ import {
 import { User } from '../users/user.schema';
 import { maskPhone } from './message-format';
 import { Notification, NotificationDocument } from './notification.schema';
+import { WebPushService } from './web-push.service';
 import { ParamSealer } from './seal';
 
 export interface NotifyInput {
@@ -71,6 +72,7 @@ export class NotificationsService {
     @InjectModel(Notification.name) private readonly notifications: Model<Notification>,
     @InjectModel(User.name) private readonly users: Model<User>,
     private readonly config: AppConfig,
+    private readonly webPush: WebPushService,
   ) {
     this.sealer = new ParamSealer(config.get('HASH_PEPPER'));
   }
@@ -78,7 +80,13 @@ export class NotificationsService {
   async notify(input: NotifyInput, now = new Date()): Promise<NotifyResult | null> {
     const userId = new Types.ObjectId(input.userId);
     const user = await this.users
-      .findById(userId, { phone: 1, language: 1, whatsappOptIn: 1, status: 1 })
+      .findById(userId, {
+        phone: 1,
+        language: 1,
+        whatsappOptIn: 1,
+        status: 1,
+        pushSubscriptions: 1,
+      })
       .exec();
     if (!user) return null;
     const language = user.language;
@@ -124,6 +132,30 @@ export class NotificationsService {
         appointmentId: input.appointmentId,
         isDemo: this.config.isDemo,
       });
+      // Installed-app users also get a push copy (the text keeps secrets masked).
+      if (
+        status === 'queued' &&
+        this.webPush.enabled &&
+        (user.pushSubscriptions?.length ?? 0) > 0
+      ) {
+        await this.notifications
+          .create({
+            userId,
+            phone: user.phone,
+            channel: 'webpush',
+            template: input.template,
+            language,
+            params,
+            dedupeKey: `${input.dedupeKey}:push`,
+            status: 'queued',
+            sendAfter: input.sendAfter ?? now,
+            appointmentId: input.appointmentId,
+            isDemo: this.config.isDemo,
+          })
+          .catch((e: unknown) => {
+            if (!isDuplicateKey(e)) throw e;
+          });
+      }
       return { id: row._id.toHexString(), status, created: true };
     } catch (e) {
       if (!isDuplicateKey(e)) throw e;
@@ -183,16 +215,20 @@ export class NotificationsService {
     return renderTemplate(n.template as TemplateKey, n.language, params);
   }
 
-  /** FE-17 Demo inbox: only in demo mode, only the caller's own rows. */
+  /** The patient's in-app inbox: their own messages, never the Web Push copies, newest first. */
   async mine(
     userId: string,
     cursor: string | undefined,
     limit: number,
   ): Promise<Page<MyNotification>> {
-    if (!this.config.isDemo) throw AppException.notFound('Not found');
     const before = decodeCursor(cursor);
     const rows = await this.notifications
-      .find({ userId: new Types.ObjectId(userId), ...(before ? { _id: { $lt: before } } : {}) })
+      .find({
+        userId: new Types.ObjectId(userId),
+        channel: { $ne: 'webpush' },
+        status: { $ne: 'skipped' },
+        ...(before ? { _id: { $lt: before } } : {}),
+      })
       .sort({ _id: -1 })
       .limit(limit + 1)
       .exec();
@@ -207,9 +243,34 @@ export class NotificationsService {
         status: n.status,
         createdAt: n.createdAt.toISOString(),
         sentAt: n.sentAt?.toISOString() ?? null,
+        read: Boolean(n.readAt),
+        appointmentId: n.appointmentId?.toHexString() ?? null,
       })),
       nextCursor: rows.length > limit ? encodeCursor(page[page.length - 1]!._id) : null,
     };
+  }
+
+  /** How many inbox messages the patient has not opened yet (the bell's badge). */
+  async unreadCount(userId: string): Promise<{ count: number }> {
+    const count = await this.notifications
+      .countDocuments({
+        userId: new Types.ObjectId(userId),
+        channel: { $ne: 'webpush' },
+        status: { $ne: 'skipped' },
+        readAt: { $exists: false },
+      })
+      .exec();
+    return { count };
+  }
+
+  /** Marks everything in the inbox as read. */
+  async markAllRead(userId: string, now = new Date()): Promise<void> {
+    await this.notifications
+      .updateMany(
+        { userId: new Types.ObjectId(userId), readAt: { $exists: false } },
+        { $set: { readAt: now } },
+      )
+      .exec();
   }
 
   /** FE-18 admin view. */

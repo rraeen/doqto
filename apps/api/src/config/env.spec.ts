@@ -28,6 +28,11 @@ describe('validateEnv', () => {
     expect(env.JWT_ACCESS_TTL).toBe(3600);
   });
 
+  it('trims Windows CRLF on durations', () => {
+    const env = validateEnv({ ...base, JWT_ACCESS_TTL: '15m\r' });
+    expect(env.JWT_ACCESS_TTL).toBe(900);
+  });
+
   it('fails fast listing every missing variable', () => {
     expect(() => validateEnv({})).toThrow(
       /PROVIDER_MODE[\s\S]*MONGODB_URI[\s\S]*JWT_ACCESS_SECRET/,

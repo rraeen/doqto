@@ -80,8 +80,8 @@ describe('contract v1', () => {
     expect(AddStaffRequestSchema.safeParse({ phone: '+919876543210' }).success).toBe(true);
   });
 
-  it('search needs city or near, and validates near', () => {
-    expect(DoctorSearchQuerySchema.safeParse({}).success).toBe(false);
+  it('search filters are all optional, and near is validated', () => {
+    expect(DoctorSearchQuerySchema.safeParse({}).success).toBe(true);
     expect(DoctorSearchQuerySchema.parse({ city: 'Bareilly' })).toMatchObject({
       limit: 20,
       radiusKm: 25,

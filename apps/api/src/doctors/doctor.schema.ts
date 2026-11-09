@@ -65,7 +65,11 @@ const RatingSummaryCacheSchema = SchemaFactory.createForClass(RatingSummaryCache
 // and a clinic address change can never silently overwrite each other (RD BE-09 blocker).
 @Schema({ collection: 'doctors', timestamps: true, strict: true, optimisticConcurrency: true })
 export class Doctor {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true }) userId: Types.ObjectId;
+  /** The patient-side user of a doctor onboarded through the old flow. Absent for a doctor listed from an approved application. */
+  @Prop({ type: Types.ObjectId, ref: 'User' }) userId?: Types.ObjectId;
+  /** The provider account that applied, and the application (unit) this listing comes from. */
+  @Prop({ type: Types.ObjectId, ref: 'Account' }) accountId?: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Unit' }) unitId?: Types.ObjectId;
   /** `dr-<name>-<city>`, unique; frozen once the doctor has been listed. */
   @Prop({ required: true }) slug: string;
   @Prop({ required: true, trim: true }) name: string;
@@ -104,7 +108,9 @@ export class Doctor {
 export type DoctorDocument = HydratedDocument<Doctor>;
 export const DoctorSchema = SchemaFactory.createForClass(Doctor);
 DoctorSchema.index({ slug: 1 }, { unique: true });
-DoctorSchema.index({ userId: 1 }, { unique: true });
+// Unique only where set: doctors listed from an application have no patient-side user.
+DoctorSchema.index({ userId: 1 }, { unique: true, partialFilterExpression: { userId: { $exists: true } } });
+DoctorSchema.index({ unitId: 1 }, { unique: true, partialFilterExpression: { unitId: { $exists: true } } });
 DoctorSchema.index({ isListed: 1, city: 1, specialties: 1 });
 DoctorSchema.index({ 'verification.status': 1, createdAt: 1 });
 // Admin queue: oldest submission first (migration 0003).

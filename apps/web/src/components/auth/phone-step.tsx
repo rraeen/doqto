@@ -16,9 +16,10 @@ interface PhoneStepProps {
   /** E.164 number to start from, e.g. after "Change number". */
   initialPhone?: string;
   onSent: (phone: string, whatsappOptIn: boolean, otp: OtpRequestResponse) => void;
+  audience?: 'patient' | 'clinic';
 }
 
-export function PhoneStep({ initialPhone, onSent }: PhoneStepProps) {
+export function PhoneStep({ initialPhone, onSent, audience = 'patient' }: PhoneStepProps) {
   const t = useT();
   const [phone, setPhone] = useState<string | null>(initialPhone ?? null);
   const [consent, setConsent] = useState(true);
@@ -42,8 +43,14 @@ export function PhoneStep({ initialPhone, onSent }: PhoneStepProps) {
   };
 
   return (
-    <form onSubmit={submit} noValidate className="space-y-6">
-      <PageTitle description={t('auth.phoneSubtitle')}>{t('auth.phoneTitle')}</PageTitle>
+    <form onSubmit={submit} noValidate className="space-y-8 text-left">
+      <div className="text-center">
+        <PageTitle
+          description={t(audience === 'clinic' ? 'auth.consoleSubtitle' : 'auth.phoneSubtitle')}
+        >
+          {t(audience === 'clinic' ? 'auth.consoleTitle' : 'auth.phoneTitle')}
+        </PageTitle>
+      </div>
       <Field label={t('auth.phoneLabel')} error={error}>
         {({ id, describedBy, invalid }) => (
           <PhoneInput

@@ -74,12 +74,12 @@ export default tseslint.config(
     rules: { 'doqto/no-payments-in-trust-code': 'error' },
   },
 
-  // Next.js web app.
+  // Next.js apps: patient web and the console (doctors, staff, labs, pharmacies and the Doqto team).
   {
-    files: ['apps/web/**/*.{ts,tsx,js,jsx}'],
+    files: ['apps/{web,console}/**/*.{ts,tsx,js,jsx}', 'packages/{ui,i18n}/**/*.{ts,tsx}'],
     plugins: { '@next/next': nextPlugin, 'react-hooks': reactHooks },
     languageOptions: { globals: { ...globals.browser } },
-    settings: { next: { rootDir: 'apps/web/' } },
+    settings: { next: { rootDir: ['apps/web/', 'apps/console/'] } },
     rules: {
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,

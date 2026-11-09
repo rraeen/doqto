@@ -20,7 +20,8 @@ export class ConsentEntry {
 }
 const ConsentEntrySchema = SchemaFactory.createForClass(ConsentEntry);
 
-@Schema({ _id: false })
+// Has its own `_id`: the patient removes a device by it.
+@Schema()
 export class PushSubscriptionEntry {
   @Prop({ required: true }) endpointHash: string;
   @Prop({ required: true }) endpoint: string;

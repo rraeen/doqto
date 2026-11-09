@@ -702,10 +702,8 @@ describe('doctors, clinics, admin verification and search (sprint 2)', () => {
       await http().get('/api/v1/doctors?city=bareilly&cursor=garbage').expect(400);
     });
 
-    it('needs city or near, and validates input', async () => {
-      expect(code((await http().get('/api/v1/doctors').expect(400)).body)).toBe(
-        'VALIDATION_FAILED',
-      );
+    it('lists everyone with no filter, and validates input', async () => {
+      await http().get('/api/v1/doctors').expect(200);
       await http().get('/api/v1/doctors?near=here').expect(400);
       // Out of India bounds is a 400, never a 500 from $geoNear (RD BE-10 should-fix 2).
       for (const near of ['95.0,79.4', '28.0,999', '79.4,28.36']) {

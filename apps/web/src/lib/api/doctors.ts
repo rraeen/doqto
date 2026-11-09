@@ -1,17 +1,13 @@
 import {
-  DoctorListItemSchema,
+  DoctorSearchPageSchema,
+  type DoctorSearchPage,
   DoctorProfileSchema,
   ENDPOINTS,
-  pageSchema,
-  type DoctorListItem,
   type DoctorProfile,
-  type Page,
   type SpecialtyKey,
 } from '@doqto/shared';
 import { apiRequest } from './client';
 import { isApiError } from './errors';
-
-const SearchPageSchema = pageSchema(DoctorListItemSchema);
 
 export interface DoctorSearchParams {
   city?: string;
@@ -20,15 +16,17 @@ export interface DoctorSearchParams {
   near?: string;
   q?: string;
   cursor?: string;
+  /** Page size, 1 to 50; the API's default is 20. */
+  limit?: number;
 }
 
 export function searchDoctors(
   params: DoctorSearchParams,
   signal?: AbortSignal,
-): Promise<Page<DoctorListItem>> {
+): Promise<DoctorSearchPage> {
   return apiRequest(ENDPOINTS.doctors.search, {
     query: { ...params },
-    schema: SearchPageSchema,
+    schema: DoctorSearchPageSchema,
     signal,
   });
 }

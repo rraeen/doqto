@@ -10,11 +10,15 @@ import { VisitCodes } from './otp/visit-code';
 import { createDemoPay, type DemoPay } from './payment/demo-pay';
 import { DemoPaymentProvider } from './payment/demo-payment.provider';
 import { PaymentWebhooksController } from './payment/payment-webhooks.controller';
+import { WhatsAppWebhooksController } from './whatsapp/whatsapp-webhooks.controller';
 import { PaymentWebhooks } from './payment/payment-webhooks.service';
 import { RazorpayPaymentProvider } from './payment/live-payment.provider';
 import type { PaymentProvider } from './payment/payment.provider';
 import type { ProviderInfo } from './provider-mode';
 import { assertProviderSafety } from './provider-safety';
+import { DemoEmailProvider } from './email/demo-email.provider';
+import type { EmailProvider } from './email/email.provider';
+import { LiveEmailProvider } from './email/live-email.provider';
 import { DemoSmsProvider } from './sms/demo-sms.provider';
 import { LiveSmsProvider } from './sms/live-sms.provider';
 import type { SmsProvider } from './sms/sms.provider';
@@ -26,6 +30,7 @@ import {
   BOUND_PROVIDERS,
   GEOCODER_PROVIDER,
   INTEGRATIONS_CONFIG,
+  EMAIL_PROVIDER,
   OTP_PROVIDER,
   PAYMENT_PROVIDER,
   SMS_PROVIDER,
@@ -37,27 +42,62 @@ import {
 } from './tokens';
 import { DemoWhatsAppProvider } from './whatsapp/demo-whatsapp.provider';
 import { LiveWhatsAppProvider } from './whatsapp/live-whatsapp.provider';
+import { AllowlistWhatsAppProvider, MetaWhatsAppProvider } from './whatsapp/meta-whatsapp.provider';
 import type { WhatsAppProvider } from './whatsapp/whatsapp.provider';
 
 export interface ProviderSet {
   otp: OtpProvider;
   whatsapp: WhatsAppProvider;
   sms: SmsProvider;
+  email: EmailProvider;
   payment: PaymentProvider;
   storage: StorageProvider;
   geocoder: GeocoderProvider;
 }
 
+/**
+ * Demo mode pays through the demo gateway (no money, a signed fake webhook), unless Razorpay
+ * TEST keys (`rzp_test_...`) are configured: then the real Razorpay test gateway is used so
+ * Checkout can be tried end to end. Test keys move no money. Live keys are never accepted here.
+ */
+function demoModePayment(config: IntegrationsConfig): PaymentProvider {
+  const { keyId, keySecret } = config.razorpay;
+  return keyId?.startsWith('rzp_test_') && keySecret
+    ? new RazorpayPaymentProvider(config.razorpay)
+    : new DemoPaymentProvider(config);
+}
+
+/**
+ * Demo mode keeps WhatsApp in the Demo inbox, unless Meta's Cloud API is configured
+ * (`WHATSAPP_BSP=meta` plus token and phone number id). Then notifications to the numbers in
+ * `WHATSAPP_TEST_RECIPIENTS` go out for real, and everyone else stays on the demo provider.
+ * Login OTPs always stay on the demo provider here (their template is not part of this setup).
+ */
+function demoModeWhatsApp(config: IntegrationsConfig, demo: WhatsAppProvider): WhatsAppProvider {
+  const w = config.whatsapp;
+  if (w.bsp?.toLowerCase() !== 'meta' || !w.apiKey || !w.phoneNumberId) return demo;
+  const real = new MetaWhatsAppProvider({
+    accessToken: w.apiKey,
+    phoneNumberId: w.phoneNumberId,
+    appSecret: w.webhookSecret,
+    baseUrl: w.apiBaseUrl,
+    sendAsText: w.sendAsText,
+  });
+  return new AllowlistWhatsAppProvider(real, demo, new Set(w.testRecipients));
+}
+
 /** The only place that chooses implementations. Business code never does. */
 export function createProviderSet(config: IntegrationsConfig): ProviderSet {
   if (config.mode === 'demo') {
-    const whatsapp = new DemoWhatsAppProvider(config);
+    const demoWhatsapp = new DemoWhatsAppProvider(config);
+    const whatsapp = demoModeWhatsApp(config, demoWhatsapp);
     const sms = new DemoSmsProvider();
     return {
       whatsapp,
       sms,
-      otp: new DemoOtpProvider(config.hashPepper, whatsapp, sms),
-      payment: new DemoPaymentProvider(config),
+      email: new DemoEmailProvider(),
+      otp: new DemoOtpProvider(config.hashPepper, demoWhatsapp, sms),
+      payment: demoModePayment(config),
       storage: new DemoStorageProvider(config),
       geocoder: new DemoGeocoderProvider(),
     };
@@ -67,6 +107,7 @@ export function createProviderSet(config: IntegrationsConfig): ProviderSet {
   return {
     whatsapp,
     sms,
+    email: new LiveEmailProvider(),
     otp: new LiveOtpProvider(config.hashPepper, whatsapp, sms),
     payment: new RazorpayPaymentProvider(config.razorpay),
     storage: new R2StorageProvider(config.r2, config.signedUrlTtlSeconds),
@@ -103,6 +144,7 @@ export class IntegrationsModule {
         inject: [PROVIDER_SET],
       },
       { provide: SMS_PROVIDER, useFactory: (s: ProviderSet) => s.sms, inject: [PROVIDER_SET] },
+      { provide: EMAIL_PROVIDER, useFactory: (s: ProviderSet) => s.email, inject: [PROVIDER_SET] },
       {
         provide: PAYMENT_PROVIDER,
         useFactory: (s: ProviderSet) => s.payment,
@@ -147,6 +189,7 @@ export class IntegrationsModule {
           OTP_PROVIDER,
           WHATSAPP_PROVIDER,
           SMS_PROVIDER,
+          EMAIL_PROVIDER,
           PAYMENT_PROVIDER,
           STORAGE_PROVIDER,
           GEOCODER_PROVIDER,
@@ -157,13 +200,14 @@ export class IntegrationsModule {
       module: IntegrationsModule,
       global: true,
       // 404s unless demo storage is bound (see the controller).
-      controllers: [DemoStorageController, PaymentWebhooksController],
+      controllers: [DemoStorageController, PaymentWebhooksController, WhatsAppWebhooksController],
       providers,
       exports: [
         INTEGRATIONS_CONFIG,
         OTP_PROVIDER,
         WHATSAPP_PROVIDER,
         SMS_PROVIDER,
+        EMAIL_PROVIDER,
         PAYMENT_PROVIDER,
         STORAGE_PROVIDER,
         GEOCODER_PROVIDER,

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Booking with View Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                        "soft-gray": "#e0e5ec",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neumorphic-flat': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
+                        'neumorphic-pressed': 'inset 6px 6px 12px #b8bec9, inset -6px -6px 12px #ffffff',
+                        'neumorphic-primary': '0px 0px 20px rgba(19, 236, 19, 0.4), 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .neumorphic-card {
+            background: #f0f2f5;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .neumorphic-inset {
+            background: #f0f2f5;
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .neumorphic-pill {
+            background: #f0f2f5;
+            box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(19, 236, 19, 0.5), inset 4px 4px 8px #d1d9e6;
+            border: 2px solid #13ec13;
+        }
+        .neumorphic-btn-subtle {
+            background: #e5e9ef;
+            box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d] min-h-screen">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#0d1b0d] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">HealSoft</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-8">
+<a class="text-[#0d1b0d] dark:text-white text-sm font-semibold hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#0d1b0d] dark:text-white text-sm font-semibold hover:text-primary transition-colors" href="#">My Appointments</a>
+<a class="text-primary text-sm font-bold" href="#">Book a Visit</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex size-10 items-center justify-center rounded-full neumorphic-pill text-[#0d1b0d]">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 neumorphic-card" data-alt="Profile picture of the logged in patient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjSzAL5I7D6QlGnwc-xKV57cxYALnPCbEbAK7Xyo9TbhyryADc0jq57VdS-RAMB33kGThgX3jiZkk7SgrmcezSxPUxG01sM44Tq_o1dyoog5jHFiRmkD7b1FtroJMtyKJa1KoOrKxkTtE4UzLxpvm-a-GAEGhKg_VRWdJQVkkuMJJIfVocYJBSWskqmRGDeVkIgey16y4BpdOImK7vxOWce3qFv_OMRaXgx6EvJUteH4yAr0Z29dwzjmD_IbwIhYDpCm7WAZHA8oXp");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto w-full px-6 py-10">
+<div class="mb-10">
+<h1 class="text-4xl font-black tracking-tight text-[#0d1b0d] dark:text-white">Book a Visit</h1>
+<p class="text-[#4c9a4c] text-lg font-medium mt-1">Schedule your care in just a few clicks.</p>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<div class="col-span-8 flex flex-col gap-10">
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary text-white size-6 flex items-center justify-center rounded-full text-xs font-bold">1</span>
+<h2 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Select Appointment Type</h2>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="neumorphic-card active-glow p-6 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined text-[32px]">medical_services</span>
+</div>
+<p class="text-lg font-bold text-[#0d1b0d]">General Consultation</p>
+<p class="text-xs text-gray-500 mt-2">Routine checkups and common health issues</p>
+</div>
+<div class="neumorphic-card p-6 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-white/50">
+<div class="size-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 mb-4">
+<span class="material-symbols-outlined text-[32px]">stethoscope</span>
+</div>
+<p class="text-lg font-bold text-[#0d1b0d]">Specialist Visit</p>
+<p class="text-xs text-gray-500 mt-2">Cardiology, Dermatology, Neurology, etc.</p>
+</div>
+<div class="neumorphic-card p-6 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-white/50">
+<div class="size-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 mb-4">
+<span class="material-symbols-outlined text-[32px]">event_repeat</span>
+</div>
+<p class="text-lg font-bold text-[#0d1b0d]">Follow-up</p>
+<p class="text-xs text-gray-500 mt-2">Check progress of previous treatment</p>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary text-white size-6 flex items-center justify-center rounded-full text-xs font-bold">2</span>
+<h2 class="text-xl font-bold text-[#0d1b0d] dark:text-white">Choose Your Doctor</h2>
+</div>
+<div class="relative w-full max-w-2xl mb-6">
+<div class="neumorphic-inset flex items-center px-5 py-4 rounded-2xl w-full">
+<span class="material-symbols-outlined text-gray-400 mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-[#0d1b0d] placeholder:text-gray-400 font-medium text-sm" placeholder="Search by name, specialty, or condition..." type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-4 overflow-y-auto max-h-[400px] pr-4 py-2">
+<div class="neumorphic-card p-4 rounded-xl flex items-center justify-between cursor-pointer border-2 border-transparent hover:border-primary/30">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-full bg-cover bg-center border-4 border-white shadow-sm" data-alt="Portrait of Dr. Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8wDpfFJ0gIcFPU58NHjHjprzTNChEv8jCwnHFWZZYuC9GiKK4_B_M9f0IxEzNja42qwUuhNyEY6qJ66Cou4DLK8uSIP3TMsVUOG1MSEn4IGFbnQR-phLp3aq8r52VjgDY0-YLH9Do-0m3LQxZ8xt3Wajg7hysjQpx3f11dUvNQ8iVBnouqA52FPid5ShCUlZZFOXUMFf4HsTxAOgJ3xHT_Y0DJscVOuGSlGWwtQI_kXFnq2XyTorAw3v45GXAr8SW_k_V9uYQ83sC");'></div>
+<div>
+<h3 class="font-bold text-lg text-[#0d1b0d]">Dr. Sarah Jenkins</h3>
+<p class="text-primary text-sm font-semibold">Cardiologist • 12 yrs exp.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="neumorphic-btn-subtle px-4 py-1.5 rounded-full flex items-center gap-1.5 hover:scale-105 transition-transform">
+<span class="text-[10px] font-bold uppercase tracking-wider text-[#0d1b0d]">View Profile</span>
+<span class="material-symbols-outlined text-primary text-[16px] font-bold">chevron_right</span>
+</button>
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]">star</span>
+<span class="text-sm font-bold text-[#0d1b0d]">4.9</span>
+</div>
+</div>
+</div>
+<div class="neumorphic-card active-glow p-4 rounded-xl flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-full bg-cover bg-center border-4 border-white shadow-sm" data-alt="Portrait of Dr. Marcus Thorne" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_qD0rejFQgbsFSakDTfblsPzAwPjjUTLgvs_lUGNEJQ-q03MoWmsy9IyIqhzTUZCmCzArvM8cLqr09xA_c81Wy0OW_RptTmqag6WxmnPYDm17iu9s1_trLG8ejCIakEwFK_wHw5mYGfo8rW5GXzQhue699Nyz6vyX0moW1byolMCCG8HXEB-EKiIWy2jFlFznOgRV0EqrJcUDvDkFBNIi_wBWhLd51qSmwD5tXOqGK2k0le-RGJUKXsYP3H6xVjfQTg6zb1NSkVSK");'></div>
+<div>
+<h3 class="font-bold text-lg text-[#0d1b0d]">Dr. Marcus Thorne</h3>
+<p class="text-primary text-sm font-semibold">General Practitioner • 8 yrs exp.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="neumorphic-btn-subtle px-4 py-1.5 rounded-full flex items-center gap-1.5 hover:scale-105 transition-transform">
+<span class="text-[10px] font-bold uppercase tracking-wider text-[#0d1b0d]">View Profile</span>
+<span class="material-symbols-outlined text-primary text-[16px] font-bold">chevron_right</span>
+</button>
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]">star</span>
+<span class="text-sm font-bold text-[#0d1b0d]">4.8</span>
+</div>
+</div>
+</div>
+<div class="neumorphic-card p-4 rounded-xl flex items-center justify-between cursor-pointer hover:border-primary/30 border-2 border-transparent">
+<div class="flex items-center gap-4">
+<div class="size-16 rounded-full bg-cover bg-center border-4 border-white shadow-sm" data-alt="Portrait of Dr. Elena Rodriguez" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdUpTOMgx5ePHZHxeqT5F_OEbz4E7gbKpxel4C_yGdqB9S9TsoVYksj1uqVXICw-seq1a7FFRF0_rm2GYJRxw-xEwSDmZt2MHpXlI7aWJ8G-nYgLua-XN1xFyhipyN8euOV3TO38lzHdh2Q0R2kW67wKp96XoA4swjLSGhH3mnLAkhFPwNl7n8GhDx25cM5QFzGYMykxTYzgOmJ0VB7e1PPdRIQFBfXRUXvfyG_hpxHt8YLLCQgbmgI-i625-XKWClnjISBoC989es");'></div>
+<div>
+<h3 class="font-bold text-lg text-[#0d1b0d]">Dr. Elena Rodriguez</h3>
+<p class="text-primary text-sm font-semibold">Pediatrician • 15 yrs exp.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="neumorphic-btn-subtle px-4 py-1.5 rounded-full flex items-center gap-1.5 hover:scale-105 transition-transform">
+<span class="text-[10px] font-bold uppercase tracking-wider text-[#0d1b0d]">View Profile</span>
+<span class="material-symbols-outlined text-primary text-[16px] font-bold">chevron_right</span>
+</button>
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]">star</span>
+<span class="text-sm font-bold text-[#0d1b0d]">5.0</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="col-span-4 flex flex-col gap-6">
+<section class="neumorphic-card p-6 rounded-xl">
+<div class="flex items-center gap-2 mb-6">
+<span class="bg-primary text-white size-6 flex items-center justify-center rounded-full text-xs font-bold">3</span>
+<h2 class="text-xl font-bold text-[#0d1b0d]">Select Date &amp; Time</h2>
+</div>
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4 px-2">
+<span class="font-bold">October 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined cursor-pointer text-gray-400">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer text-[#0d1b0d]">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-xs font-bold text-gray-400 mb-2">
+<div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div><div>SU</div>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<div class="p-2 text-gray-300">25</div><div class="p-2 text-gray-300">26</div><div class="p-2 text-gray-300">27</div><div class="p-2 text-gray-300">28</div><div class="p-2 text-gray-300">29</div><div class="p-2 text-gray-300">30</div><div class="p-2">1</div>
+<div class="p-2">2</div><div class="p-2">3</div><div class="p-2">4</div><div class="p-2">5</div><div class="p-2">6</div><div class="p-2">7</div><div class="p-2">8</div>
+<div class="p-2">9</div><div class="p-2">10</div><div class="p-2">11</div><div class="p-2">12</div><div class="p-2">13</div><div class="p-2">14</div><div class="p-2">15</div>
+<div class="p-2">16</div><div class="p-2">17</div><div class="p-2">18</div><div class="p-2">19</div><div class="p-2">20</div><div class="p-2">21</div><div class="p-2">22</div>
+<div class="p-2">23</div><div class="p-2 bg-primary text-white rounded-full font-bold shadow-lg cursor-pointer">24</div><div class="p-2 hover:bg-primary/10 rounded-full cursor-pointer">25</div><div class="p-2 hover:bg-primary/10 rounded-full cursor-pointer">26</div><div class="p-2 hover:bg-primary/10 rounded-full cursor-pointer">27</div><div class="p-2">28</div><div class="p-2">29</div>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-gray-500 mb-4 px-1 uppercase tracking-wider">Available Slots</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="neumorphic-pill py-3 px-4 rounded-full text-center text-sm font-bold cursor-pointer hover:bg-primary/5 transition-all">09:00 AM</div>
+<div class="neumorphic-inset py-3 px-4 rounded-full text-center text-sm font-bold border-2 border-primary text-[#0d1b0d]">10:30 AM</div>
+<div class="neumorphic-pill py-3 px-4 rounded-full text-center text-sm font-bold cursor-pointer hover:bg-primary/5 transition-all">11:15 AM</div>
+<div class="neumorphic-pill py-3 px-4 rounded-full text-center text-sm font-bold cursor-pointer hover:bg-primary/5 transition-all">02:00 PM</div>
+<div class="neumorphic-pill py-3 px-4 rounded-full text-center text-sm font-bold cursor-pointer hover:bg-primary/5 transition-all">03:45 PM</div>
+<div class="neumorphic-pill py-3 px-4 rounded-full text-center text-sm font-bold cursor-pointer hover:bg-primary/5 transition-all text-gray-400 cursor-not-allowed">05:00 PM</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 p-8 flex justify-center items-end pointer-events-none">
+<div class="max-w-[1200px] w-full flex justify-end">
+<div class="neumorphic-card p-8 rounded-3xl w-full max-w-sm pointer-events-auto border-4 border-white">
+<h4 class="text-xl font-black mb-4">Summary</h4>
+<div class="flex flex-col gap-3 mb-8">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary">person</span>
+<span class="font-bold">Dr. Marcus Thorne</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-bold">Oct 24, 2023 • 10:30 AM</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary">medical_information</span>
+<span class="font-bold">General Consultation</span>
+</div>
+</div>
+<button class="w-full bg-primary text-[#0d1b0d] font-black text-lg py-5 rounded-full shadow-[0_10px_20px_rgba(19,236,19,0.3)] hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                    Confirm Appointment
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center text-[10px] text-gray-400 mt-4 uppercase tracking-widest font-bold">No payment required today</p>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

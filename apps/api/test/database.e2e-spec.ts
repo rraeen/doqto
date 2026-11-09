@@ -53,6 +53,15 @@ describe('database layer (BE-03)', () => {
       '0002-sprint2-doctor-clinic-indexes',
       '0003-sprint3-clinic-console-indexes',
       '0004-sprint4-notifications-indexes',
+      '0005-sprint5-booking-indexes',
+      '0006-sprint6-review-indexes',
+      '0007-sprint7-record-indexes',
+      '0008-console-account-indexes',
+      '0009-organization-unit-membership-indexes',
+      '0010-accounts-to-organizations',
+      '0011-doctor-partial-indexes',
+      '0012-reopen-unlistable-clinics',
+      '0013-chat-message-indexes',
     ]);
     const names = async (c: string) =>
       (await indexes(c)).map((i) => `${JSON.stringify(i.key)}${i.unique ? ' unique' : ''}`);

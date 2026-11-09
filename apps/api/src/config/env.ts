@@ -19,6 +19,7 @@ const csv = z
 
 const duration = z
   .string()
+  .trim()
   .regex(/^\d+[smhd]$/, 'Expected a duration like 15m')
   .transform((v) => {
     const n = Number(v.slice(0, -1));
@@ -60,12 +61,38 @@ export const EnvSchema = z.object({
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).max(90).default(30),
   HASH_PEPPER: z.string().min(16, 'HASH_PEPPER must be at least 16 characters'),
 
+  /**
+   * Login for the Doqto team (the admin area of the console). When both are set, the API creates or updates this team account
+   * at every start, so changing them and restarting changes the login. Empty means "do not manage
+   * an admin from .env" (use `pnpm --filter @doqto/api admin:create` instead).
+   */
+  ADMIN_EMAIL: z
+    .string()
+    .default('')
+    .transform((v) => v.trim().toLowerCase())
+    .refine((v) => v === '' || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), 'ADMIN_EMAIL must be an email address')
+    .transform((v) => v || undefined),
+  ADMIN_PASSWORD: z
+    .string()
+    .default('')
+    .refine(
+      (v) => v === '' || (v.length >= 10 && v.length <= 128 && /[A-Za-z]/.test(v) && /\d/.test(v)),
+      'ADMIN_PASSWORD needs 10 or more characters with a letter and a number',
+    )
+    .transform((v) => v || undefined),
+  ADMIN_NAME: z.string().trim().min(2).max(120).default('Doqto Admin'),
+
   /** Run the jobs worker and crons in this process (BE-19). Tests and one-off scripts set `false`. */
   JOBS_ENABLED: z
     .enum(['true', 'false'])
     .default('true')
     .transform((v) => v === 'true'),
   JOB_POLL_MS: z.coerce.number().int().min(200).max(60_000).default(5000),
+
+  /** Web Push (INT-16). All three empty means no push; generate a pair with `npx web-push generate-vapid-keys`. */
+  VAPID_PUBLIC_KEY: z.string().default(''),
+  VAPID_PRIVATE_KEY: z.string().default(''),
+  VAPID_SUBJECT: z.string().default('mailto:contact@doqto.in'),
 
   THROTTLE_LIMIT: z.coerce.number().int().min(1).default(100),
   THROTTLE_TTL_SECONDS: z.coerce.number().int().min(1).default(60),
@@ -75,7 +102,11 @@ export type Env = z.infer<typeof EnvSchema>;
 
 /** Used by `ConfigModule.forRoot({ validate })`. Throws one readable error listing every problem. */
 export function validateEnv(raw: Record<string, unknown>): Env {
-  const parsed = EnvSchema.safeParse(raw);
+  const trimmed: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    trimmed[key] = typeof value === 'string' ? value.trim() : value;
+  }
+  const parsed = EnvSchema.safeParse(trimmed);
   if (!parsed.success) {
     const lines = parsed.error.issues.map(
       (i) => `  - ${i.path.join('.') || '(root)'}: ${i.message}`,
@@ -98,5 +129,7 @@ export function validateEnv(raw: Record<string, unknown>): Env {
       `Refusing to start (TDD 13 demo safety):\n${unsafe.map((p) => `  - ${p}`).join('\n')}`,
     );
   }
-  return env;
+  // Nest copies what this returns into process.env. Keep the variables the schema does not list
+  // (RAZORPAY_*, R2_*, WhatsApp, SMS...): the integrations read them straight from process.env.
+  return { ...trimmed, ...env } as Env;
 }

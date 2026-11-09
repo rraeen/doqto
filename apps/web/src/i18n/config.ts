@@ -7,6 +7,8 @@ export const defaultLocale: Locale = 'en';
 export const LOCALE_COOKIE = 'doqto_lang';
 
 export const localeNames: Record<Locale, string> = { en: 'English', hi: 'हिन्दी' };
+/** Two-letter labels for tight spaces such as the landing nav. */
+export const localeShort: Record<Locale, string> = { en: 'EN', hi: 'हि' };
 
 const catalogs: Record<Locale, Messages> = { en, hi };
 

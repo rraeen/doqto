@@ -31,8 +31,9 @@ export type NotificationStatus = z.infer<typeof NotificationStatusSchema>;
 export const WHATSAPP_ALERTS_PER_DAY = 4;
 
 /**
- * `GET /me/notifications` (demo mode only; 404 in live): the messages the patient would get,
- * newest first. `text` is the rendered template; secret parameters (visit codes) show as `••••`.
+ * `GET /me/notifications`: the patient's in-app inbox, newest first (the same messages that go
+ * out by WhatsApp or SMS). `text` is the rendered template; secret parameters (visit codes) show
+ * as `••••`. Web Push copies are not listed twice.
  */
 export const MyNotificationSchema = z.object({
   id: ObjectIdSchema,
@@ -43,8 +44,16 @@ export const MyNotificationSchema = z.object({
   status: NotificationStatusSchema,
   createdAt: IsoDateTimeSchema,
   sentAt: IsoDateTimeSchema.nullable(),
+  /** Whether the patient has opened the inbox since this arrived. */
+  read: z.boolean(),
+  /** The booking it is about, so the inbox can open it; `null` for anything else. */
+  appointmentId: ObjectIdSchema.nullable(),
 });
 export type MyNotification = z.infer<typeof MyNotificationSchema>;
+
+/** `GET /me/notifications/unread-count`, for the bell's badge. */
+export const UnreadCountSchema = z.object({ count: z.number().int().nonnegative() });
+export type UnreadCount = z.infer<typeof UnreadCountSchema>;
 
 export const MyNotificationsQuerySchema = CursorQuerySchema.strict();
 export type MyNotificationsQuery = z.input<typeof MyNotificationsQuerySchema>;

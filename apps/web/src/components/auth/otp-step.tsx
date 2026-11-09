@@ -82,15 +82,17 @@ export function OtpStep({
   return (
     <form
       noValidate
-      className="space-y-6"
+      className="space-y-8 text-left"
       onSubmit={(e) => {
         e.preventDefault();
         if (code.length === otpLength && !needsNewCode) verify.mutate(code);
       }}
     >
-      <PageTitle description={t('auth.otpSubtitle', { phone: formatE164ForDisplay(phone) })}>
-        {t('auth.otpTitle')}
-      </PageTitle>
+      <div className="text-center">
+        <PageTitle description={t('auth.otpSubtitle', { phone: formatE164ForDisplay(phone) })}>
+          {t('auth.otpTitle')}
+        </PageTitle>
+      </div>
 
       {otp.channel === 'demo' && (
         <p

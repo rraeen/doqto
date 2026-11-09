@@ -9,7 +9,7 @@ import {
 const id = 'a'.repeat(24);
 
 describe('contract v2', () => {
-  it('is version 2', () => expect(CONTRACT_VERSION).toMatch(/^2\./));
+  it('is version 2 or later', () => expect(CONTRACT_VERSION).toMatch(/^[2-9]\./));
 
   it('schedules: defaults, capacity 1, no overlaps, one exception per date', () => {
     const ok = PutScheduleRequestSchema.parse({

@@ -27,7 +27,7 @@ async function main(): Promise<void> {
         clinics: app.get(getModelToken(Clinic.name)),
         schedules: app.get(getModelToken(ScheduleEntity.name)),
       },
-      { mode, adminPhone: process.env.DEMO_ADMIN_PHONE || undefined },
+      { mode, adminPhone: process.env.DEMO_ADMIN_PHONE || undefined, withExtras: true },
     );
     console.warn(
       `Seeded ${result.clinics} clinics and ${result.doctors} doctors into ${dbName}` +

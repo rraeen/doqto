@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unified Healthcare Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ecec",
+                        "background-light": "#f0f4f4",
+                        "background-dark": "#0a1414",
+                        "neu-light": "#ffffff",
+                        "neu-shadow": "#d1d9d9",
+                        "neu-dark-light": "#152a2a",
+                        "neu-dark-shadow": "#050a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1.5rem",
+                        "lg": "2.5rem",
+                        "xl": "4rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Neumorphic Utilities */
+        .neu-flat {
+            background: #f0f4f4;
+            box-shadow: 8px 8px 16px #d1d9d9, -8px -8px 16px #ffffff;
+        }
+        .dark .neu-flat {
+            background: #0a1414;
+            box-shadow: 8px 8px 16px #050a0a, -8px -8px 16px #152a2a;
+        }
+        
+        .neu-pressed {
+            background: #f0f4f4;
+            box-shadow: inset 6px 6px 12px #d1d9d9, inset -6px -6px 12px #ffffff;
+        }
+        .dark .neu-pressed {
+            background: #0a1414;
+            box-shadow: inset 6px 6px 12px #050a0a, inset -6px -6px 12px #152a2a;
+        }
+
+        .neu-pill {
+            background: #f0f4f4;
+            box-shadow: 4px 4px 8px #d1d9d9, -4px -4px 8px #ffffff;
+        }
+        .dark .neu-pill {
+            background: #0a1414;
+            box-shadow: 4px 4px 8px #050a0a, -4px -4px 8px #152a2a;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background: rgba(240, 244, 244, 0.7);
+        }
+        .dark .glass-nav {
+            background: rgba(10, 20, 20, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b1b] dark:text-white min-h-screen">
+<!-- Top Floating Navbar -->
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl">
+<div class="glass-nav neu-flat px-6 py-3 rounded-full flex items-center justify-between border border-white/20 dark:border-white/5">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined font-bold">medical_services</span>
+</div>
+<span class="text-lg font-extrabold tracking-tight hidden md:block">UnifiedCare</span>
+</div>
+<div class="flex-1 max-w-md px-8">
+<div class="neu-pressed rounded-full flex items-center px-4 h-11 w-full">
+<span class="material-symbols-outlined text-[#4c9a9a] text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-[#4c9a9a]" placeholder="Search patients or records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="neu-pill size-11 rounded-full flex items-center justify-center text-[#4c9a9a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Dr. Sarah Connor</p>
+<p class="text-[10px] text-[#4c9a9a] font-medium uppercase tracking-wider">Cardiologist</p>
+</div>
+<div class="size-11 rounded-full border-2 border-primary p-0.5 neu-flat overflow-hidden">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Professional female doctor portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2kkuNQRS7kffZDVfpnuLEkI6XTwucGP48d4Hj34YWDjMLFowT1j-aP1pQg5RInT88FbmhoYSPhK6idNPlPneSygG8yvL5cuZligCns1Y3eVn855IYjuHwDZuMbv2XFu0NCUmi9T9r9XCcUOLqO67v7tTR_SoIw7xGiJDX51wz0iqn4XncAsEeZ_jR8FqlngT78TjJJLRGx4WtjjlZWZjmPVW0OxzQMr9whe_qGO3EAvcuV5Yg6j8Ag8pSHb9v0C8WS6zZhMPWQAQX')"></div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex pt-28 px-8 gap-8 max-w-7xl mx-auto h-full min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:flex flex-col gap-6 py-4">
+<div class="flex flex-col gap-6 sticky top-32">
+<button class="neu-pressed size-14 rounded-2xl flex items-center justify-center text-primary" title="Home">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</button>
+<button class="neu-flat size-14 rounded-2xl flex items-center justify-center text-[#4c9a9a] hover:text-primary transition-all" title="Patients">
+<span class="material-symbols-outlined text-2xl">person_search</span>
+</button>
+<button class="neu-flat size-14 rounded-2xl flex items-center justify-center text-[#4c9a9a] hover:text-primary transition-all" title="Analytics">
+<span class="material-symbols-outlined text-2xl">monitoring</span>
+</button>
+<button class="neu-flat size-14 rounded-2xl flex items-center justify-center text-[#4c9a9a] hover:text-primary transition-all" title="Messages">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+</button>
+<div class="h-px w-8 mx-auto bg-neu-shadow dark:bg-neu-dark-light"></div>
+<button class="neu-flat size-14 rounded-2xl flex items-center justify-center text-[#4c9a9a] hover:text-primary transition-all" title="Settings">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 pb-12">
+<!-- Header Section -->
+<section class="mb-10 px-2">
+<h1 class="text-4xl font-extrabold tracking-tight mb-2">Good morning, <span class="text-primary">Dr. Sarah</span></h1>
+<div class="flex items-center gap-4 text-[#4c9a9a] font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+<span>Monday, October 24</span>
+</div>
+<span class="text-neu-shadow">|</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg">location_on</span>
+<span>Central City Clinic</span>
+</div>
+</div>
+</section>
+<!-- Action Tiles Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+<!-- Appointments -->
+<div class="neu-flat p-8 rounded-[2rem] flex flex-col items-start gap-4 group hover:-translate-y-1 transition-transform cursor-pointer">
+<div class="size-16 rounded-full flex items-center justify-center bg-primary text-background-dark shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-3xl font-bold">calendar_month</span>
+</div>
+<div>
+<h2 class="text-xl font-bold mb-1">Appointments</h2>
+<p class="text-[#4c9a9a] text-sm mb-4">12 Scheduled for today</p>
+</div>
+<div class="w-full h-px bg-neu-shadow dark:bg-neu-dark-light mb-2"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                        View Schedule <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+<!-- Records -->
+<div class="neu-flat p-8 rounded-[2rem] flex flex-col items-start gap-4 group hover:-translate-y-1 transition-transform cursor-pointer">
+<div class="size-16 rounded-full flex items-center justify-center bg-primary text-background-dark shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-3xl font-bold">folder_shared</span>
+</div>
+<div>
+<h2 class="text-xl font-bold mb-1">Patient Records</h2>
+<p class="text-[#4c9a9a] text-sm mb-4">Access 4,200+ files</p>
+</div>
+<div class="w-full h-px bg-neu-shadow dark:bg-neu-dark-light mb-2"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                        Open Database <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+<!-- Consultations -->
+<div class="neu-flat p-8 rounded-[2rem] flex flex-col items-start gap-4 group hover:-translate-y-1 transition-transform cursor-pointer">
+<div class="size-16 rounded-full flex items-center justify-center bg-primary text-background-dark shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-3xl font-bold">videocam</span>
+</div>
+<div>
+<h2 class="text-xl font-bold mb-1">Consultations</h2>
+<p class="text-[#4c9a9a] text-sm mb-4">4 Pending in queue</p>
+</div>
+<div class="w-full h-px bg-neu-shadow dark:bg-neu-dark-light mb-2"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                        Start Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</section>
+<!-- Live Vitals Monitoring Section -->
+<section class="neu-flat p-8 rounded-[2.5rem] mb-10">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-2xl font-bold flex items-center gap-3">
+                            Live Vitals Monitor
+                            <span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+</span>
+</h2>
+<p class="text-[#4c9a9a] text-sm">Monitoring Patient: <span class="font-bold text-[#0d1b1b] dark:text-white">John Doe, Room 402</span></p>
+</div>
+<div class="flex gap-4">
+<div class="neu-pressed px-4 py-2 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<span class="font-extrabold text-xl">72 <span class="text-xs text-[#4c9a9a] font-normal tracking-tighter">BPM</span></span>
+</div>
+<div class="neu-pressed px-4 py-2 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">air</span>
+<span class="font-extrabold text-xl">98 <span class="text-xs text-[#4c9a9a] font-normal tracking-tighter">%O2</span></span>
+</div>
+</div>
+</div>
+<!-- Neumorphic Graph Area -->
+<div class="neu-pressed rounded-3xl h-64 w-full relative overflow-hidden flex items-center justify-center">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:rgba(19, 236, 236, 0.2);stop-opacity:1"></stop>
+<stop offset="50%" style="stop-color:rgba(19, 236, 236, 1);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(19, 236, 236, 0.2);stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<!-- Fake soft clinical graph line -->
+<path d="M0,100 Q50,120 100,80 T200,100 T300,60 T400,110 T500,90 T600,130 T700,70 T800,100 T900,80 T1000,110" fill="none" stroke="url(#lineGradient)" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<!-- Overlay shadow to make it feel deeper -->
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_4px_10px_rgba(0,0,0,0.05)] rounded-3xl"></div>
+<div class="absolute bottom-4 left-6 flex gap-8 text-[10px] text-[#4c9a9a] font-bold tracking-widest uppercase">
+<span>Real-time Pulse Oximetry Data</span>
+<span class="flex items-center gap-1"><span class="size-1.5 rounded-full bg-primary"></span> Signal Stable</span>
+</div>
+</div>
+</section>
+<!-- Bottom Quick Metrics -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="neu-pill px-6 py-4 flex items-center justify-between rounded-full">
+<span class="text-sm font-bold text-[#4c9a9a]">New Referrals</span>
+<span class="bg-primary text-background-dark font-black px-3 py-1 rounded-full text-xs">8</span>
+</div>
+<div class="neu-pill px-6 py-4 flex items-center justify-between rounded-full">
+<span class="text-sm font-bold text-[#4c9a9a]">EHR Updates</span>
+<span class="bg-primary/20 text-primary font-black px-3 py-1 rounded-full text-xs">24</span>
+</div>
+<div class="neu-pill px-6 py-4 flex items-center justify-between rounded-full">
+<span class="text-sm font-bold text-[#4c9a9a]">Staff Online</span>
+<span class="bg-primary/20 text-primary font-black px-3 py-1 rounded-full text-xs">12</span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-background-dark font-extrabold px-6 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-xl shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+                    New Entry
+                </button>
+</section>
+</main>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none">
+<div class="absolute top-[10%] right-[10%] w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[10%] left-[10%] w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full"></div>
+</div>
+</body></html>

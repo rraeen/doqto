@@ -11,8 +11,12 @@ export default async function AdminLayout({ children }: { children: ReactNode })
     <>
       <AppHeader
         href="/admin"
-        badge={<Badge tone="info">{t('admin.title')}</Badge>}
-        right={<LanguageSwitch />}
+        badge={
+          <Badge tone="brand" className="hidden whitespace-nowrap min-[380px]:inline-flex">
+            {t('admin.title')}
+          </Badge>
+        }
+        right={<LanguageSwitch compact />}
       />
       <AdminNav />
       {children}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Patient Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#00e609",
+                        "surface-container-high": "#ebedeb",
+                        "error": "#ba1a1a",
+                        "on-primary": "#102210",
+                        "surface": "#f6f8f6",
+                        "on-error-container": "#410002",
+                        "on-secondary-container": "#002200",
+                        "primary": "#13ec13",
+                        "surface-dim": "#e0e4e0",
+                        "on-primary-container": "#002200",
+                        "surface-container-highest": "#e5e7e5",
+                        "on-secondary-fixed-variant": "#005300",
+                        "surface-container-low": "#f6f8f6",
+                        "secondary-fixed-dim": "#74de61",
+                        "primary-fixed": "#77ff62",
+                        "surface-variant": "#dee5db",
+                        "on-primary-fixed": "#002200",
+                        "outline": "#737973",
+                        "primary-container": "#13ec13",
+                        "on-surface-variant": "#475547",
+                        "surface-bright": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#a2ceda",
+                        "tertiary-container": "#beefd2",
+                        "on-background": "#0f170f",
+                        "inverse-primary": "#00e600",
+                        "on-surface": "#0f170f",
+                        "on-secondary-fixed": "#002200",
+                        "on-tertiary-container": "#002019",
+                        "outline-variant": "#c2c9c2",
+                        "secondary-container": "#8df877",
+                        "secondary": "#3c4b36",
+                        "on-tertiary-fixed": "#001f26",
+                        "tertiary-fixed": "#beeaf7",
+                        "on-tertiary-fixed-variant": "#224c58",
+                        "surface-container": "#f1f3f1",
+                        "inverse-surface": "#2e312e",
+                        "tertiary": "#3b6470",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#005300",
+                        "secondary-fixed": "#90fb7a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f1f0",
+                        "on-secondary": "#ffffff",
+                        "background": "#f6f8f6",
+                        "surface-tint": "#13ec13"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f6f8f6; }
+        .neu-card {
+            box-shadow: 10px 10px 20px #e0e4e0, -10px -10px 20px #ffffff;
+        }
+        .neu-inset {
+            box-shadow: inset 4px 4px 8px #d1d4d1, inset -4px -4px 8px #ffffff;
+        }
+        .neu-primary {
+            box-shadow: 4px 4px 10px #10c810, -4px -4px 10px #16ff16;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f6f8f6] dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="menu">menu</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white font-['Manrope'] tracking-tight">HealSoft</span>
+</div>
+<div class="w-10 h-10 rounded-full neu-card overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close up of a smiling professional person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMftbgsCfQwuub2NVDgYnt1redCttkTUiVv2wVLL8QZCaJiUlx2JEC-qXxtt4VlMmgwGh4bcz5YsTU-o37fZXWD_nnr_MefI78Wjh1QqQGQhuI64lntKPHz0bUmEeDJv9UFo689D_7BRv2rHrlTx-jxaeRRzvazIiQYkULyhtRgcnJCmgtqlO1pE5zhIsAsLqMGacU9CRG3XQipi_wp02YddkXTz8hJ71DZNXkR7qA1pgC9Ffk5q11ND3P7SC4J8BWgsdbDDKkpP1t"/>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-5 space-y-12">
+<!-- Hero Section -->
+<section class="space-y-8">
+<div class="space-y-4">
+<h1 class="text-[3rem] font-black leading-tight tracking-tight text-on-surface">Find Trusted Doctors Near You</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">Experience a living interface designed for your health journey. Modern care, tactile convenience.</p>
+</div>
+<div class="flex flex-col gap-4">
+<button class="bg-primary text-on-primary font-black py-4 px-8 rounded-full neu-primary transition-transform active:scale-95 text-lg">
+                    Book Appointment
+                </button>
+<button class="bg-surface text-on-surface font-bold py-4 px-8 rounded-full neu-card transition-transform active:scale-95 text-lg">
+                    Learn More
+                </button>
+</div>
+<div class="w-full h-64 rounded-xl neu-card overflow-hidden mt-6">
+<img alt="Medical professional" class="w-full h-full object-cover" data-alt="Female doctor holding a digital tablet in a bright clinic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhSvSjhs7AAw5gOm9X_07FAozEZBOedl3xXSvG6MfwivYFi7c-erygnDnh9Nk8k1-SScK4bEcYSyxjcmqno9vF1YKAVApBNcbcaywQD4pmxiJA_mEexBbXFo_ohs-hmW3xLfymmnqCEAN9Hm_y1L4gPtQa0eNJnPlSvD1hfpHjyXA0tEEvc1f95p8rXgvGFHrvbeKcx8xleKRJaFU3MqvSIq-BXC1CK2tJKgU0hQ7iulEUJgXn2JemLlrc8KFOtfeDY4DlHPjpJ8-Y"/>
+</div>
+</section>
+<!-- Search Section -->
+<section class="space-y-4">
+<div class="neu-card p-6 rounded-xl space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="search">search</span>
+<input class="w-full bg-surface border-none rounded-full py-4 pl-12 pr-4 neu-inset focus:ring-2 focus:ring-primary" placeholder="Doctor Name" type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="medical_services">medical_services</span>
+<input class="w-full bg-surface border-none rounded-full py-4 pl-12 pr-4 neu-inset focus:ring-2 focus:ring-primary" placeholder="Specialty" type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="location_on">location_on</span>
+<input class="w-full bg-surface border-none rounded-full py-4 pl-12 pr-4 neu-inset focus:ring-2 focus:ring-primary" placeholder="Location" type="text"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-black py-4 rounded-full neu-primary mt-2">
+                    Search Doctors
+                </button>
+</div>
+</section>
+<!-- Specialty Categories -->
+<section class="space-y-4">
+<h2 class="text-xl font-black text-on-surface ml-1">Specialties</h2>
+<div class="flex gap-4 overflow-x-auto pb-6 hide-scrollbar">
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl neu-card flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="favorite">favorite</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider">Cardiology</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl neu-card flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="psychology">psychology</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider">Neurology</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl neu-card flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="child_care">child_care</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider">Pediatrics</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl neu-card flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="visibility">visibility</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider">Ophthalmology</span>
+</div>
+<div class="flex-none flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl neu-card flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="dentistry">dentistry</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider">Dental</span>
+</div>
+</div>
+</section>
+<!-- Feature Section (Bento Inspired) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="col-span-2 neu-card p-6 rounded-xl flex items-center gap-4">
+<div class="bg-primary/20 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+</div>
+<div>
+<h3 class="font-black">Telehealth Ready</h3>
+<p class="text-xs text-on-surface-variant">Consult from anywhere</p>
+</div>
+</div>
+<div class="neu-card p-6 rounded-xl space-y-3">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+<h3 class="font-black text-sm">Verified Doctors</h3>
+</div>
+<div class="neu-card p-6 rounded-xl space-y-3">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<h3 class="font-black text-sm">24/7 Access</h3>
+</div>
+</section>
+<!-- Doctor List -->
+<section class="space-y-6">
+<div class="flex justify-between items-end px-1">
+<h2 class="text-2xl font-black text-on-surface">Top Doctors</h2>
+<span class="text-primary font-bold text-sm uppercase tracking-widest">View All</span>
+</div>
+<div class="space-y-6">
+<!-- Doctor Card 1 -->
+<div class="neu-card p-5 rounded-xl flex gap-4">
+<img alt="Dr. Sarah Jenkins" class="w-24 h-24 rounded-lg object-cover flex-none" data-alt="Portrait of a professional male doctor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJhqSRElCofrwVnxccproB5d39XcLjA3z45enr4R0i_tuYopuhi0e6i780GxtnDmy18oj0EnW-5Ow6lNO4r3zGmJfGyExlPrxaOER8DpHOmJkJQf81vgiq5LE9OTDpFz8MQHaBxv9Ts-wDaa95ZiMenmQDh9iUFEgmVXGuiJF0E9iqDCa_20uBlobeKRGddu_WZFoCDhlmbhkDGtlMLz5Za4SFsAve2F2WIR8M8W05AMMIGi7sc6Yx3Bn8Dr4lFIq6XAAAQooG6tOz"/>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<h4 class="font-black text-lg">Dr. Marcus Thorne</h4>
+<p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">Cardiologist • 12 yrs exp</p>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="star" data-weight="fill">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-xs text-on-surface-variant">(120 reviews)</span>
+</div>
+<button class="bg-primary text-on-primary text-[10px] font-black px-4 py-2 rounded-full w-fit neu-primary self-end">BOOK</button>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="neu-card p-5 rounded-xl flex gap-4">
+<img alt="Dr. Elena Rodriguez" class="w-24 h-24 rounded-lg object-cover flex-none" data-alt="Portrait of a professional female doctor in white coat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACMrN5TLegKS_5rpYI3NEiuoBMcILWb_6DzNRyFaOlzzzsuaiwF2KHSgDNDnMp4W186bxeUN3UbfcjiqkiOkMI2VX5UHSBghcKRRgs60vThEXdzjRmwh5lWrDBWRMhhDJVMbcisbxP8D93WYJwPuDJp7DxJXaaIlO9TOKvuhnXUiYwcBgX_k4CQPjdD5DpgPqcpGef47vlTC0c53JZVQYjvLle9rxpqkQptnm2DIw6MKIGSJuX_BQ7sy_OB1_MJzeqTe_GUnS4lj67"/>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<h4 class="font-black text-lg">Dr. Elena Rodriguez</h4>
+<p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">Pediatrician • 8 yrs exp</p>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="star" data-weight="fill">star</span>
+<span class="text-sm font-bold">4.8</span>
+<span class="text-xs text-on-surface-variant">(95 reviews)</span>
+</div>
+<button class="bg-primary text-on-primary text-[10px] font-black px-4 py-2 rounded-full w-fit neu-primary self-end">BOOK</button>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works (Vertical Stepper) -->
+<section class="space-y-8 py-4">
+<h2 class="text-2xl font-black text-on-surface px-1">How It Works</h2>
+<div class="space-y-12 relative">
+<!-- Connecting Line -->
+<div class="absolute left-[27px] top-4 bottom-4 w-1 bg-surface-dim rounded-full"></div>
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-14 h-14 rounded-full neu-card flex items-center justify-center text-primary font-black text-xl flex-none bg-surface">1</div>
+<div class="pt-2">
+<h4 class="font-black text-lg">Search Specialist</h4>
+<p class="text-on-surface-variant text-sm">Browse thousands of verified medical experts in your city.</p>
+</div>
+</div>
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-14 h-14 rounded-full neu-card flex items-center justify-center text-primary font-black text-xl flex-none bg-surface">2</div>
+<div class="pt-2">
+<h4 class="font-black text-lg">View Profiles</h4>
+<p class="text-on-surface-variant text-sm">Check experience, availability, and patient reviews for trust.</p>
+</div>
+</div>
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-14 h-14 rounded-full neu-card flex items-center justify-center text-primary font-black text-xl flex-none bg-surface">3</div>
+<div class="pt-2">
+<h4 class="font-black text-lg">Instant Booking</h4>
+<p class="text-on-surface-variant text-sm">Pick a time that works for you and confirm in one click.</p>
+</div>
+</div>
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-14 h-14 rounded-full neu-card flex items-center justify-center text-primary font-black text-xl flex-none bg-surface">4</div>
+<div class="pt-2">
+<h4 class="font-black text-lg">Visit &amp; Heal</h4>
+<p class="text-on-surface-variant text-sm">Get the care you deserve and update your digital health record.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof -->
+<section class="space-y-6">
+<h2 class="text-2xl font-black text-on-surface px-1">Patient Stories</h2>
+<div class="neu-card p-6 rounded-xl space-y-4">
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<p class="italic text-on-surface-variant leading-relaxed">"HealSoft made it so easy to find a neurologist. The interface is beautiful and booking took less than a minute."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dim"></div>
+<div>
+<p class="font-black text-sm">Samantha Reed</p>
+<p class="text-xs text-on-surface-variant">Patient since 2023</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="pt-8 pb-4 space-y-6 text-center border-t border-surface-dim/10">
+<div class="flex justify-center gap-6">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Privacy</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Terms</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Support</span>
+</div>
+<p class="text-xs text-outline-variant">© 2024 HealSoft Technologies. All Rights Reserved.</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-[#f6f8f6] dark:bg-slate-900 rounded-t-[2rem] z-50 shadow-[0_-10px_20px_#e0e4e0] flex justify-around items-center py-4 px-2">
+<a class="flex flex-col items-center justify-center text-[#13ec13] scale-110" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="search">search</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="description">description</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

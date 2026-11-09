@@ -10,6 +10,7 @@ import { IS_PUBLIC_KEY } from '../decorators';
 interface AccessClaims {
   sub: string;
   roles: string[];
+  aud?: unknown;
 }
 
 function bearer(req: Request): string | undefined {
@@ -45,6 +46,8 @@ export class JwtAuthGuard implements CanActivate {
     } catch {
       throw AppException.unauthenticated('Your session has expired. Please log in again.');
     }
+    // Tokens made for another audience (the provider console) never open patient routes.
+    if (claims.aud !== undefined) throw AppException.unauthenticated();
     if (typeof claims.sub !== 'string' || !Array.isArray(claims.roles))
       throw AppException.unauthenticated();
     req.user = {

@@ -3,7 +3,7 @@ import { Page } from '@/components/shell/page';
 
 export default function MoreRoute() {
   return (
-    <Page>
+    <Page size="medium">
       <MoreMenu />
     </Page>
   );

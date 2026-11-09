@@ -1,6 +1,7 @@
 import { ProviderInputError, ProviderNotConfiguredError } from '../errors';
 import type { IntegrationsConfig } from '../integrations.config';
 import {
+  EMPTY_SHA256,
   presignUrl,
   sha256Hex,
   signRequestHeaders,
@@ -48,6 +49,24 @@ export class R2StorageProvider implements StorageProvider {
     const body = stripImageMetadata(request.body, request.contentType);
     const stored = await this.put(this.required('publicBucket'), { ...request, body });
     return { ...stored, url: `${baseUrl}/${uriEncode(request.key, true)}` };
+  }
+
+  async deletePrivate(key: string): Promise<void> {
+    assertObjectKey(key);
+    const path = `/${this.required('privateBucket')}/${uriEncode(key, true)}`;
+    const headers = signRequestHeaders(this.credentials(), {
+      method: 'DELETE',
+      host: this.host(),
+      path,
+      headers: {},
+      payloadHash: EMPTY_SHA256,
+    });
+    const res = await this.fetchImpl(`https://${this.host()}${path}`, {
+      method: 'DELETE',
+      headers,
+    });
+    // 204 on delete, 404 when it is already gone: both are fine.
+    if (!res.ok && res.status !== 404) throw new Error(`R2 delete failed with HTTP ${res.status}`);
   }
 
   async signedUrl(

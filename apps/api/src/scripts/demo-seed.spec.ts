@@ -23,7 +23,7 @@ describe('demo seed', () => {
   it('has 3 clinics and 5 doctors, each doctor on a known clinic, and no admin phone in source', () => {
     expect(SEED.clinics).toHaveLength(3);
     expect(SEED.doctors).toHaveLength(5);
-    const keys = new Set(SEED.clinics.map((c) => c.key));
+    const keys = new Set<string>(SEED.clinics.map((c) => c.key));
     expect(SEED.doctors.every((d) => keys.has(d.clinic))).toBe(true);
     expect(JSON.stringify(SEED)).not.toContain('admin":{');
     expect(SEED.weekly).toHaveLength(12);

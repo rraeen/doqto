@@ -20,6 +20,15 @@ export interface IntegrationsConfig {
     apiKey?: string;
     apiBaseUrl?: string;
     webhookSecret?: string;
+    /** Meta Cloud API: the string typed in the webhook setup; Meta sends it back to prove the URL is yours. */
+    verifyToken?: string;
+    /** Meta Cloud API: the id of the sending number (not the phone number itself). */
+    phoneNumberId?: string;
+    businessAccountId?: string;
+    /** Demo mode with a real sender: only these E.164 numbers get real WhatsApp messages. */
+    testRecipients: string[];
+    /** Send plain text instead of templates (Meta test account only). */
+    sendAsText: boolean;
     senderNumber?: string;
   };
   msg91: { authKey?: string; senderId?: string; dltEntityId?: string; otpTemplateId?: string };
@@ -65,6 +74,14 @@ export function loadIntegrationsConfig(env: Env = process.env): IntegrationsConf
       apiKey: opt(env, 'WHATSAPP_API_KEY'),
       apiBaseUrl: opt(env, 'WHATSAPP_API_BASE_URL'),
       webhookSecret: opt(env, 'WHATSAPP_WEBHOOK_SECRET'),
+      verifyToken: opt(env, 'WHATSAPP_VERIFY_TOKEN'),
+      phoneNumberId: opt(env, 'WHATSAPP_PHONE_NUMBER_ID'),
+      businessAccountId: opt(env, 'WHATSAPP_BUSINESS_ACCOUNT_ID'),
+      sendAsText: opt(env, 'WHATSAPP_SEND_AS_TEXT') === 'true',
+      testRecipients: (opt(env, 'WHATSAPP_TEST_RECIPIENTS') ?? '')
+        .split(',')
+        .map((n) => n.trim())
+        .filter(Boolean),
       senderNumber: opt(env, 'WHATSAPP_SENDER_NUMBER'),
     },
     msg91: {

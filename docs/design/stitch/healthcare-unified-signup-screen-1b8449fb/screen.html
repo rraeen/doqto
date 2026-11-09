@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Healthcare Unified Signup Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f4f0",
+                        "background-dark": "#0d1b0d",
+                        "neu-light": "#ffffff",
+                        "neu-shadow": "#d1d9e6",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neu-flat': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff',
+                        'neu-pressed': 'inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff',
+                        'neu-btn': '0 10px 25px -5px rgba(19, 236, 19, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f0f4f0;
+        }
+        /* Custom Neumorphic Utilities */
+        .neu-card {
+            background: #f0f4f0;
+            box-shadow: 20px 20px 60px #ccd1cc, -20px -20px 60px #ffffff;
+        }
+        .neu-inset {
+            background: #f0f4f0;
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .neu-switch-bg {
+            background: #f0f4f0;
+            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+        }
+        .neu-switch-active {
+            background: #f0f4f0;
+            box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+<!-- Top Navigation Bar Component -->
+<header class="w-full px-6 py-4 lg:px-20">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3 text-background-dark dark:text-white">
+<div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary text-background-dark shadow-lg">
+<span class="material-symbols-outlined font-bold">medical_services</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">HealthGuard</h2>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Support</a>
+<button class="bg-white dark:bg-gray-800 shadow-md px-6 py-2.5 rounded-full text-sm font-bold text-background-dark dark:text-white hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700">
+                    Log In
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-1 flex items-center justify-center p-6 lg:p-12">
+<!-- Central Neumorphic Container -->
+<div class="neu-card dark:bg-gray-900 dark:shadow-none w-full max-w-[900px] rounded-[40px] p-8 lg:p-16 flex flex-col items-center">
+<!-- Headline Text Component -->
+<div class="text-center mb-10">
+<h1 class="text-4xl lg:text-5xl font-extrabold text-background-dark dark:text-white tracking-tight mb-4">Create Account</h1>
+<p class="text-gray-500 dark:text-gray-400 font-medium">Join our award-winning healthcare network today.</p>
+</div>
+<!-- Segmented Buttons Component (Role Switcher) -->
+<div class="w-full max-w-sm mb-12">
+<div class="neu-switch-bg dark:bg-gray-800 p-1.5 rounded-full flex gap-1">
+<label class="flex-1 relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="role" type="radio" value="patient"/>
+<div class="peer-checked:neu-switch-active peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:text-background-dark dark:peer-checked:text-white text-gray-500 py-3 rounded-full text-center text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">person</span>
+                            Patient
+                        </div>
+</label>
+<label class="flex-1 relative cursor-pointer group">
+<input class="peer sr-only" name="role" type="radio" value="doctor"/>
+<div class="peer-checked:neu-switch-active peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:text-background-dark dark:peer-checked:text-white text-gray-500 py-3 rounded-full text-center text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">stethoscope</span>
+                            Doctor
+                        </div>
+</label>
+</div>
+</div>
+<!-- Form Grid -->
+<form class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<!-- Text Field Component 1 -->
+<div class="flex flex-col gap-3">
+<label class="px-2 text-sm font-bold text-background-dark dark:text-gray-300 uppercase tracking-wider">Full Name</label>
+<div class="neu-inset dark:bg-gray-800 rounded-2xl flex items-center px-5 border border-transparent focus-within:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-gray-400 mr-3">badge</span>
+<input class="bg-transparent border-none focus:ring-0 w-full py-5 text-background-dark dark:text-white placeholder:text-gray-400 font-medium" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<!-- Text Field Component 2 -->
+<div class="flex flex-col gap-3">
+<label class="px-2 text-sm font-bold text-background-dark dark:text-gray-300 uppercase tracking-wider">Email Address</label>
+<div class="neu-inset dark:bg-gray-800 rounded-2xl flex items-center px-5 border border-transparent focus-within:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-gray-400 mr-3">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full py-5 text-background-dark dark:text-white placeholder:text-gray-400 font-medium" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<!-- Text Field Component 3 -->
+<div class="flex flex-col gap-3">
+<label class="px-2 text-sm font-bold text-background-dark dark:text-gray-300 uppercase tracking-wider">Phone Number</label>
+<div class="neu-inset dark:bg-gray-800 rounded-2xl flex items-center px-5 border border-transparent focus-within:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-gray-400 mr-3">call</span>
+<input class="bg-transparent border-none focus:ring-0 w-full py-5 text-background-dark dark:text-white placeholder:text-gray-400 font-medium" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<!-- Text Field Component 4 -->
+<div class="flex flex-col gap-3">
+<label class="px-2 text-sm font-bold text-background-dark dark:text-gray-300 uppercase tracking-wider">Password</label>
+<div class="neu-inset dark:bg-gray-800 rounded-2xl flex items-center px-5 border border-transparent focus-within:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-gray-400 mr-3">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full py-5 text-background-dark dark:text-white placeholder:text-gray-400 font-medium" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</form>
+<!-- Primary Action Button -->
+<button class="group relative w-full max-w-md bg-primary hover:bg-[#11d811] text-background-dark font-extrabold text-lg py-5 rounded-full shadow-neu-btn transition-all active:scale-95 flex items-center justify-center gap-3 overflow-hidden">
+<div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                Sign Up
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<!-- Footer Link -->
+<div class="mt-8 text-center">
+<p class="text-gray-500 dark:text-gray-400 font-medium">
+                    Already have an account? 
+                    <a class="text-background-dark dark:text-white font-bold hover:text-primary dark:hover:text-primary transition-colors underline underline-offset-4 decoration-primary/30" href="#">Log in</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Decorative Elements (Optional for background depth) -->
+<div class="fixed top-[-10%] left-[-5%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10"></div>
+</body></html>

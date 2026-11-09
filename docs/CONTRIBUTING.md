@@ -8,7 +8,7 @@ Only the owner writes inside its folders. Everyone may read everything.
 
 | Code | Workstream | Owns |
 | --- | --- | --- |
-| **FE** | Frontend (Next.js PWA: patient app, `/clinic`, `/admin`) | `apps/web/**` |
+| **FE** | Frontend: patient PWA, the console (doctors, staff, labs, pharmacies, admin), and the shared front-end packages | `apps/web/**`, `apps/console/**`, `packages/ui/**`, `packages/i18n/**`, `packages/api-client/**` |
 | **BE** | Backend (NestJS + MongoDB) and the API contract | `apps/api/**` except `apps/api/src/integrations/**`; `packages/shared/**` |
 | **INT** | Integration (providers, webhooks plumbing, hosting, CI, backups) | root config (`package.json`, `pnpm-workspace.yaml`, `tsconfig.base.json`, lint config, `.env.example`, `docker-compose.yml`), `apps/api/src/integrations/**`, `infra/**`, `.github/**`, `scripts/ops/**` |
 | **RD** | Review + Docs | `docs/**`, root `README.md` |

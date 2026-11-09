@@ -1,4 +1,4 @@
-import type { DaySheetItem } from '@doqto/shared';
+import type { Appointment, DaySheetItem } from '@doqto/shared';
 import type { AppointmentDocument } from './appointment.schema';
 
 const iso = (d?: Date | null) => (d ? d.toISOString() : null);
@@ -23,6 +23,7 @@ export function toDaySheetItem(a: AppointmentDocument): DaySheetItem {
     consultEndAt: iso(a.consultEndAt),
     visitVerified: Boolean(a.visitVerifiedAt),
     hasVisitCode: Boolean(a.visitCode?.hash),
+    rescheduled: (a.rescheduleCount ?? 0) > 0,
     createdAt: a.createdAt.toISOString(),
   };
 }
@@ -55,4 +56,47 @@ export function compareForDaySheet(a: AppointmentDocument, b: AppointmentDocumen
   }
   if (a.status === 'completed') return time(a.consultEndAt) - time(b.consultEndAt);
   return time(a.slotStart) - time(b.slotStart) || a.createdAt.getTime() - b.createdAt.getTime();
+}
+
+// ---------------------------------------------------------------- patient view (contract v3)
+
+/** A stored appointment as read by `.lean()` or as a document: only the fields the mappers use. */
+export type AppointmentRow = Pick<
+  AppointmentDocument,
+  | '_id'
+  | 'doctorId'
+  | 'clinicId'
+  | 'patientName'
+  | 'date'
+  | 'slotStart'
+  | 'slotEnd'
+  | 'source'
+  | 'status'
+  | 'holdExpiresAt'
+  | 'queueToken'
+  | 'checkInAt'
+  | 'visitVerifiedAt'
+  | 'reviewUnlockAt'
+  | 'createdAt'
+>;
+
+/** The patient's view of one appointment (`Appointment` in the contract). */
+export function toAppointment(a: AppointmentRow): Appointment {
+  return {
+    id: a._id.toHexString(),
+    doctorId: a.doctorId.toHexString(),
+    clinicId: a.clinicId.toHexString(),
+    patientName: a.patientName,
+    date: a.date,
+    slotStart: iso(a.slotStart),
+    slotEnd: iso(a.slotEnd),
+    source: a.source,
+    status: a.status,
+    holdExpiresAt: a.status === 'pending_payment' ? iso(a.holdExpiresAt) : null,
+    queueToken: a.queueToken ?? null,
+    checkInAt: iso(a.checkInAt),
+    visitVerified: Boolean(a.visitVerifiedAt),
+    reviewUnlockAt: iso(a.reviewUnlockAt),
+    createdAt: a.createdAt.toISOString(),
+  };
 }

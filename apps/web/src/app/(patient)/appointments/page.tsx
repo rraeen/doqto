@@ -1,6 +1,16 @@
-import { ComingSoon } from '@/components/shell/coming-soon';
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { AppointmentsPage } from '@/components/appointments/appointments-page';
+import { Page } from '@/components/shell/page';
 
-// Placeholder until FE-22 lands.
-export default function Placeholder() {
-  return <ComingSoon withNav={true} />;
+export const metadata: Metadata = { title: 'My appointments', robots: { index: false } };
+
+export default function AppointmentsRoute() {
+  return (
+    <Page size="wide">
+      <Suspense>
+        <AppointmentsPage />
+      </Suspense>
+    </Page>
+  );
 }

@@ -5,6 +5,7 @@ Three environments, one codebase. What differs is configuration only (TDD 10, TD
 | | Local | Demo (staging) | Production (INT-21) |
 | --- | --- | --- | --- |
 | Purpose | Development | Doctor and patient demos, staging for every merge | Real patients |
+| Console (providers and the Doqto team) | `pnpm dev` on :3010 | Own Vercel project and host (for example `console.` under the demo domain) | `console.doqto.in`, its own project, host-only cookies |
 | Web | `pnpm dev` on :3000 | Vercel project `doqto-web-demo`, `doqto-web-demo.vercel.app` (later its own domain, e.g. `demo.doqto.care`) | Vercel project `doqto-web`, `doqto.in` |
 | API | `pnpm dev` on :4000 | Render `doqto-api-demo` (free), `doqto-api-demo.onrender.com`, reached by browsers through the web app's `/api/v1` proxy | Render `doqto-api` (Starter), `api.doqto.in` behind Cloudflare |
 | Database | Docker Mongo replica set, `doqto_demo_local` | Atlas M0 (Mumbai), `doqto_demo` | Atlas M0 then Flex (Mumbai), `doqto_prod` |
@@ -22,7 +23,7 @@ Demo and production never share a database, a database user, a Render service, a
 cp .env.example .env            # defaults are local demo mode
 pnpm install                    # on the shared project folder: bash scripts/ops/workspace.sh
 pnpm db:up                      # MongoDB 8 replica set in Docker, waits until ready
-pnpm dev                        # API :4000 (Swagger /api/docs), web :3000, hot reload
+pnpm dev                        # API :4000 (Swagger /api/docs), web :3000, console :3010, hot reload
 pnpm ci:local                   # everything CI runs
 ```
 
@@ -62,7 +63,7 @@ MONGOMS_SYSTEM_BINARY=~/bin/mongod pnpm test:e2e
 | `PROVIDER_MODE` | `demo` | `demo` | `live` |
 | `API_PUBLIC_URL` | `http://localhost:4000` | `https://doqto-api-demo.onrender.com` | `https://api.doqto.in` |
 | `WEB_PUBLIC_URL` | `http://localhost:3000` | `https://doqto-web-demo.vercel.app` | `https://doqto.in` |
-| `CORS_ORIGINS` | `http://localhost:3000` | `https://doqto-web-demo.vercel.app` | `https://doqto.in,https://www.doqto.in` |
+| `CORS_ORIGINS` | `http://localhost:3000,http://localhost:3010` | `https://doqto-web-demo.vercel.app` | `https://doqto.in,https://www.doqto.in` |
 | `COOKIE_DOMAIN` | — | — (host-only, never a doqto.in domain) | `.doqto.in` |
 | `TRUST_PROXY` | `0` | `1` (Render) | `2` (Cloudflare + Render) |
 | `CLIENT_IP_HEADER` | empty | empty | `cf-connecting-ip` (only after INT-11 locks the origin) |
@@ -93,6 +94,7 @@ MONGOMS_SYSTEM_BINARY=~/bin/mongod pnpm test:e2e
 | `API_PROXY_TARGET` (server-side, for the rewrite) | — | `https://doqto-api-demo.onrender.com` | — |
 | `NEXT_PUBLIC_DEMO_MODE` | `true` | `true` | `false` |
 | `NEXT_PUBLIC_API_MOCKS` | `false` (or `true` for FE work) | `false` | `false` |
+| `NEXT_PUBLIC_CONSOLE_URL` | `http://localhost:3010` | the console demo host | `https://console.doqto.in` |
 | `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | `https://doqto-web-demo.vercel.app` | `https://doqto.in` |
 | `NEXT_PUBLIC_RAZORPAY_KEY_ID` | — | — | live key id (never the secret) |
 | `NEXT_PUBLIC_VAPID_PUBLIC_KEY` | — | optional | same as `VAPID_PUBLIC_KEY` |

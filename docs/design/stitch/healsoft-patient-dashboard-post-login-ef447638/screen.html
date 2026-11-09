@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft Patient Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-utilities">
+    /* Custom shadow for neu-morphic feel */
+    .shadow-neu {
+      box-shadow: 10px 10px 20px #e2e8e6, -10px -10px 20px #ffffff;
+    }
+    .shadow-neu-inset {
+      box-shadow: inset 4px 4px 8px #e2e8e6, inset -4px -4px 8px #ffffff;
+    }
+    .shadow-neu-sm {
+      box-shadow: 4px 4px 8px #e2e8e6, -4px -4px 8px #ffffff;
+    }
+    .bg-off-white {
+      background-color: #f4f7f5;
+    }
+    .text-brand-green {
+      color: #00d51a;
+    }
+    .bg-brand-green {
+      background-color: #00d51a;
+    }
+  </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-off-white font-sans text-gray-800 antialiased min-h-screen flex flex-col pb-24">
+<!-- BEGIN: Header Section -->
+<header class="pt-12 px-6 flex justify-between items-center" data-purpose="main-header">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white shadow-neu-sm">
+<i class="fa-solid fa-leaf"></i>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight text-gray-900">HealSoft</h1>
+<p class="text-[10px] font-bold tracking-widest text-brand-green uppercase">Patient Portal</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="w-10 h-10 rounded-full shadow-neu flex items-center justify-center text-gray-600 hover:text-brand-green transition-colors">
+<i class="fa-solid fa-bell"></i>
+</button>
+<div class="w-10 h-10 rounded-full shadow-neu overflow-hidden border-2 border-white">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6_sDolQrhyzFWvIB90N4A3hxIx2bVdtn7IsK0ASFptS8iTbu323VjApoXbe_zG-_GXbsFKGUb2IdApFJa4YMw7SyFkqIsvt8_FjyJTu3kng4J2rpCmy_ECoZ1IhlK3XXGjayUzt9K13PPexA9_wBf27oIqbb7zmjcII-m9qOsVcQtdPcuFF8PBnX6Zuy_vgQln0Cxt6m9NIVcEMKPSFjHGgVJNpYT5oU1gxt9_nZ-1ldXIIOHlJO2EnbG78zaeCpih8ROd_VBPlJA"/>
+</div>
+</div>
+</header>
+<!-- END: Header Section -->
+<main class="flex-1 px-6 pt-8 pb-6 flex flex-col gap-8" data-purpose="main-content">
+<!-- BEGIN: Greeting Section -->
+<section data-purpose="greeting">
+<h2 class="text-3xl font-extrabold text-gray-900 mb-2">Good morning, Raunak</h2>
+<p class="text-gray-500 text-sm">Your care is up to date &amp; appointments are sync'd.</p>
+</section>
+<!-- END: Greeting Section -->
+<!-- BEGIN: Search Bar -->
+<section data-purpose="search-bar">
+<div class="shadow-neu-inset rounded-2xl p-2 flex items-center bg-off-white">
+<div class="pl-4 pr-2 text-brand-green">
+<i class="fa-solid fa-search"></i>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm text-gray-700 placeholder-gray-400 py-3 px-2 w-full outline-none" placeholder="Search by name, specialty, or hospital..." type="text"/>
+<button class="bg-brand-green text-white px-5 py-2.5 rounded-xl font-medium text-sm shadow-md hover:bg-green-600 transition-colors whitespace-nowrap">Find Doctors</button>
+</div>
+</section>
+<!-- END: Search Bar -->
+<!-- BEGIN: Upcoming Appointment -->
+<section data-purpose="upcoming-appointment">
+<div class="shadow-neu rounded-[2rem] p-4 flex gap-4 bg-off-white relative overflow-hidden">
+<!-- Image placeholder -->
+<div class="w-[120px] rounded-2xl overflow-hidden bg-teal-100 flex-shrink-0 relative">
+<img alt="Dr. Sarah Jenkins" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu5dqeaZMN9JeBWk9PepJZwZ0l5QmtGb3ZucOdpZu1t4dVj_8jOLcsfGhDXCILglo6WgMwwgU1fZBmVVmNkDoe_uN5f4ZXDDhEydWe9h6QjgutuAChb-iDhZp33iO9MeUxkLjLe09O4BSXO0Y68njOvQRywd8So89gchv1BK5fkvijCEgUocytaXPt3rjLWfMKdGzFDJwYxEAPrmeWhXAP6ekKL4NDlQdlcGufBJ7rCDa33fDAOjrRS8B3MO2ajAI4pIid6fweo-kK"/>
+</div>
+<div class="flex-1 py-2 pr-2 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold text-brand-green bg-green-100 px-2 py-0.5 rounded-full uppercase">Confirmed</span>
+<span class="text-xs text-gray-500 font-medium">Tomorrow</span>
+</div>
+<p class="text-xs text-gray-500 font-medium">Primary Physician</p>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Dr. Sarah Jenkins</h3>
+<p class="text-xs text-gray-600 flex items-center gap-1.5 mb-4">
+<i class="fa-regular fa-clock text-gray-400"></i>
+              10:30 AM — Video Call
+            </p>
+</div>
+<button class="w-full bg-brand-green text-white py-3 rounded-xl font-medium text-sm flex items-center justify-center gap-2 shadow-md hover:bg-green-600 transition-colors">
+<i class="fa-solid fa-video"></i>
+            Join Consultation
+          </button>
+</div>
+</div>
+</section>
+<!-- END: Upcoming Appointment -->
+<!-- BEGIN: Quick Actions -->
+<section data-purpose="quick-actions">
+<h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-border-all text-brand-green"></i>
+        Quick Actions
+      </h3>
+<div class="flex justify-between w-full gap-2">
+<!-- Action 1 -->
+<button class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-3xl shadow-neu bg-off-white flex items-center justify-center text-brand-green text-xl hover:scale-105 transition-transform">
+<i class="fa-regular fa-calendar-check"></i>
+</div>
+<span class="text-xs font-semibold text-gray-700 text-center leading-tight">Book Visit</span>
+</button>
+<!-- Action 2 -->
+<button class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-3xl shadow-neu bg-off-white flex items-center justify-center text-brand-green text-xl hover:scale-105 transition-transform">
+<i class="fa-solid fa-file-medical"></i>
+</div>
+<span class="text-xs font-semibold text-gray-700 text-center leading-tight">Health Records</span>
+</button>
+<!-- Action 3 -->
+<button class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-3xl shadow-neu bg-off-white flex items-center justify-center text-brand-green text-xl hover:scale-105 transition-transform">
+<i class="fa-solid fa-comment-medical"></i>
+</div>
+<span class="text-xs font-semibold text-gray-700 text-center leading-tight">Talk to Doctor</span>
+</button>
+<!-- Action 4 -->
+<button class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-3xl shadow-neu bg-off-white flex items-center justify-center text-brand-green text-xl hover:scale-105 transition-transform">
+<i class="fa-solid fa-pills"></i>
+</div>
+<span class="text-xs font-semibold text-gray-700 text-center leading-tight">Prescriptions</span>
+</button>
+</div>
+</section>
+<!-- END: Quick Actions -->
+<div class="grid grid-cols-2 gap-4 items-start w-full">
+<!-- BEGIN: Health Snapshot -->
+<section class="flex flex-col gap-4" data-purpose="health-snapshot">
+<h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+<i class="fa-solid fa-chart-simple text-brand-green"></i>
+          Health Snapshot
+        </h3>
+<div class="shadow-neu rounded-[2rem] p-5 bg-off-white flex-1 flex flex-col justify-between relative">
+<div class="flex justify-between items-start mb-2">
+<span class="text-sm text-gray-500 font-medium">Latest Vitals</span>
+<i class="fa-solid fa-heart text-brand-green text-sm"></i>
+</div>
+<div class="flex items-baseline gap-1 mb-4">
+<span class="text-4xl font-extrabold text-gray-900">72</span>
+<span class="text-xs text-gray-500 font-medium">BPM</span>
+</div>
+<!-- Mock Chart -->
+<div class="flex items-end gap-1.5 h-10 mb-2">
+<div class="w-2 bg-green-200 rounded-t-full h-4"></div>
+<div class="w-2 bg-green-300 rounded-t-full h-6"></div>
+<div class="w-2 bg-green-400 rounded-t-full h-8"></div>
+<div class="w-2 bg-brand-green rounded-t-full h-10"></div>
+<div class="w-2 bg-green-300 rounded-t-full h-5"></div>
+<div class="w-2 bg-green-200 rounded-t-full h-7"></div>
+</div>
+<span class="text-[10px] font-bold text-brand-green tracking-wider uppercase">Normal Range</span>
+</div>
+</section>
+<!-- END: Health Snapshot -->
+<!-- BEGIN: Reminders -->
+<section class="flex flex-col gap-4" data-purpose="reminders">
+<h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+<i class="fa-solid fa-bell text-brand-green"></i>
+          Reminders
+        </h3>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Reminder 1 -->
+<div class="shadow-neu rounded-2xl p-3 flex items-center gap-3 bg-off-white border-l-4 border-brand-green">
+<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-brand-green shrink-0 shadow-inner">
+<i class="fa-solid fa-pills"></i>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 leading-tight">Medication Reminder</h4>
+<p class="text-xs text-gray-500 mb-0.5">Vitamin D3 - 2000 IU</p>
+<p class="text-[10px] font-medium text-brand-green">10:00 AM Today</p>
+</div>
+</div>
+<!-- Reminder 2 -->
+<div class="shadow-neu rounded-2xl p-3 flex items-center gap-3 bg-off-white border-l-4 border-blue-400">
+<div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-400 shrink-0 shadow-inner">
+<i class="fa-regular fa-calendar"></i>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 leading-tight">Appointment Reminder</h4>
+<p class="text-xs text-gray-500 mb-0.5">Dental Cleaning</p>
+<p class="text-[10px] font-medium text-blue-500">Next Tuesday, 9:00 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Reminders -->
+</div>
+</main>
+<!-- BEGIN: Bottom Navigation -->
+<nav class="fixed bottom-6 left-6 right-6 shadow-[0_10px_40px_rgba(0,0,0,0.1)] bg-white rounded-[2rem] px-6 py-4 flex justify-between items-center z-50" data-purpose="bottom-nav">
+<a class="flex flex-col items-center gap-1 text-brand-green group" href="#">
+<div class="w-10 h-10 rounded-2xl bg-white shadow-neu-sm flex items-center justify-center group-hover:bg-green-50 transition-colors">
+<i class="fa-solid fa-home text-lg"></i>
+</div>
+<span class="text-[10px] font-bold tracking-wider">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-700 transition-colors group" href="#">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="fa-regular fa-calendar text-xl"></i>
+</div>
+<span class="text-[10px] font-medium tracking-wider uppercase">Visits</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-700 transition-colors group" href="#">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="fa-regular fa-folder-open text-xl"></i>
+</div>
+<span class="text-[10px] font-medium tracking-wider uppercase">Records</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-700 transition-colors group" href="#">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="fa-regular fa-envelope text-xl"></i>
+</div>
+<span class="text-[10px] font-medium tracking-wider uppercase">Mail</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-700 transition-colors group" href="#">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="fa-regular fa-user text-xl"></i>
+</div>
+<span class="text-[10px] font-medium tracking-wider uppercase">Profile</span>
+</a>
+</nav>
+<!-- END: Bottom Navigation -->
+</body></html>

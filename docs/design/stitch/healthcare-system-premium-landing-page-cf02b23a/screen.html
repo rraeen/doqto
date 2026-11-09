@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealSoft | Premium Healthcare Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f0f2f5",
+                        "background-dark": "#102210",
+                        "soft-shadow": "rgba(0, 0, 0, 0.05)",
+                        "soft-highlight": "rgba(255, 255, 255, 0.8)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .neumorphic-raised {
+            background: #f0f2f5;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+        }
+        .dark .neumorphic-raised {
+            background: #102210;
+            box-shadow: 8px 8px 16px #081108, -8px -8px 16px #183318;
+        }
+        .neumorphic-inset {
+            background: #f0f2f5;
+            box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+        }
+        .dark .neumorphic-inset {
+            background: #102210;
+            box-shadow: inset 6px 6px 12px #081108, inset -6px -6px 12px #183318;
+        }
+        .nav-float {
+            backdrop-filter: blur(8px);
+            background: rgba(240, 242, 245, 0.7);
+        }
+        .dark .nav-float {
+            background: rgba(16, 34, 16, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b0d] dark:text-white transition-colors duration-300">
+<div class="relative min-h-screen w-full flex flex-col overflow-x-hidden">
+<div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-6">
+<header class="nav-float neumorphic-raised flex items-center justify-between w-full max-w-[1100px] px-8 py-4 rounded-full border border-white/20">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+</div>
+<h2 class="text-lg font-extrabold tracking-tight">HealSoft</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Doctors</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Patients</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="neumorphic-inset px-5 py-2 rounded-full text-sm font-bold text-[#4c5a4c] dark:text-gray-300 hover:text-primary transition-all">
+                    Login
+                </button>
+<button class="bg-primary text-[#0d1b0d] px-6 py-2 rounded-full text-sm font-extrabold shadow-[0_4px_10px_rgba(19,236,19,0.3)] hover:scale-105 transition-all">
+                    Request Demo
+                </button>
+</div>
+</header>
+</div>
+<main class="flex-1 flex flex-col items-center pt-32 pb-20 px-6">
+<div class="w-full max-w-[1100px] grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-8 text-left">
+<div class="flex flex-col gap-4">
+<span class="text-primary font-bold tracking-widest text-xs uppercase neumorphic-inset w-fit px-4 py-1.5 rounded-full">
+                        Award Winning Platform
+                    </span>
+<h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-[#0d1b0d] dark:text-white">
+                        Healthcare, <br/><span class="text-primary">Simplified.</span>
+</h1>
+<p class="text-lg md:text-xl text-[#4c5a4c] dark:text-gray-400 font-medium max-w-[480px] leading-relaxed">
+                        Built for hospitals, clinics, and modern care teams who value time, trust, and precision.
+                    </p>
+</div>
+<div class="flex flex-wrap gap-5">
+<button class="bg-primary text-[#0d1b0d] px-10 py-4 rounded-full font-extrabold text-lg shadow-[0_10px_20px_rgba(19,236,19,0.3)] hover:scale-105 active:scale-95 transition-all">
+                        Start Free
+                    </button>
+<button class="neumorphic-raised text-[#0d1b0d] dark:text-white px-10 py-4 rounded-full font-extrabold text-lg hover:scale-105 active:scale-95 transition-all">
+                        See How It Works
+                    </button>
+</div>
+</div>
+<div class="relative @container">
+<div class="neumorphic-raised rounded-xl p-8 aspect-square flex flex-col gap-6 relative overflow-hidden border border-white/10">
+<div class="neumorphic-raised p-5 rounded-lg flex flex-col gap-3 w-full max-w-[280px]">
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-gray-500 uppercase tracking-tighter">Live Vitals</span>
+<div class="size-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-4xl font-black">98</span>
+<span class="text-sm font-bold text-gray-400 pb-1">BPM</span>
+</div>
+<div class="h-16 w-full opacity-60">
+<svg class="w-full h-full" viewBox="0 0 100 30">
+<path d="M0 15 Q 10 5, 20 15 T 40 15 T 60 15 T 80 15 T 100 15" fill="none" stroke="#13ec13" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="self-end neumorphic-inset p-5 rounded-lg flex flex-col gap-2 w-full max-w-[240px]">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-white/50 dark:bg-black/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-500">Upcoming</p>
+<p class="text-sm font-extrabold">Dr. Sarah Miller</p>
+</div>
+</div>
+<div class="text-[10px] font-bold text-primary mt-1">2:30 PM • Room 402</div>
+</div>
+<div class="absolute -bottom-10 -right-10 size-48 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -top-10 -left-10 size-32 bg-primary/5 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+</main>
+<section class="w-full flex justify-center py-24 px-6 bg-background-light dark:bg-background-dark">
+<div class="w-full max-w-[1100px] flex flex-col gap-16">
+<div class="flex flex-col gap-4 text-center items-center">
+<h2 class="text-4xl font-extrabold tracking-tight">Premium Features</h2>
+<p class="text-[#4c5a4c] dark:text-gray-400 max-w-[600px] text-lg">
+                    Designed for the modern medical era with surgical precision and patient-first architecture.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<div class="neumorphic-raised p-10 rounded-xl flex flex-col gap-6 group hover:-translate-y-2 transition-transform duration-300">
+<div class="size-16 rounded-full neumorphic-inset flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">calendar_month</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-xl font-extrabold">Smart Appointments</h3>
+<p class="text-[#4c5a4c] dark:text-gray-400 font-medium leading-relaxed">
+                            AI-driven scheduling that adapts to your workflow, reducing wait times and optimizing patient flow.
+                        </p>
+</div>
+</div>
+<div class="neumorphic-raised p-10 rounded-xl flex flex-col gap-6 group hover:-translate-y-2 transition-transform duration-300">
+<div class="size-16 rounded-full neumorphic-inset flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">verified_user</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-xl font-extrabold">Secure Records</h3>
+<p class="text-[#4c5a4c] dark:text-gray-400 font-medium leading-relaxed">
+                            Military-grade encryption ensures that patient data remains private and compliant with international standards.
+                        </p>
+</div>
+</div>
+<div class="neumorphic-raised p-10 rounded-xl flex flex-col gap-6 group hover:-translate-y-2 transition-transform duration-300">
+<div class="size-16 rounded-full neumorphic-inset flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">bolt</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-xl font-extrabold">Instant Care</h3>
+<p class="text-[#4c5a4c] dark:text-gray-400 font-medium leading-relaxed">
+                            Real-time telemedicine bridging the gap between doctors and patients with zero latency.
+                        </p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
+<div class="neumorphic-inset p-8 rounded-xl border border-primary/5">
+<div class="flex flex-col gap-2">
+<span class="text-primary font-black text-sm uppercase tracking-wider">For Doctors</span>
+<p class="text-lg font-bold text-[#0d1b0d] dark:text-white">Less admin, more care</p>
+</div>
+</div>
+<div class="neumorphic-inset p-8 rounded-xl border border-primary/5">
+<div class="flex flex-col gap-2">
+<span class="text-primary font-black text-sm uppercase tracking-wider">For Patients</span>
+<p class="text-lg font-bold text-[#0d1b0d] dark:text-white">Faster access, zero confusion</p>
+</div>
+</div>
+<div class="neumorphic-inset p-8 rounded-xl border border-primary/5">
+<div class="flex flex-col gap-2">
+<span class="text-primary font-black text-sm uppercase tracking-wider">For Hospitals</span>
+<p class="text-lg font-bold text-[#0d1b0d] dark:text-white">Full operational visibility</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full flex flex-col items-center py-20 px-6">
+<div class="w-full max-w-[1100px] mb-16">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 p-8 neumorphic-raised rounded-full">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary flex items-center justify-center text-[#0d1b0d] font-black">1</div>
+<span class="text-xl font-bold">Sign Up</span>
+</div>
+<div class="hidden md:block h-px flex-1 bg-primary/30 mx-4"></div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full neumorphic-inset flex items-center justify-center text-primary font-black">2</div>
+<span class="text-xl font-bold">Manage Care</span>
+</div>
+<div class="hidden md:block h-px flex-1 bg-primary/30 mx-4"></div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full neumorphic-inset flex items-center justify-center text-primary font-black">3</div>
+<span class="text-xl font-bold">Track Outcomes</span>
+</div>
+</div>
+</div>
+<div class="w-full max-w-[1100px] neumorphic-inset p-8 md:p-12 rounded-xl flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 flex flex-col gap-6">
+<h2 class="text-3xl font-extrabold leading-tight">Management Dashboard Overview</h2>
+<p class="text-lg text-[#4c5a4c] dark:text-gray-400 font-medium">
+                    A centralized hub for all your medical operations. Monitor patient health, manage staff schedules, and track hospital performance at a glance.
+                </p>
+<div class="flex gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-2xl font-black text-primary">99.9%</span>
+<span class="text-xs font-bold uppercase text-gray-400">Uptime</span>
+</div>
+<div class="w-px h-10 bg-gray-300 dark:bg-gray-700 mx-2"></div>
+<div class="flex flex-col gap-1">
+<span class="text-2xl font-black text-primary">15k+</span>
+<span class="text-xs font-bold uppercase text-gray-400">Users</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full flex flex-col gap-6">
+<div class="neumorphic-raised p-6 rounded-lg">
+<p class="text-sm font-bold text-gray-500 mb-4">Patient Health Trends</p>
+<div class="h-32 flex items-end justify-between gap-2">
+<div class="w-full bg-primary/20 rounded-t-full h-[40%]"></div>
+<div class="w-full bg-primary/30 rounded-t-full h-[60%]"></div>
+<div class="w-full bg-primary/50 rounded-t-full h-[80%]"></div>
+<div class="w-full bg-primary rounded-t-full h-[50%]"></div>
+<div class="w-full bg-primary/40 rounded-t-full h-[70%]"></div>
+<div class="w-full bg-primary/20 rounded-t-full h-[30%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="w-full flex justify-center py-8 px-6">
+<div class="w-full max-w-[1100px] text-center">
+<p class="text-sm font-bold text-[#4c5a4c] dark:text-gray-400 tracking-wide opacity-80">
+                Trusted by <span class="text-primary">150+ clinics</span> and <span class="text-primary">15,000+ patients</span> worldwide. <span class="bg-primary/10 px-2 py-0.5 rounded text-primary">99.9% Uptime.</span>
+</p>
+</div>
+</div>
+<footer class="w-full border-t border-gray-200 dark:border-gray-800 py-12 flex justify-center px-6">
+<div class="w-full max-w-[1100px] flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-6 bg-primary/20 rounded-full flex items-center justify-center">
+<div class="size-2 bg-primary rounded-full"></div>
+</div>
+<p class="text-sm font-bold text-gray-500">© 2024 HealSoft Systems. All rights reserved.</p>
+</div>
+<div class="flex gap-8 text-sm font-bold text-gray-500">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

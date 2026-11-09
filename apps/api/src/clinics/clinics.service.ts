@@ -47,7 +47,7 @@ export class ClinicsService {
     const addedAt = new Map(c.staffLog.map((s) => [s.userId.toHexString(), s.addedAt] as const));
     return {
       ...toClinicView(c),
-      ownerUserId: c.ownerUserId.toHexString(),
+      ownerUserId: c.ownerUserId?.toHexString() ?? '',
       doctorIds: c.doctorIds.map((d) => d.toHexString()),
       staff: staff.map((u) => ({
         userId: u._id.toHexString(),

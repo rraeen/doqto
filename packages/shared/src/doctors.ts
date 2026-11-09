@@ -6,7 +6,13 @@
  * payment field. `ratingSummary`, `verification` and `isListed` are never client-writable.
  */
 import { z } from 'zod';
-import { CursorQuerySchema, IsoDateTimeSchema, ObjectIdSchema, PaiseSchema } from './common';
+import {
+  CursorQuerySchema,
+  IsoDateTimeSchema,
+  ObjectIdSchema,
+  PaiseSchema,
+  pageSchema,
+} from './common';
 import { ClinicSchema, LatLngSchema, type LatLng } from './clinics';
 import { VerificationStatusSchema } from './enums';
 import { REGISTRATION_COUNCIL_MAX, SpecialtyKeySchema } from './specialties';
@@ -186,9 +192,15 @@ export const DoctorListItemSchema = z.object({
 });
 export type DoctorListItem = z.infer<typeof DoctorListItemSchema>;
 
+/** A page of search results; `total` is how many doctors match in all (not just this page). */
+export const DoctorSearchPageSchema = pageSchema(DoctorListItemSchema).extend({
+  total: z.number().int().nonnegative().optional(),
+});
+export type DoctorSearchPage = z.infer<typeof DoctorSearchPageSchema>;
+
 /**
  * `GET /doctors?city=&specialty=&near=lat,lng&q=&cursor=&limit=`. Listed doctors only.
- * At least one of `city` or `near` is required. With `near`, results are within `radiusKm`
+ * Every filter is optional (no filter lists everyone). With `near`, results are within `radiusKm`
  * (default 25) and ranked by the ranking function (distance, specialty match, availability,
  * rating, review count; never payment). Cursor is opaque.
  */
@@ -214,12 +226,9 @@ export const DoctorSearchQuerySchema = CursorQuerySchema.extend({
   /** Free-text name search. */
   q: z.string().trim().min(2).max(60).optional(),
 })
-  // Unknown query keys are a 400, as the API does (e.g. `sort=payment`).
-  .strict()
-  .refine((v) => v.city !== undefined || v.near !== undefined, {
-    message: 'Provide city or near',
-    path: ['city'],
-  });
+  // Unknown query keys are a 400, as the API does (e.g. `sort=payment`). Every filter is optional:
+  // with none, the search lists every doctor, a page at a time.
+  .strict();
 export type DoctorSearchQuery = z.input<typeof DoctorSearchQuerySchema>;
 
 /** Public profile (`GET /doctors/:slug`). */
@@ -245,3 +254,16 @@ export const DoctorProfileSchema = z.object({
   todayStatus: DoctorStatusSchema.nullable(),
 });
 export type DoctorProfile = z.infer<typeof DoctorProfileSchema>;
+
+/**
+ * The doctor ID patients can quote or search for, like `DR-A1B2C3`: the last 6 letters or digits
+ * of the doctor's id, in capitals. Two doctors can share a name (and even a city), but never an
+ * id, so links and bookings use the id. The web app and the API both derive this, so it is never
+ * stored. The reference itself is a short label; the full 24-character id is the real key.
+ */
+export function doctorReference(id: string): string {
+  return `DR-${id
+    .replace(/[^a-z0-9]/gi, '')
+    .slice(-6)
+    .toUpperCase()}`;
+}

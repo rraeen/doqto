@@ -42,7 +42,7 @@ export function AdminQueuePage({ specialties }: { specialties: Record<string, st
             replace
             className={cn(
               'flex-1 rounded-md px-3 py-2 text-center text-sm font-medium',
-              s.value === status ? 'bg-surface text-ink shadow-sm' : 'text-ink-muted',
+              s.value === status ? 'neu-raised text-ink' : 'text-ink-muted',
             )}
           >
             {t(s.label)}
@@ -103,7 +103,7 @@ function QueueList({
           <li key={d.id}>
             <Link
               href={`/admin/doctors/${d.id}`}
-              className="flex items-center gap-3 rounded-lg border border-line bg-surface p-4 hover:bg-canvas"
+              className="flex items-center gap-3 rounded-lg neu-raised p-4 hover:brightness-105"
             >
               <div className="min-w-0 flex-1 space-y-1">
                 <p className="truncate font-medium">{d.name}</p>

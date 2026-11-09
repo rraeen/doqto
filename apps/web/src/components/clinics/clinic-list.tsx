@@ -49,12 +49,12 @@ export function ClinicListPage() {
         />
       ) : (
         <>
-          <ul className="space-y-3">
+          <ul className="grid gap-4 md:grid-cols-2">
             {clinics.data.map((c) => (
-              <li key={c.id}>
+              <li key={c.id} className="min-w-0">
                 <Link
                   href={`/clinic/clinics/${c.id}`}
-                  className="flex items-center gap-3 rounded-lg border border-line bg-surface p-4 hover:bg-canvas"
+                  className="flex w-full min-w-0 items-center gap-3 rounded-lg neu-raised p-4 hover:brightness-105"
                 >
                   <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
                     <Building2 className="size-5" aria-hidden />

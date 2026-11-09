@@ -7,6 +7,7 @@ import {
 } from '@doqto/shared';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectThrottlerStorage, type ThrottlerStorage } from '@nestjs/throttler';
+import { Types } from 'mongoose';
 import { AppException } from '../common/http/app-exception';
 import { AppConfig } from '../config/app-config.service';
 import { hashSecret } from '../integrations';
@@ -111,6 +112,11 @@ export class AuthService {
 
   async logout(presented: string | undefined): Promise<void> {
     if (presented) await this.tokens.revoke(presented);
+  }
+
+  /** Ends every session of the user, on every device. */
+  async logoutAll(userId: string): Promise<void> {
+    await this.tokens.revokeAllForUser(new Types.ObjectId(userId));
   }
 
   private refreshInvalid(): AppException {
