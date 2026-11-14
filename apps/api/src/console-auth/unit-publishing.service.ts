@@ -11,8 +11,9 @@ import { AppException } from '../common/http/app-exception';
 import { AppConfig } from '../config/app-config.service';
 import { Clinic } from '../clinics/clinic.schema';
 import { Doctor } from '../doctors/doctor.schema';
+import { Lab } from '../labs/lab.schema';
 import { computeIsListed } from '../doctors/listing';
-import { baseSlug, retryOnSlugConflict, uniqueSlug } from '../doctors/slug';
+import { baseSlug, plainSlug, retryOnSlugConflict, uniqueSlug } from '../doctors/slug';
 import type { UnitDocument } from './organization.schema';
 
 const list = (v: unknown): string[] =>
@@ -27,7 +28,8 @@ const list = (v: unknown): string[] =>
  * Puts an approved application on the patient site. A clinic or doctor application becomes a
  * `doctors` record (what search lists) and a `clinics` record (where they practise), linked back to
  * the unit by `unitId`. Approval again later updates those records; any other decision takes the
- * doctor off the list. Labs and pharmacies have no patient-facing list yet.
+ * doctor off the list. A lab application becomes a `labs` record the same way. Pharmacies have no
+ * patient-facing list yet.
  */
 @Injectable()
 export class UnitPublishingService {
@@ -36,6 +38,7 @@ export class UnitPublishingService {
   constructor(
     @InjectModel(Doctor.name) private readonly doctors: Model<Doctor>,
     @InjectModel(Clinic.name) private readonly clinics: Model<Clinic>,
+    @InjectModel(Lab.name) private readonly labs: Model<Lab>,
     private readonly config: AppConfig,
   ) {}
 
@@ -44,8 +47,8 @@ export class UnitPublishingService {
    * that lacks something the patient listing needs is sent back for changes instead of approved.
    */
   assertPublishable(unit: Pick<UnitDocument, 'kind' | 'profile'>): void {
-    if (unit.kind !== 'clinic') return;
-    const res = checkUnitProfile('clinic', unit.profile ?? {});
+    if (unit.kind !== 'clinic' && unit.kind !== 'lab') return;
+    const res = checkUnitProfile(unit.kind, unit.profile ?? {});
     if (!res.ok) {
       throw new AppException(
         HttpStatus.BAD_REQUEST,
@@ -58,6 +61,11 @@ export class UnitPublishingService {
 
   /** Brings the patient-facing records in step with the unit's status after a decision. */
   async sync(unit: UnitDocument, ownerAccountId: Types.ObjectId): Promise<void> {
+    if (unit.kind === 'lab') {
+      if (unit.status === 'verified') await this.publishLab(unit);
+      else await this.unpublishLab(unit);
+      return;
+    }
     if (unit.kind !== 'clinic') return;
     if (unit.status === 'verified') await this.publishClinic(unit, ownerAccountId);
     else await this.unpublish(unit);
@@ -136,6 +144,51 @@ export class UnitPublishingService {
         .updateOne({ _id: clinic._id }, { $addToSet: { doctorIds: doctor._id } })
         .exec();
     this.logger.log(`Published clinic application ${unit._id.toHexString()} as a doctor listing`);
+  }
+
+  /** An approved lab becomes a listing patients can find and send booking requests to. */
+  private async publishLab(unit: UnitDocument): Promise<void> {
+    const res = checkUnitProfile('lab', unit.profile ?? {});
+    if (!res.ok) throw new Error('Approved lab application is incomplete');
+    const p = res.profile as Record<string, string | number | boolean | undefined>;
+    const name = String(p.labName);
+    const cityLabel = String(p.city).trim();
+    const fields = {
+      name,
+      cityLabel,
+      city: cityLabel.toLowerCase(),
+      address: String(p.address),
+      nablAccredited: p.nablAccredited === true,
+      homeCollection: p.homeCollection === true,
+      turnaroundHours: typeof p.turnaroundHours === 'number' ? p.turnaroundHours : undefined,
+      isListed: true,
+    };
+    const existing = await this.labs.findOne({ unitId: unit._id }).exec();
+    if (existing) {
+      // The address of a listing never changes under patients' feet: the slug stays.
+      existing.set(fields);
+      await existing.save();
+    } else {
+      await retryOnSlugConflict(async () => {
+        const slug = await uniqueSlug(plainSlug(name, cityLabel, 'lab'), async (s) =>
+          Boolean(await this.labs.exists({ slug: s }).exec()),
+        );
+        await new this.labs({
+          ...fields,
+          unitId: unit._id,
+          slug,
+          isDemo: this.config.isDemo,
+        }).save();
+      });
+    }
+    this.logger.log(`Published lab application ${unit._id.toHexString()} as a lab listing`);
+  }
+
+  private async unpublishLab(unit: UnitDocument): Promise<void> {
+    const r = await this.labs.updateOne({ unitId: unit._id }, { $set: { isListed: false } }).exec();
+    if (r.modifiedCount > 0) {
+      this.logger.log(`Took lab application ${unit._id.toHexString()} off the patient site`);
+    }
   }
 
   /** Puts an approved photo on the listing. */

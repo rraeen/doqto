@@ -22,6 +22,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { PaymentsModule } from './payments/payments.module';
 import { ChatModule } from './chat/chat.module';
 import { QueueModule } from './queue/queue.module';
+import { LabsModule } from './labs/labs.module';
 import { RecordsModule } from './records/records.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { SchedulesModule } from './schedules/schedules.module';
@@ -66,6 +67,7 @@ import { UsersModule } from './users/users.module';
     PaymentsModule,
     ReviewsModule,
     RecordsModule,
+    LabsModule,
     AccountModule,
     AdminModule,
     JobsModule,

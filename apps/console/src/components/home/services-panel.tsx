@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { LanguageSwitch } from '@/components/shell/language-switch';
 import { useT } from '@/i18n/provider';
-import { adminPath, applyPath, homeFor, loginPath } from '@/lib/app-config';
+import { adminPath, applyPath, changePasswordPath, homeFor, loginPath } from '@/lib/app-config';
 import { getMe, logout, meKey } from '@/lib/auth';
 import { unitStatusTone } from '@/lib/unit-status';
 
@@ -44,6 +44,7 @@ export function ServicesPanel() {
 
   useEffect(() => {
     if (me.isError && isApiError(me.error) && me.error.status === 401) router.replace(loginPath);
+    else if (me.data?.mustChangePassword) router.replace(changePasswordPath);
     else if (me.data?.platformRole === 'admin' && me.data.workspaces.length === 0) router.replace(adminPath);
   }, [me.isError, me.error, me.data, router]);
 
@@ -60,9 +61,12 @@ export function ServicesPanel() {
     WORKSPACE_TYPES.indexOf(a.kind) - WORKSPACE_TYPES.indexOf(b.kind);
   const approved = account.workspaces.filter((w) => w.status === 'verified').sort(order);
   const others = account.workspaces.filter((w) => w.status !== 'verified').sort(order);
+  // Staff work inside the owner's services; only an owner applies for new ones.
+  const isStaff = account.workspaces.some((w) => w.role === 'staff');
   const canApply =
-    WORKSPACE_TYPES.some((k) => !account.workspaces.some((w) => w.kind === k)) ||
-    others.some((w) => w.status === 'changes_requested' || w.status === 'draft');
+    !isStaff &&
+    (WORKSPACE_TYPES.some((k) => !account.workspaces.some((w) => w.kind === k)) ||
+      others.some((w) => w.status === 'changes_requested' || w.status === 'draft'));
 
   return (
     <main className="mx-auto max-w-4xl p-6">

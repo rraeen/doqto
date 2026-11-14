@@ -19,6 +19,11 @@ export class AppConfig {
     return this.get('PROVIDER_MODE') === 'demo';
   }
 
+  /** Whether labs may upload reports (see `LAB_REPORTS_ENABLED`): on in demo unless set. */
+  get labReportsEnabled(): boolean {
+    return this.get('LAB_REPORTS_ENABLED') ?? this.isDemo;
+  }
+
   /** Cookies are `Secure` whenever the API is served over https. */
   get secureCookies(): boolean {
     return this.get('API_PUBLIC_URL').startsWith('https://');

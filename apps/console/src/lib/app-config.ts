@@ -71,6 +71,8 @@ export const loginPath = '/login';
 export const registerPath = '/register';
 /** The panel of services (clinic, lab, pharmacy): choose one, or set one up. */
 export const servicesPath = '/services';
+/** A staff member with a temporary password chooses their own here before anything else. */
+export const changePasswordPath = '/change-password';
 /** The admin area, for the Doqto team. */
 export const adminPath = '/admin';
 /** The application form: apply for services, first time or later from Settings. */
@@ -151,6 +153,61 @@ export const workspaces: Record<WorkspaceType, WorkspaceConfig> = {
     ],
   },
 };
+
+/**
+ * What a member needs to open each screen. null: every member (the dashboard). 'owner': only the
+ * owner, never grantable to staff. Anything else is a permission the owner switches on per staff
+ * member (the names are the ones in PERMISSIONS_BY_KIND in packages/shared). The API checks the
+ * same rules; this only decides what to show.
+ */
+export const AREA_PERMISSION: Record<AreaKey, string | 'owner' | null> = {
+  dashboard: null,
+  appointments: 'appointments',
+  queue: 'queue',
+  messages: 'messages',
+  schedule: 'schedule',
+  reviews: 'reviews',
+  staff: 'owner',
+  profile: 'owner',
+  settings: 'owner',
+  labBookings: 'bookings',
+  catalogue: 'catalogue',
+  collection: 'collection',
+  reports: 'reports',
+  orders: 'orders',
+  products: 'products',
+  dispatch: 'dispatch',
+};
+
+export interface Member {
+  role: 'owner' | 'staff';
+  permissions: readonly string[];
+}
+
+/** Whether this member may open the screen. */
+export function canOpenArea(key: AreaKey, member: Member): boolean {
+  if (member.role === 'owner') return true;
+  const need = AREA_PERMISSION[key];
+  if (need === null) return true;
+  return need !== 'owner' && member.permissions.includes(need);
+}
+
+/** The screens of this type this member may open, in menu order. */
+export function allowedAreas(type: WorkspaceType, member: Member): AreaItem[] {
+  return areasOf(type).filter((a) => canOpenArea(a.key, member));
+}
+
+/**
+ * The area a path belongs to: the one with the longest matching address (the dashboard is the
+ * workspace base path itself and only matches exactly). Undefined for an unknown path.
+ */
+export function areaAt(type: WorkspaceType, pathname: string): AreaItem | undefined {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  const base = workspaces[type].basePath;
+  return areasOf(type)
+    .filter((a) => path === a.href || (a.href !== base && path.startsWith(a.href + '/')))
+    .sort((a, b) => b.href.length - a.href.length)[0];
+}
 
 export function areasOf(type: WorkspaceType): AreaItem[] {
   return workspaces[type].groups.flatMap((g) => g.items);

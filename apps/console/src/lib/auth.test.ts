@@ -4,6 +4,7 @@ import {
   authErrorKey,
   isStrongPassword,
   isValidIdentifier,
+  isValidLoginIdentifier,
   landingFor,
   landingForAccount,
   normalizeIdentifier,
@@ -70,6 +71,7 @@ describe('landingFor', () => {
     name: 'Rao',
     status,
     role: 'owner' as const,
+    permissions: [] as string[],
     reviewNote: null,
   });
 
@@ -94,9 +96,29 @@ describe('landingForAccount', () => {
       landingForAccount({
         platformRole: null,
         workspaces: [
-          { id: 'a'.repeat(24), organizationId: 'b'.repeat(24), kind: 'lab', name: 'Rao', status: 'verified', role: 'owner', reviewNote: null },
+          { id: 'a'.repeat(24), organizationId: 'b'.repeat(24), kind: 'lab', name: 'Rao', status: 'verified', role: 'owner', permissions: [], reviewNote: null },
         ],
       }),
     ).toBe('/lab');
+  });
+
+  it('sends a staff member with a temporary password to choose their own first', () => {
+    expect(
+      landingForAccount({ platformRole: null, mustChangePassword: true, workspaces: [] }),
+    ).toBe('/change-password');
+  });
+});
+
+describe('sign-in by username', () => {
+  it('keeps phones and emails as before and lower-cases a staff username', () => {
+    expect(normalizeIdentifier('  Dr.Rao@Example.com ')).toBe('dr.rao@example.com');
+    expect(normalizeIdentifier('98765 43210')).toBe('+919876543210');
+    expect(normalizeIdentifier('Meena.Desk')).toBe('meena.desk');
+    expect(isValidLoginIdentifier('meena.desk')).toBe(true);
+    expect(isValidLoginIdentifier('+919876543210')).toBe(true);
+    expect(isValidLoginIdentifier('ab')).toBe(false);
+    expect(isValidLoginIdentifier('has space')).toBe(false);
+    // The registration form still wants a phone or an email.
+    expect(isValidIdentifier('meena.desk')).toBe(false);
   });
 });

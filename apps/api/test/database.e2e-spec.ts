@@ -62,6 +62,8 @@ describe('database layer (BE-03)', () => {
       '0011-doctor-partial-indexes',
       '0012-reopen-unlistable-clinics',
       '0013-chat-message-indexes',
+      '0014-lab-indexes',
+      '0015-list-approved-labs',
     ]);
     const names = async (c: string) =>
       (await indexes(c)).map((i) => `${JSON.stringify(i.key)}${i.unique ? ' unique' : ''}`);

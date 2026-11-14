@@ -25,6 +25,7 @@ import { ConsoleAuthGuard, CurrentConsoleUser, type ConsoleUser } from './consol
 import { ConsoleAuthService, ConsoleRefreshRacedException } from './console-auth.service';
 import { clearConsoleCookies, presentedConsoleRefresh, setConsoleCookies } from './console-cookies';
 import {
+  ConsoleChangePasswordDto,
   ConsoleIdentifierDto,
   ConsoleLoginDto,
   ConsoleRegisterDto,
@@ -139,6 +140,17 @@ export class ConsoleAuthController {
   async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Promise<void> {
     await this.auth.logout(presentedConsoleRefresh(req));
     clearConsoleCookies(res, this.config);
+  }
+
+  @Post('change-password')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @UseGuards(ConsoleAuthGuard)
+  @Throttle({ default: { limit: 10, ttl: TEN_MINUTES } })
+  async changePassword(
+    @CurrentConsoleUser() user: ConsoleUser,
+    @Body() body: ConsoleChangePasswordDto,
+  ): Promise<void> {
+    await this.auth.changePassword(user.id, body);
   }
 
   @Get('me')

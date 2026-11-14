@@ -19,6 +19,16 @@ import {
   UnitSchema,
 } from '../console-auth/organization.schema';
 import { Clinic, ClinicSchema } from '../clinics/clinic.schema';
+import {
+  Lab,
+  LabBooking,
+  LabBookingSchema,
+  LabCategory,
+  LabCategorySchema,
+  LabSchema,
+  LabTest,
+  LabTestSchema,
+} from '../labs/lab.schema';
 import { Doctor, DoctorSchema } from '../doctors/doctor.schema';
 import { Appointment, AppointmentSchema } from '../appointments/appointment.schema';
 import { ChatMessageDoc, ChatMessageSchema } from '../chat/chat-message.schema';
@@ -59,4 +69,8 @@ export const MODELS: ModelDefinition[] = [
   { name: Unit.name, schema: UnitSchema },
   { name: Membership.name, schema: MembershipSchema },
   { name: ChatMessageDoc.name, schema: ChatMessageSchema },
+  { name: Lab.name, schema: LabSchema },
+  { name: LabCategory.name, schema: LabCategorySchema },
+  { name: LabTest.name, schema: LabTestSchema },
+  { name: LabBooking.name, schema: LabBookingSchema },
 ];

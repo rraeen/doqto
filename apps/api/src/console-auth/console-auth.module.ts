@@ -7,6 +7,8 @@ import { ConsoleAuthController } from './console-auth.controller';
 import { ConsoleAuthGuard } from './console-auth.guard';
 import { ConsoleAuthService } from './console-auth.service';
 import { PasswordService } from './password.service';
+import { StaffController } from './staff.controller';
+import { StaffService } from './staff.service';
 import { PlatformAdminSyncService } from './platform-admin-sync.service';
 import { PlatformProfileChangesService } from './platform-profile-changes.service';
 import { UnitProfileService } from './unit-profile.service';
@@ -37,6 +39,7 @@ import { WorkspacesService } from './workspaces.service';
     ConsoleAuthController,
     WorkspacesController,
     ApplicationsController,
+    StaffController,
     PlatformApplicationsController,
     PlatformProfileChangesController,
   ],
@@ -46,6 +49,7 @@ import { WorkspacesService } from './workspaces.service';
     AccountSessionService,
     PasswordService,
     WorkspacesService,
+    StaffService,
     PlatformApplicationsService,
     PlatformProfileChangesService,
     UnitProfileService,

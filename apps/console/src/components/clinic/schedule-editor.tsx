@@ -11,6 +11,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useT } from '@/i18n/provider';
+import { canOpenArea } from '@/lib/app-config';
 import { authErrorKey, getMe, getSchedule, meKey, putSchedule, scheduleKey } from '@/lib/auth';
 import {
   SESSIONS_PER_DAY_MAX,
@@ -29,7 +30,7 @@ import {
 export function useClinicUnit() {
   const me = useQuery({ queryKey: meKey, queryFn: getMe, retry: false });
   const unit = me.data?.workspaces.find((w) => w.kind === 'clinic' && w.status === 'verified');
-  return { unitId: unit?.id, loading: me.isPending };
+  return { unitId: unit?.id, unit, loading: me.isPending };
 }
 
 /**
@@ -282,11 +283,13 @@ export function ScheduleEditor() {
 /** A reminder on the clinic dashboard until the weekly hours are set: without them nobody can book. */
 export function ScheduleCallout() {
   const t = useT();
-  const { unitId } = useClinicUnit();
+  const { unitId, unit } = useClinicUnit();
+  // Only someone who may open the schedule is told to set it (and the API would refuse the rest).
+  const allowed = Boolean(unit && canOpenArea('schedule', unit));
   const saved = useQuery({
     queryKey: scheduleKey(unitId ?? ''),
     queryFn: () => getSchedule(unitId!),
-    enabled: Boolean(unitId),
+    enabled: Boolean(unitId) && allowed,
   });
   if (!unitId || !saved.data || saved.data.weekly.length > 0) return null;
   return (

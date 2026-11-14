@@ -25,6 +25,8 @@ export const ENDPOINTS = {
     forgotPassword: '/console/auth/forgot-password',
     resetPassword: '/console/auth/reset-password',
     me: '/console/auth/me',
+    /** `POST`, signed in: choose a new password (a staff member's first step). */
+    changePassword: '/console/auth/change-password',
   },
   /** The Doqto team's review of provider applications (needs the admin role). */
   platform: {
@@ -69,6 +71,45 @@ export const ENDPOINTS = {
   consoleProfile: (id: string) => `/console/workspaces/${id}/profile`,
   /** `PUT` (multipart `file`): a new profile photo, which also waits for approval. */
   consoleProfilePhoto: (id: string) => `/console/workspaces/${id}/profile/photo`,
+  /** Owner only. `GET` the staff of a service; `POST` creates a staff login. */
+  consoleStaff: (id: string) => `/console/workspaces/${id}/staff`,
+  /** Owner only. `PATCH` name or permissions; `DELETE` removes the person from this service. */
+  consoleStaffMember: (id: string, accountId: string) =>
+    `/console/workspaces/${id}/staff/${accountId}`,
+  /** Owner only. `POST` a new temporary password. */
+  consoleStaffPassword: (id: string, accountId: string) =>
+    `/console/workspaces/${id}/staff/${accountId}/reset-password`,
+  /** Labs on the patient site: `GET` the list (`?city=`); one lab with its tests by slug. */
+  labs: {
+    list: '/labs',
+    one: (slug: string) => `/labs/${slug}`,
+    /** `POST`: send a booking request. */
+    book: (slug: string) => `/labs/${slug}/bookings`,
+  },
+  /** The patient's lab bookings: `GET` list. */
+  myLabBookings: '/me/lab-bookings',
+  myLabBooking: (id: string) => `/me/lab-bookings/${id}`,
+  /** `POST`: cancel until the lab has the sample. */
+  myLabBookingCancel: (id: string) => `/me/lab-bookings/${id}/cancel`,
+  /** `GET`: a short-lived link to the report PDF. */
+  myLabBookingReport: (id: string) => `/me/lab-bookings/${id}/report`,
+  /** The lab's side, in the console. All paths are under `console/workspaces/:id/lab`. */
+  consoleLab: {
+    catalogue: (id: string) => `/console/workspaces/${id}/lab/catalogue`,
+    categories: (id: string) => `/console/workspaces/${id}/lab/categories`,
+    tests: (id: string) => `/console/workspaces/${id}/lab/tests`,
+    test: (id: string, testId: string) => `/console/workspaces/${id}/lab/tests/${testId}`,
+    bookings: (id: string) => `/console/workspaces/${id}/lab/bookings`,
+    decision: (id: string, bookingId: string) =>
+      `/console/workspaces/${id}/lab/bookings/${bookingId}/decision`,
+    progress: (id: string, bookingId: string) =>
+      `/console/workspaces/${id}/lab/bookings/${bookingId}/progress`,
+    assignee: (id: string, bookingId: string) =>
+      `/console/workspaces/${id}/lab/bookings/${bookingId}/assignee`,
+    collectors: (id: string) => `/console/workspaces/${id}/lab/collectors`,
+    report: (id: string, bookingId: string) =>
+      `/console/workspaces/${id}/lab/bookings/${bookingId}/report`,
+  },
   /** Messages between a patient and the doctor of a booking. */
   chats: {
     /** `GET`: my conversations. */

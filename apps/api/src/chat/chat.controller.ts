@@ -13,7 +13,7 @@ import {
   CurrentConsoleUser,
   type ConsoleUser,
 } from '../console-auth/console-auth.guard';
-import { WorkspacesService } from '../console-auth/workspaces.service';
+import { requirePermission, WorkspacesService } from '../console-auth/workspaces.service';
 import { Doctor } from '../doctors/doctor.schema';
 import { ChatService } from './chat.service';
 import { ChatAfterQueryDto, SendChatMessageDto } from './dto/chat.dto';
@@ -71,6 +71,7 @@ export class ConsoleChatController {
   private async viewer(accountId: string, unitId: string) {
     const unit = await this.workspaces.open(accountId, unitId);
     if (unit.kind !== 'clinic') throw AppException.notFound('This service has no messages');
+    requirePermission(unit, 'messages');
     if (unit.status !== 'verified') {
       throw AppException.forbidden('Messages open once Doqto approves your application');
     }

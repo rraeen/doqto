@@ -75,11 +75,38 @@ export type ConsoleVerifyRequest = z.infer<typeof ConsoleVerifyRequestSchema>;
 export const ConsoleIdentifierRequestSchema = z.object({ identifier: IdentifierSchema }).strict();
 export type ConsoleIdentifierRequest = z.infer<typeof ConsoleIdentifierRequestSchema>;
 
+/** A staff member signs in with a username the owner chose, not a phone or an email. */
+/** At least one letter, so a username can never be mistaken for a phone number. */
+export const USERNAME_REGEX = /^(?=.*[a-z])[a-z0-9._]{4,30}$/;
+export const USERNAME_MESSAGE =
+  'Use 4 to 30 letters, numbers, dots or underscores, with at least one letter';
+export const UsernameSchema = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .regex(USERNAME_REGEX, USERNAME_MESSAGE);
+
+/** Who is signing in: a phone, an email, or (for staff) a username. */
+export const LoginIdentifierSchema = z
+  .string()
+  .trim()
+  .max(254)
+  .refine(
+    (v) => PHONE_E164_IN_REGEX.test(v) || EMAIL_REGEX.test(v) || USERNAME_REGEX.test(v.toLowerCase()),
+    'Enter your phone, email or username',
+  );
+
 /** `POST /console/auth/login` */
 export const ConsoleLoginRequestSchema = z
-  .object({ identifier: IdentifierSchema, password: z.string().min(1).max(PASSWORD_MAX_LENGTH) })
+  .object({ identifier: LoginIdentifierSchema, password: z.string().min(1).max(PASSWORD_MAX_LENGTH) })
   .strict();
 export type ConsoleLoginRequest = z.infer<typeof ConsoleLoginRequestSchema>;
+
+/** `POST /console/auth/change-password`: a signed-in account sets a new password. */
+export const ConsoleChangePasswordRequestSchema = z
+  .object({ currentPassword: z.string().min(1).max(PASSWORD_MAX_LENGTH), newPassword: PasswordSchema })
+  .strict();
+export type ConsoleChangePasswordRequest = z.infer<typeof ConsoleChangePasswordRequestSchema>;
 
 /** `POST /console/auth/reset-password`: sets a new password with the code and signs out everywhere. */
 export const ConsoleResetPasswordRequestSchema = z
@@ -110,6 +137,28 @@ export const MEMBER_ROLES = ['owner', 'staff'] as const;
 export const MemberRoleSchema = z.enum(MEMBER_ROLES);
 export type MemberRole = z.infer<typeof MemberRoleSchema>;
 
+/**
+ * What an owner can switch on for a staff member, per kind of service. The dashboard is always
+ * open to every member. Profile, settings, staff, applying for services and earnings are never on
+ * this list: only the owner has them.
+ */
+export const PERMISSIONS_BY_KIND = {
+  clinic: ['appointments', 'queue', 'messages', 'schedule', 'reviews'],
+  lab: ['bookings', 'catalogue', 'collection', 'reports'],
+  pharmacy: ['orders', 'products', 'dispatch'],
+} as const satisfies Record<WorkspaceType, readonly string[]>;
+export type StaffPermission = (typeof PERMISSIONS_BY_KIND)[WorkspaceType][number];
+
+export const permissionsFor = (kind: WorkspaceType): readonly string[] => PERMISSIONS_BY_KIND[kind];
+
+/** Whether a member may use `permission`: owners may use everything, staff only what was given. */
+export function hasPermission(
+  member: { role: MemberRole; permissions: readonly string[] },
+  permission: string,
+): boolean {
+  return member.role === 'owner' || member.permissions.includes(permission);
+}
+
 /** One service (clinic, lab or pharmacy) the account applied for, and where that application is. */
 export const WorkspaceSchema = z.object({
   id: ObjectIdSchema,
@@ -118,6 +167,8 @@ export const WorkspaceSchema = z.object({
   name: z.string(),
   status: UnitStatusSchema,
   role: MemberRoleSchema,
+  /** What a staff member may use; empty for an owner, who may use everything. */
+  permissions: z.array(z.string()),
   /** What Doqto told the applicant when sending the application back or rejecting it. */
   reviewNote: z.string().nullable(),
 });
@@ -135,6 +186,10 @@ export const ConsoleAccountSchema = z.object({
   name: z.string(),
   email: z.string().nullable(),
   phone: z.string().nullable(),
+  /** Set for staff accounts created by an owner; they sign in with it. */
+  username: z.string().nullable(),
+  /** The owner set a temporary password: the person must choose their own before anything else. */
+  mustChangePassword: z.boolean(),
   language: z.enum(['en', 'hi']),
   status: z.enum(ACCOUNT_STATUSES),
   /** `admin` for a member of the Doqto team: the console shows the admin area for them. */
@@ -156,6 +211,49 @@ export const ConsoleRefreshResponseSchema = z.object({
   refreshTokenExpiresAt: IsoDateTimeSchema,
 });
 export type ConsoleRefreshResponse = z.infer<typeof ConsoleRefreshResponseSchema>;
+
+/** A staff member of one service, as the owner sees them. */
+export const StaffMemberSchema = z.object({
+  accountId: ObjectIdSchema,
+  name: z.string(),
+  username: z.string(),
+  permissions: z.array(z.string()),
+  status: z.enum(ACCOUNT_STATUSES),
+  mustChangePassword: z.boolean(),
+  lastLoginAt: IsoDateTimeSchema.nullable(),
+});
+export type StaffMember = z.infer<typeof StaffMemberSchema>;
+
+export const StaffListSchema = z.object({ items: z.array(StaffMemberSchema) });
+export type StaffList = z.infer<typeof StaffListSchema>;
+
+const PermissionListSchema = z.array(z.string().min(1).max(40)).max(20);
+
+/**
+ * `POST /console/workspaces/:id/staff`: the owner creates a staff login and picks what it can use.
+ * If the username already belongs to a staff member of the same business, that person is added to
+ * this service instead (their password is left alone).
+ */
+export const CreateStaffRequestSchema = z
+  .object({
+    name: z.string().trim().min(2).max(120),
+    username: UsernameSchema,
+    password: PasswordSchema,
+    permissions: PermissionListSchema,
+  })
+  .strict();
+export type CreateStaffRequest = z.infer<typeof CreateStaffRequestSchema>;
+
+/** `PATCH /console/workspaces/:id/staff/:accountId` */
+export const UpdateStaffRequestSchema = z
+  .object({ name: z.string().trim().min(2).max(120).optional(), permissions: PermissionListSchema.optional() })
+  .strict()
+  .refine((v) => v.name !== undefined || v.permissions !== undefined, 'Nothing to change');
+export type UpdateStaffRequest = z.infer<typeof UpdateStaffRequestSchema>;
+
+/** `POST /console/workspaces/:id/staff/:accountId/reset-password`: a new temporary password. */
+export const ResetStaffPasswordRequestSchema = z.object({ password: PasswordSchema }).strict();
+export type ResetStaffPasswordRequest = z.infer<typeof ResetStaffPasswordRequestSchema>;
 
 /** Claims in the console access JWT. `aud` keeps it from working on patient routes. */
 export const CONSOLE_AUDIENCE = 'console';

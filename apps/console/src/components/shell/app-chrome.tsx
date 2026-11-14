@@ -10,6 +10,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo, type ReactNode } from 'react';
 import { useT } from '@/i18n/provider';
 import {
+  areaAt,
+  canOpenArea,
+  changePasswordPath,
+  homeFor,
   servicesPath,
   loginPath,
   environmentTag,
@@ -36,11 +40,17 @@ export function AppChrome({ type, children }: { type: WorkspaceType; children: R
   const signedOut = me.isError && isApiError(me.error) && me.error.status === 401;
   // Only an approved service opens a dashboard.
   const unit = account?.workspaces.find((w) => w.kind === type && w.status === 'verified');
+  // A staff member may open only what the owner switched on: anything else goes to the dashboard.
+  const area = areaAt(type, pathname);
+  const blocked = Boolean(unit && area && !canOpenArea(area.key, unit));
   useEffect(() => {
     if (signedOut) router.replace(loginPath);
+    // A temporary password must be replaced before anything else.
+    else if (account?.mustChangePassword) router.replace(changePasswordPath);
     // An account that does not have this service goes to the panel (or its only dashboard).
     else if (account && !unit) router.replace(servicesPath);
-  }, [signedOut, account, unit, router]);
+    else if (blocked) router.replace(homeFor(type));
+  }, [signedOut, account, unit, blocked, type, router]);
   async function signOut() {
     await logout().catch(() => undefined);
     queryClient.removeQueries({ queryKey: meKey });
@@ -48,15 +58,20 @@ export function AppChrome({ type, children }: { type: WorkspaceType; children: R
   }
   const nav = useMemo<NavGroup[]>(
     () =>
-      workspaces[type].groups.map((g) => ({
-        label: t(g.labelKey as Parameters<typeof t>[0]),
-        items: g.items.map((i) => ({
-          href: i.href,
-          label: t(('nav.' + i.key) as Parameters<typeof t>[0]),
-          icon: i.icon,
-        })),
-      })),
-    [t, type],
+      workspaces[type].groups
+        .map((g) => ({
+          label: t(g.labelKey as Parameters<typeof t>[0]),
+          items: g.items
+            .filter((i) => !unit || canOpenArea(i.key, unit))
+            .map((i) => ({
+              href: i.href,
+              label: t(('nav.' + i.key) as Parameters<typeof t>[0]),
+              icon: i.icon,
+            })),
+        }))
+        // A group with nothing left in it (a staff member has no "manage" screens) is not shown.
+        .filter((g) => g.items.length > 0),
+    [t, type, unit],
   );
   return (
     <AppShell
@@ -90,10 +105,8 @@ export function AppChrome({ type, children }: { type: WorkspaceType; children: R
         </div>
       }
     >
-      {unit ? (
-        <>
-          {children}
-        </>
+      {unit && !blocked && !account?.mustChangePassword ? (
+        <>{children}</>
       ) : (
         <GateMessage failed={me.isError && !signedOut} />
       )}

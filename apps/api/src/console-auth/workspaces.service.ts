@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import {
   UNIT_NAME_FIELD,
   checkUnitProfile,
+  hasPermission,
   type ProfileIssue,
   type UnitStatus,
   type Workspace,
@@ -27,8 +28,24 @@ function toWorkspace(unit: UnitDocument, membership: MembershipDocument): Worksp
     name: unit.name,
     status: unit.status,
     role: membership.role,
+    permissions: membership.role === 'owner' ? [] : membership.permissions,
     reviewNote: unit.reviewNote ?? null,
   };
+}
+
+/**
+ * Throws 403 unless the member may use `permission`. Owners may use everything. The console also
+ * hides what a staff member cannot use; this is the check that actually stops them.
+ */
+export function requirePermission(ws: Workspace, ...anyOf: string[]): void {
+  if (!anyOf.some((p) => hasPermission(ws, p))) {
+    throw AppException.forbidden('Not allowed for your account');
+  }
+}
+
+/** Throws unless the member is the owner: profile, settings, staff and applications. */
+export function requireOwner(ws: Workspace): void {
+  if (ws.role !== 'owner') throw AppException.forbidden('Only the owner can do this');
 }
 
 /**
@@ -90,6 +107,8 @@ export class WorkspacesService {
   /** One service with the answers to its form, only if the account is a member of it. */
   async detail(accountId: string, unitId: string): Promise<WorkspaceDetail> {
     const workspace = await this.open(accountId, unitId);
+    // The application answers (registration numbers, address) are the owner's alone.
+    requireOwner(workspace);
     const unit = await this.units.findById(unitId).exec();
     return { ...workspace, profile: unit?.profile ?? {} };
   }

@@ -89,6 +89,16 @@ export const EnvSchema = z.object({
     .transform((v) => v === 'true'),
   JOB_POLL_MS: z.coerce.number().int().min(200).max(60_000).default(5000),
 
+  /**
+   * Labs upload test reports into Doqto's storage. ADR 0007 keeps clinical data out until the
+   * data-protection review is done, so this is off in live mode unless set to `true` on purpose.
+   * Unset: on in demo mode, off otherwise.
+   */
+  LAB_REPORTS_ENABLED: z
+    .enum(['true', 'false'])
+    .optional()
+    .transform((v) => (v === undefined ? undefined : v === 'true')),
+
   /** Web Push (INT-16). All three empty means no push; generate a pair with `npx web-push generate-vapid-keys`. */
   VAPID_PUBLIC_KEY: z.string().default(''),
   VAPID_PRIVATE_KEY: z.string().default(''),

@@ -12,6 +12,18 @@ export function baseSlug(name: string, city: string): string {
   return parts.join('-').slice(0, 80).replace(/-+$/, '');
 }
 
+/** A slug for something that is not a doctor, like `city-lab-name`: `prefix-name-city`. */
+export function plainSlug(name: string, city: string, prefix: string): string {
+  const clean = (v: string) =>
+    v
+      .normalize('NFKD')
+      .replace(/[̀-ͯ]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  return [clean(name) || prefix, clean(city)].filter(Boolean).join('-').slice(0, 80).replace(/-+$/, '');
+}
+
 /** First free slug: the base, then `-2`, `-3`, ... `exists` checks the unique index's collection. */
 export async function uniqueSlug(
   base: string,

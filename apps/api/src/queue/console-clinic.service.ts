@@ -19,7 +19,7 @@ import { ConfirmationService } from '../appointments/confirmation.service';
 import { Clinic } from '../clinics/clinic.schema';
 import { AppException } from '../common/http/app-exception';
 import { istDate } from '../common/time/ist';
-import { WorkspacesService } from '../console-auth/workspaces.service';
+import { requirePermission, WorkspacesService } from '../console-auth/workspaces.service';
 import { zodCheck } from '../common/http/zod-check';
 import { Doctor } from '../doctors/doctor.schema';
 import { SchedulesService } from '../schedules/schedules.service';
@@ -51,9 +51,11 @@ export class ConsoleClinicService {
     private readonly alerts: StatusAlertsService,
   ) {}
 
-  private async scope(accountId: string, unitId: string) {
+  /** `anyOf`: the permissions that open this action; an owner always passes. */
+  private async scope(accountId: string, unitId: string, ...anyOf: string[]) {
     const unit = await this.workspaces.open(accountId, unitId);
     if (unit.kind !== 'clinic') throw AppException.notFound('This service has no bookings');
+    requirePermission(unit, ...anyOf);
     if (unit.status !== 'verified') {
       throw AppException.forbidden('Bookings open once Doqto approves your application');
     }
@@ -68,7 +70,7 @@ export class ConsoleClinicService {
 
   /** One day's list (today when no date is given), in front-desk order. */
   async day(accountId: string, unitId: string, date?: string): Promise<DaySheetResponse> {
-    const { doctorId, clinicId } = await this.scope(accountId, unitId);
+    const { doctorId, clinicId } = await this.scope(accountId, unitId, 'appointments', 'queue');
     return this.desk.daySheet(accountId, {
       clinicId: clinicId.toHexString(),
       doctorId: doctorId.toHexString(),
@@ -78,7 +80,7 @@ export class ConsoleClinicService {
 
   /** Paid bookings on any date that wait for the doctor to accept, earliest first. */
   async waiting(accountId: string, unitId: string): Promise<DaySheetItem[]> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'appointments', 'queue');
     const rows = await this.appointments
       .find({ doctorId, status: 'pending_confirmation' })
       .sort({ date: 1, slotStart: 1 })
@@ -89,7 +91,7 @@ export class ConsoleClinicService {
 
   /** Accepted bookings from today on, any date, earliest first: what the doctor has coming up. */
   async upcoming(accountId: string, unitId: string): Promise<DaySheetItem[]> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'appointments', 'queue');
     const rows = await this.appointments
       .find({
         doctorId,
@@ -107,7 +109,7 @@ export class ConsoleClinicService {
     unitId: string,
     appointmentId: string,
   ): Promise<ConfirmAppointmentResponse> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'appointments');
     // Only a booking of this doctor: anything else looks like it does not exist.
     const mine =
       isValidObjectId(appointmentId) &&
@@ -145,7 +147,7 @@ export class ConsoleClinicService {
     unitId: string,
     body: CheckInRequest,
   ): Promise<QueueActionResponse> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'queue');
     await this.own(doctorId, body.appointmentId);
     return this.queue.checkIn(accountId, body);
   }
@@ -156,7 +158,7 @@ export class ConsoleClinicService {
     unitId: string,
     appointmentId: string,
   ): Promise<SendVisitOtpResponse> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'queue');
     await this.own(doctorId, appointmentId);
     return this.queue.sendVisitOtp(accountId, appointmentId);
   }
@@ -167,7 +169,7 @@ export class ConsoleClinicService {
     unitId: string,
     currentAppointmentId?: string | null,
   ): Promise<QueueActionResponse> {
-    const { doctorId, clinicId } = await this.scope(accountId, unitId);
+    const { doctorId, clinicId } = await this.scope(accountId, unitId, 'queue');
     return this.alertQueue(
       await this.queue.next(accountId, {
         clinicId: clinicId.toHexString(),
@@ -182,7 +184,7 @@ export class ConsoleClinicService {
     unitId: string,
     appointmentId: string,
   ): Promise<QueueActionResponse> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'queue');
     await this.own(doctorId, appointmentId);
     return this.alertQueue(await this.queue.noShow(accountId, appointmentId));
   }
@@ -194,7 +196,7 @@ export class ConsoleClinicService {
     appointmentId: string,
     body: QueueMoveRequest,
   ): Promise<QueueActionResponse> {
-    const { doctorId } = await this.scope(accountId, unitId);
+    const { doctorId } = await this.scope(accountId, unitId, 'queue');
     await this.own(doctorId, appointmentId);
     await this.own(doctorId, body.beforeAppointmentId);
     return this.alertQueue(await this.queue.move(accountId, appointmentId, body));
@@ -206,7 +208,7 @@ export class ConsoleClinicService {
     unitId: string,
     body: Omit<CreateClinicAppointmentRequest, 'clinicId' | 'doctorId'>,
   ): Promise<DaySheetItem> {
-    const { doctorId, clinicId } = await this.scope(accountId, unitId);
+    const { doctorId, clinicId } = await this.scope(accountId, unitId, 'queue');
     return this.desk.create(accountId, {
       ...body,
       clinicId: clinicId.toHexString(),
@@ -220,7 +222,7 @@ export class ConsoleClinicService {
     unitId: string,
     raw: Record<string, unknown>,
   ): Promise<DoctorStatus> {
-    const { doctorId, clinicId } = await this.scope(accountId, unitId);
+    const { doctorId, clinicId } = await this.scope(accountId, unitId, 'queue');
     const body = zodCheck(UpdateStatusRequestSchema, {
       ...raw,
       clinicId: clinicId.toHexString(),

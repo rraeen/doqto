@@ -7,6 +7,9 @@ import {
   CodeSentResponseSchema,
   ConsoleAccountSchema,
   ConsoleSessionSchema,
+  StaffListSchema,
+  StaffMemberSchema,
+  USERNAME_REGEX,
   ConfirmAppointmentResponseSchema,
   DaySheetItemSchema,
   DaySheetResponseSchema,
@@ -27,6 +30,10 @@ import {
   type ConfirmAppointmentResponse,
   type CreateClinicAppointmentRequest,
   type ConsoleSession,
+  type CreateStaffRequest,
+  type StaffList,
+  type StaffMember,
+  type UpdateStaffRequest,
   type DaySheetItem,
   type DaySheetResponse,
   type DoctorStatus,
@@ -40,7 +47,7 @@ import {
 } from '@doqto/shared';
 import { z } from 'zod';
 import { apiRequest } from './api';
-import { adminPath, homeFor, servicesPath } from './app-config';
+import { adminPath, changePasswordPath, homeFor, servicesPath } from './app-config';
 
 const NoContent = z.void();
 const paths = ENDPOINTS.consoleAuth;
@@ -55,11 +62,16 @@ export function normalizeIdentifier(raw: string): string {
   if (v.includes('@')) return v.toLowerCase();
   const digits = v.replace(/[\s()-]/g, '');
   const m = /^(?:\+?91|0)?([6-9]\d{9})$/.exec(digits);
-  return m ? `+91${m[1]}` : v;
+  if (m) return `+91${m[1]}`;
+  // A staff username is typed in any case and compared lower-cased.
+  return USERNAME_REGEX.test(v.toLowerCase()) ? v.toLowerCase() : v;
 }
 
 export const isValidIdentifier = (v: string) =>
   /^\+91[6-9]\d{9}$/.test(v) || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+/** Sign-in also takes a staff username, which the registration form does not. */
+export const isValidLoginIdentifier = (v: string) => isValidIdentifier(v) || USERNAME_REGEX.test(v);
 
 /** Same rule as the API: 10+ characters with a letter and a number. */
 export const isStrongPassword = (v: string) =>
@@ -127,6 +139,50 @@ export const logout = (): Promise<void> =>
 
 export const getMe = (): Promise<ConsoleAccount> =>
   apiRequest(paths.me, { schema: ConsoleAccountSchema });
+
+/** A signed-in account chooses a new password (a staff member's first step). */
+export const changePassword = (input: {
+  currentPassword: string;
+  newPassword: string;
+}): Promise<void> =>
+  apiRequest(paths.changePassword, { method: 'POST', body: input, schema: NoContent });
+
+export const staffKey = (unitId: string) => ['console', 'staff', unitId] as const;
+
+/** The owner's staff logins for one service. */
+export const getStaff = (unitId: string): Promise<StaffList> =>
+  apiRequest(ENDPOINTS.consoleStaff(unitId), { schema: StaffListSchema });
+
+export const createStaff = (unitId: string, body: CreateStaffRequest): Promise<StaffMember> =>
+  apiRequest(ENDPOINTS.consoleStaff(unitId), { method: 'POST', body, schema: StaffMemberSchema });
+
+export const updateStaff = (
+  unitId: string,
+  accountId: string,
+  body: UpdateStaffRequest,
+): Promise<StaffMember> =>
+  apiRequest(ENDPOINTS.consoleStaffMember(unitId, accountId), {
+    method: 'PATCH',
+    body,
+    schema: StaffMemberSchema,
+  });
+
+export const resetStaffPassword = (
+  unitId: string,
+  accountId: string,
+  password: string,
+): Promise<void> =>
+  apiRequest(ENDPOINTS.consoleStaffPassword(unitId, accountId), {
+    method: 'POST',
+    body: { password },
+    schema: NoContent,
+  });
+
+export const removeStaff = (unitId: string, accountId: string): Promise<void> =>
+  apiRequest(ENDPOINTS.consoleStaffMember(unitId, accountId), {
+    method: 'DELETE',
+    schema: NoContent,
+  });
 
 export const meKey = ['console', 'me'] as const;
 export const scheduleKey = (unitId: string) => ['console', 'schedule', unitId] as const;
@@ -299,8 +355,10 @@ export const getWorkspace = (id: string): Promise<WorkspaceDetail> =>
 /** Where to go after signing in: the admin area for the Doqto team, otherwise by services. */
 export function landingForAccount(account: {
   platformRole: 'admin' | null;
+  mustChangePassword?: boolean;
   workspaces: readonly Workspace[];
 }): string {
+  if (account.mustChangePassword) return changePasswordPath;
   return account.platformRole === 'admin' ? adminPath : landingFor(account.workspaces);
 }
 

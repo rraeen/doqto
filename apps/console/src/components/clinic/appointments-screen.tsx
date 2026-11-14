@@ -11,6 +11,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { useT } from '@/i18n/provider';
+import { canOpenArea } from '@/lib/app-config';
 import {
   authErrorKey,
   confirmAppointment,
@@ -322,11 +323,12 @@ export function AppointmentsScreen() {
 /** A reminder on the clinic dashboard when bookings wait for the doctor to accept them. */
 export function WaitingCallout() {
   const t = useT();
-  const { unitId } = useClinicUnit();
+  const { unitId, unit } = useClinicUnit();
+  const allowed = Boolean(unit && canOpenArea('appointments', unit));
   const waiting = useQuery({
     queryKey: waitingKey(unitId ?? ''),
     queryFn: () => getWaiting(unitId!),
-    enabled: Boolean(unitId),
+    enabled: Boolean(unitId) && allowed,
     refetchInterval: 30_000,
   });
   const n = waiting.data?.length ?? 0;

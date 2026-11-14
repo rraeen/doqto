@@ -13,7 +13,7 @@ import { registerPath } from '@/lib/app-config';
 import { env } from '@/lib/env';
 import {
   authErrorKey,
-  isValidIdentifier,
+  isValidLoginIdentifier,
   landingForAccount,
   login,
   meKey,
@@ -44,7 +44,7 @@ export function LoginCard() {
   async function submit(e: FormEvent) {
     e.preventDefault();
     const normalized = normalizeIdentifier(identifier);
-    if (!isValidIdentifier(normalized)) {
+    if (!isValidLoginIdentifier(normalized)) {
       setErrors({ identifier: t('register.errIdentifier') });
       return;
     }

@@ -9,6 +9,7 @@ import {
   CalendarPlus,
   Clock,
   FileText,
+  FlaskConical,
   LayoutGrid,
   Lightbulb,
   MapPin,
@@ -438,6 +439,7 @@ export function HomeDashboard() {
     { href: '/appointments', label: t('home.qaAppointments'), icon: CalendarDays },
     { href: '/consult', label: t('home.qaTalkShort'), icon: MessageCircle },
     { href: '/records', label: t('home.qaRecords'), icon: FileText },
+    { href: '/labs', label: t('home.qaLab'), icon: FlaskConical },
   ];
 
   return (
@@ -509,7 +511,7 @@ export function HomeDashboard() {
             {t('home.quickTitle')}
           </h2>
           <SectionTitle icon={LayoutGrid}>{t('home.quickTitle')}</SectionTitle>
-          <ul className="grid grid-cols-4 gap-2 sm:gap-6">
+          <ul className="grid grid-cols-5 gap-1.5 sm:gap-4">
             {quick.map((q) => (
               <li key={q.href}>
                 <Link
@@ -518,7 +520,7 @@ export function HomeDashboard() {
                 >
                   <span
                     className={cn(
-                      'neu-raised flex size-16 items-center justify-center text-brand-600 transition-all group-hover:bg-brand-500/10 group-active:shadow-[inset_4px_4px_8px_#bcc7bc,inset_-4px_-4px_8px_#ffffff] sm:size-24',
+                      'neu-raised flex size-14 items-center justify-center text-brand-600 transition-all group-hover:bg-brand-500/10 group-active:shadow-[inset_4px_4px_8px_#bcc7bc,inset_-4px_-4px_8px_#ffffff] sm:size-24',
                       homeSurfaceRadius,
                     )}
                   >

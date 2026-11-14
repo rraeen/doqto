@@ -1,5 +1,5 @@
-import { PlannedScreen } from '@/components/planned-screen';
+import { LabDashboard } from '@/components/lab/lab-dashboard';
 
 export default function Page() {
-  return <PlannedScreen type="lab" area="dashboard" />;
+  return <LabDashboard />;
 }

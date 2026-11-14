@@ -4,6 +4,7 @@ import {
   CalendarDays,
   ClipboardList,
   FileText,
+  FlaskConical,
   Home,
   ListOrdered,
   Menu,
@@ -25,6 +26,7 @@ function usePatientItems(): NavItem[] {
     { href: '/', label: t('nav.home'), icon: Home, exact: true },
     { href: '/appointments', label: t('nav.appointments'), icon: CalendarDays },
     { href: '/records', label: t('nav.records'), icon: FileText },
+    { href: '/labs', label: t('nav.labs'), icon: FlaskConical },
     { href: '/consult', label: t('nav.consult'), icon: MessageCircle },
     { href: '/profile', label: t('nav.profile'), icon: UserRound },
   ];
@@ -46,7 +48,8 @@ function isConsultChatPath(pathname: string) {
 
 export function PatientNav() {
   const pathname = usePathname();
-  const items = usePatientItems().filter((item) => item.href !== '/consult');
+  // The phone bar has five places; Messages and Lab tests are reached from Home instead.
+  const items = usePatientItems().filter((item) => item.href !== '/consult' && item.href !== '/labs');
   if (isConsultChatPath(pathname)) return null;
   return <BottomNav label="Main" items={items} />;
 }

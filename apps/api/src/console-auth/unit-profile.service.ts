@@ -15,7 +15,7 @@ import { Doctor } from '../doctors/doctor.schema';
 import { EXTENSION_BY_TYPE, STORAGE_PROVIDER, type StorageProvider } from '../integrations';
 import type { PendingChange, UnitDocument } from './organization.schema';
 import { Unit } from './organization.schema';
-import { WorkspacesService } from './workspaces.service';
+import { requireOwner, WorkspacesService } from './workspaces.service';
 
 /** The clinic form fields whose answers differ. Both sides come from `checkUnitProfile`. */
 export function changedFields(
@@ -43,6 +43,8 @@ export class UnitProfileService {
   private async own(accountId: string, unitId: string): Promise<UnitDocument> {
     const ws = await this.workspaces.open(accountId, unitId);
     if (ws.kind !== 'clinic') throw AppException.notFound('This service has no doctor profile');
+    // The public profile (name, fees, registration, photo) is the owner's alone.
+    requireOwner(ws);
     if (ws.status !== 'verified') {
       throw AppException.forbidden('The profile opens once Doqto approves your application');
     }

@@ -8,7 +8,7 @@ import { Clinic } from '../clinics/clinic.schema';
 import { Doctor } from '../doctors/doctor.schema';
 import { ScheduleEntity } from '../schedules/schedule.schema';
 import { toSchedule } from '../schedules/schedules.service';
-import { WorkspacesService } from './workspaces.service';
+import { requirePermission, WorkspacesService } from './workspaces.service';
 
 /**
  * The weekly hours of an approved clinic or doctor, set from the console. Patients can book only
@@ -28,6 +28,7 @@ export class UnitScheduleService {
   private async scope(accountId: string, unitId: string) {
     const unit = await this.workspaces.open(accountId, unitId);
     if (unit.kind !== 'clinic') throw AppException.notFound('This service has no schedule');
+    requirePermission(unit, 'schedule');
     if (unit.status !== 'verified') {
       throw AppException.forbidden('The schedule opens once Doqto approves your application');
     }

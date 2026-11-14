@@ -1,5 +1,5 @@
-import { PlannedScreen } from '@/components/planned-screen';
+import { StaffScreen } from '@/components/staff/staff-screen';
 
 export default function Page() {
-  return <PlannedScreen type="clinic" area="staff" />;
+  return <StaffScreen type="clinic" />;
 }

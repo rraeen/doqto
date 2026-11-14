@@ -1,5 +1,5 @@
-import { PlannedScreen } from '@/components/planned-screen';
+import { LabBookingsScreen } from '@/components/lab/lab-bookings-screen';
 
 export default function Page() {
-  return <PlannedScreen type="lab" area="labBookings" />;
+  return <LabBookingsScreen />;
 }

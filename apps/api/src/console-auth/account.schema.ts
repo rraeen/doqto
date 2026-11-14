@@ -25,6 +25,13 @@ export class Account {
   @Prop() lastLoginAt?: Date;
   /** Set by hand for members of the Doqto team (`admin:create`). Never settable through sign-up. */
   @Prop({ type: String, enum: ['admin'] }) platformRole?: 'admin';
+  /** Staff only: lower-cased login name the owner chose. Owners sign in with a phone or email. */
+  @Prop() username?: string;
+  /** Staff only: the owner set a temporary password, so the person must pick their own first. */
+  @Prop({ default: false }) mustChangePassword: boolean;
+  /** Staff only: the owner who created the login, and the business it belongs to. */
+  @Prop({ type: Types.ObjectId, ref: 'Account' }) createdByAccountId?: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Organization' }) organizationId?: Types.ObjectId;
 }
 
 export type AccountDocument = HydratedDocument<Account>;
@@ -32,6 +39,7 @@ export const AccountSchema = SchemaFactory.createForClass(Account);
 // Sparse unique: an account may have only an email or only a phone.
 AccountSchema.index({ email: 1 }, { unique: true, sparse: true });
 AccountSchema.index({ phone: 1 }, { unique: true, sparse: true });
+AccountSchema.index({ username: 1 }, { unique: true, sparse: true });
 
 /** A live verification or password-reset code. Only the peppered hash is stored. */
 @Schema({ collection: 'accountCodes', timestamps: true, strict: true })

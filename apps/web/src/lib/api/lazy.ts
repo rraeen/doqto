@@ -27,3 +27,4 @@ export const accountApi = lazyModule(() => import('./account'));
 export const notificationsApi = lazyModule(() => import('./notifications'));
 export const recordsApi = lazyModule(() => import('./records'));
 export const chatsApi = lazyModule(() => import('./chats'));
+export const labsApi = lazyModule(() => import('./labs'));

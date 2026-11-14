@@ -18,6 +18,7 @@ export * from './account';
 export * from './records';
 export * from './schedules';
 export * from './clinic-console';
+export * from './labs';
 export * from './chat';
 export * from './profile-change';
 export * from './notifications';

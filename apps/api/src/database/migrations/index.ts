@@ -5,8 +5,10 @@ import { Account, AccountCode, AccountRefreshToken } from '../../console-auth/ac
 import { Membership, Organization, Unit } from '../../console-auth/organization.schema';
 import { Clinic } from '../../clinics/clinic.schema';
 import { Doctor } from '../../doctors/doctor.schema';
+import { plainSlug } from '../../doctors/slug';
 import { Appointment } from '../../appointments/appointment.schema';
 import { ChatMessageDoc } from '../../chat/chat-message.schema';
+import { Lab, LabBooking, LabCategory, LabTest } from '../../labs/lab.schema';
 import { Notification } from '../../notifications/notification.schema';
 import { Job } from '../../jobs/job.schema';
 import { ScheduleEntity } from '../../schedules/schedule.schema';
@@ -163,4 +165,41 @@ export const MIGRATIONS: Migration[] = [
   },
   // Messages between a patient and the doctor of a booking.
   indexMigration('0013-chat-message-indexes', [ChatMessageDoc.name]),
+  // Labs: the patient listing, the catalogue and the booking requests.
+  indexMigration('0014-lab-indexes', [Lab.name, LabCategory.name, LabTest.name, LabBooking.name]),
+  // Labs approved before lab listings existed were never put on the patient site. List each one
+  // now, the same way approving it today does (a lab listed already is left alone).
+  {
+    name: '0015-list-approved-labs',
+    async up(connection) {
+      const units = connection.collection('units');
+      const labs = connection.collection('labs');
+      for await (const u of units.find({ kind: 'lab', status: 'verified' })) {
+        if (await labs.findOne({ unitId: u._id })) continue;
+        const p = (u.profile ?? {}) as Record<string, unknown>;
+        const name = String(p.labName ?? u.name ?? '').trim();
+        const cityLabel = String(p.city ?? '').trim();
+        const address = String(p.address ?? '').trim();
+        if (!name || !cityLabel || !address) continue; // too incomplete to list; the owner fixes the form
+        const base = plainSlug(name, cityLabel, 'lab');
+        let slug = base;
+        for (let n = 2; await labs.findOne({ slug }); n++) slug = `${base}-${n}`;
+        await labs.insertOne({
+          unitId: u._id,
+          name,
+          slug,
+          city: cityLabel.toLowerCase(),
+          cityLabel,
+          address,
+          nablAccredited: p.nablAccredited === true,
+          homeCollection: p.homeCollection === true,
+          ...(typeof p.turnaroundHours === 'number' ? { turnaroundHours: p.turnaroundHours } : {}),
+          isListed: true,
+          isDemo: process.env.PROVIDER_MODE === 'demo',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+      }
+    },
+  },
 ];

@@ -3,6 +3,7 @@ import {
   LOGIN_MAX_FAILURES,
   type CodeSentResponse,
   type ConsoleAccount,
+  type ConsoleChangePasswordRequest,
   type ConsoleLoginRequest,
   type ConsoleRegisterRequest,
   type ConsoleResetPasswordRequest,
@@ -26,14 +27,20 @@ const WINDOW_MS = 10 * 60_000;
 const CODES_PER_IDENTIFIER = 5;
 const REQUESTS_PER_IP = 20;
 
-/** Emails compare lower-cased; phones are already E.164. */
+/** Emails and usernames compare lower-cased; phones are already E.164 (they start with `+`). */
 export function normalizeIdentifier(identifier: string): string {
   const v = identifier.trim();
-  return v.includes('@') ? v.toLowerCase() : v;
+  return v.startsWith('+') ? v : v.toLowerCase();
 }
 
-function lookup(identifier: string): { email: string } | { phone: string } {
-  return identifier.includes('@') ? { email: identifier } : { phone: identifier };
+/** A staff login name: neither an email (has `@`) nor a phone (starts with `+`). */
+function isUsername(identifier: string): boolean {
+  return !identifier.includes('@') && !identifier.startsWith('+');
+}
+
+function lookup(identifier: string): { email: string } | { phone: string } | { username: string } {
+  if (identifier.includes('@')) return { email: identifier };
+  return identifier.startsWith('+') ? { phone: identifier } : { username: identifier };
 }
 
 export function toConsoleAccount(a: AccountDocument, workspaces: Workspace[]): ConsoleAccount {
@@ -42,6 +49,8 @@ export function toConsoleAccount(a: AccountDocument, workspaces: Workspace[]): C
     name: a.name,
     email: a.email ?? null,
     phone: a.phone ?? null,
+    username: a.username ?? null,
+    mustChangePassword: a.mustChangePassword ?? false,
     language: a.language,
     status: a.status,
     platformRole: a.platformRole ?? null,
@@ -137,6 +146,8 @@ export class ConsoleAuthService {
   async resend(rawIdentifier: string, ip: string): Promise<CodeSentResponse> {
     const identifier = normalizeIdentifier(rawIdentifier);
     await this.enforceLimits(identifier, ip);
+    // A username has nowhere to send a code to: answer like any unknown account.
+    if (isUsername(identifier)) return this.decoy(identifier);
     const account = await this.accounts
       .findOne({ ...lookup(identifier), contactVerifiedAt: { $exists: false } })
       .exec();
@@ -221,9 +232,42 @@ export class ConsoleAuthService {
   async forgotPassword(rawIdentifier: string, ip: string): Promise<CodeSentResponse> {
     const identifier = normalizeIdentifier(rawIdentifier);
     await this.enforceLimits(identifier, ip);
+    // Staff have no phone or email: the owner resets their password from the Staff screen.
+    if (isUsername(identifier)) return this.decoy(identifier);
     const account = await this.accounts.findOne({ ...lookup(identifier), status: 'active' }).exec();
     if (account) return this.codes.issue(identifier, 'reset', account.language);
     return this.decoy(identifier);
+  }
+
+  /** A signed-in account chooses a new password. Other devices are signed out. */
+  async changePassword(accountId: string, input: ConsoleChangePasswordRequest): Promise<void> {
+    if (!Types.ObjectId.isValid(accountId)) throw AppException.unauthenticated();
+    const account = await this.accounts.findById(accountId).exec();
+    if (!account) throw AppException.unauthenticated();
+    if (!(await this.passwords.verify(input.currentPassword, account.passwordHash))) {
+      throw new AppException(
+        HttpStatus.UNAUTHORIZED,
+        'INVALID_CREDENTIALS',
+        'Your current password is not right.',
+      );
+    }
+    if (input.newPassword === input.currentPassword) {
+      throw new AppException(HttpStatus.BAD_REQUEST, 'VALIDATION_FAILED', 'Choose a new password', {
+        issues: [{ path: 'newPassword', message: 'Use a password you have not used before' }],
+      });
+    }
+    await this.accounts
+      .updateOne(
+        { _id: account._id },
+        {
+          $set: {
+            passwordHash: await this.passwords.hash(input.newPassword),
+            passwordChangedAt: new Date(),
+            mustChangePassword: false,
+          },
+        },
+      )
+      .exec();
   }
 
   async resetPassword(input: ConsoleResetPasswordRequest): Promise<void> {
